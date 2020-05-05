@@ -1,19 +1,60 @@
 import React , {useState} from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableWithoutFeedback } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Zocial from 'react-native-vector-icons/Zocial';
 
 const Input = props => {
 
     const [text, setText] = useState('');
+    const [showPass, setShowPass] = useState(false);
+
+    function _renderIconType(iconType, iconName, iconSize) {
+        switch (iconType) {
+            case "Ionicons":
+                return (
+                    <Ionicons
+                        name={iconName}
+                        style={styles.leftIcon}
+                        size={iconSize}
+                    />
+                );
+            case "Zocial":
+                return (
+                    <Zocial
+                        name={iconName}
+                        style={styles.leftIcon}
+                        size={iconSize}
+                    />
+                );
+            default:
+                return null;
+        }
+    }
+
+    function _renderIconShowOrHidePassword(iconSize) {
+        return(
+            <TouchableWithoutFeedback onPress={() => setShowPass(!showPass)}>
+              <Ionicons
+                name={ !showPass ? 'ios-eye' : 'ios-eye-off'}
+                style={styles.rightIcon}
+                size={iconSize}
+              />
+            </TouchableWithoutFeedback>
+        );
+    }
 
     return (
         <View style={styles.textInputContainer}>
+            {_renderIconType(props.iconType, props.iconName, props.iconSize)}
             <TextInput
                 style={styles.textInput}
                 onChangeText={text => setText(text)}
                 placeholder={props.placeholder}
                 keyboardType={props.keyboardType}
                 onSubmitEditing={() => alert('done')}
+                secureTextEntry={!showPass}
             />
+            {props.showOrHidePassword ? _renderIconShowOrHidePassword(props.iconSize) : null}
         </View>
     )
 }
@@ -36,5 +77,15 @@ const styles = StyleSheet.create({
         "paddingLeft": 40,
         "marginBottom": 10,
         "paddingRight": 35
-      }
+      },
+      leftIcon: {
+        "position": 'absolute',
+        "top": 10,
+        "left": 16,
+      },
+      rightIcon: {
+        "position": 'absolute',
+        "top": 10,
+        "right": 12,
+      },
   });
