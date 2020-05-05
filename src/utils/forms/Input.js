@@ -2,6 +2,7 @@ import React , {useState} from 'react';
 import { StyleSheet, TextInput, View, TouchableWithoutFeedback } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Zocial from 'react-native-vector-icons/Zocial';
+import Foundation from 'react-native-vector-icons/Foundation';
 
 const Input = props => {
 
@@ -21,6 +22,14 @@ const Input = props => {
             case "Zocial":
                 return (
                     <Zocial
+                        name={iconName}
+                        style={styles.leftIcon}
+                        size={iconSize}
+                    />
+                );
+            case "Foundation":
+                return (
+                    <Foundation
                         name={iconName}
                         style={styles.leftIcon}
                         size={iconSize}
