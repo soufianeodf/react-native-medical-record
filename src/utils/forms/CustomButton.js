@@ -7,7 +7,7 @@ const CustomButton = props => {
             <Button
                 onPress={() => alert('button pressed')}
                 title={props.title}
-                color="#2db7ff"
+                color={props.color}
             />
          </View>
     )

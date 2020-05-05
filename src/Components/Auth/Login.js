@@ -32,7 +32,7 @@ const Login = props => {
 
             <Input placeholder={"email"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
             <Input placeholder={"password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-            <CustomButton title={"click me"} />
+            <CustomButton title={"LOG IN"} color={"#2db7ff"} />
             <View style={styles.bottomContainer}>
                 <TouchableWithoutFeedback onPress={() => alert('test')}>
                     <Text style={styles.forgotPasswordText}>Forgot password?</Text>
