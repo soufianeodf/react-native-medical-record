@@ -6,7 +6,7 @@ const Input = props => {
     const [text, setText] = useState('');
 
     return (
-        <View>
+        <View style={styles.textInputContainer}>
             <TextInput
                 style={styles.textInput}
                 onChangeText={text => setText(text)}
@@ -21,8 +21,10 @@ const Input = props => {
 export default Input;
 
 const styles = StyleSheet.create({
+    textInputContainer: {
+        "width": '80%',
+    },
     textInput: {
-        "width": 288,
         "height": 40,
         "borderTopLeftRadius": 4,
         "borderTopRightRadius": 4,
