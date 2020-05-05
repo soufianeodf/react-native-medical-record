@@ -2,12 +2,34 @@ import React from 'react';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 const Login = props => {
 
+    function _loginMethodButton(name, bgColor, text) {
+        return(
+            <View style={styles.loginMethodButtonContainer}>
+                <Ionicons.Button
+                    name={name}
+                    backgroundColor={bgColor}
+                    onPress={() => alert('log in with ' + name)}
+                >
+                    <Text style={{fontSize: 15 , color: "#fff"}}>
+                    {text}
+                    </Text>
+                </Ionicons.Button>
+            </View>
+        );
+    }
+
     return (
         <View style={styles.viewContainer}>
+
+            {_loginMethodButton("logo-facebook", "#39589A", "Login with Facebook")}
+            {_loginMethodButton("logo-twitter", "#50ABF1", "Login with Twitter")}
+            {_loginMethodButton("logo-google", "#DD4B39", "Login with Google")}
+
             <Input placeholder={"email"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
             <Input placeholder={"password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
             <CustomButton title={"click me"} />
@@ -21,6 +43,9 @@ const Login = props => {
                 </TouchableWithoutFeedback>
                 </Text>
             </View>
+
+
+
         </View>
     )
 }
@@ -32,6 +57,10 @@ const styles = StyleSheet.create({
         "flex": 1,
         "alignItems": 'center',
         "justifyContent": 'center',
+    },
+    loginMethodButtonContainer: {
+        "width": '80%' , 
+        "marginBottom": 10,
     },
     bottomContainer: {
         "position": 'relative',
