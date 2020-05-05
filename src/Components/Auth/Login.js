@@ -30,8 +30,8 @@ const Login = props => {
             {_loginMethodButton("logo-twitter", "#50ABF1", "Login with Twitter")}
             {_loginMethodButton("logo-google", "#DD4B39", "Login with Google")}
 
-            <Input placeholder={"email"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-            <Input placeholder={"password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
+            <Input placeholder={"Email"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
+            <Input placeholder={"Password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
             <CustomButton title={"LOG IN"} color={"#2db7ff"} />
             <View style={styles.bottomContainer}>
                 <TouchableWithoutFeedback onPress={() => alert('test')}>
