@@ -7,7 +7,7 @@ import Foundation from 'react-native-vector-icons/Foundation';
 const Input = props => {
 
     const [text, setText] = useState('');
-    const [showPass, setShowPass] = useState(false);
+    const [showPass, setShowPass] = useState(!props.showOrHidePassword);
 
     function _renderIconType(iconType, iconName, iconSize) {
         switch (iconType) {
