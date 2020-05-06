@@ -4,7 +4,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const ForgotPassword = props => {
+const ForgotPassword = (props) => {
   return (
     <View style={styles.viewContainer}>
       <View style={styles.firstBlockContainer}>

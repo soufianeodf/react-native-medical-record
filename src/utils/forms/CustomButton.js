@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
-const CustomButton = props => {
+const CustomButton = (props) => {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button

@@ -5,7 +5,7 @@ import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
-const Login = props => {
+const Login = (props) => {
 
 	function _loginMethodButton(name, bgColor, text) {
 		return(

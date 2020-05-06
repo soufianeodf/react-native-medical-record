@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../Components/Auth/Login';
@@ -20,7 +19,7 @@ const Navigation = () => {
         <Stack.Screen name="CheckEmail" component={CheckEmail} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
 export default Navigation;

@@ -4,7 +4,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
 
-const Signup = props => {
+const Signup = (props) => {
 
 	const [isMale, setIsMale] = useState(true);
 

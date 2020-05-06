@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomButton from '../../utils/forms/CustomButton';
 
 
-const CheckEmail = props => {
+const CheckEmail = (props) => {
   return (
     <View style={styles.viewContainer}>
       <View style={styles.firstBlockContainer}>
