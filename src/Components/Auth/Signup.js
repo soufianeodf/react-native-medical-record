@@ -11,16 +11,16 @@ const Signup = () => {
 	function _toggleGenre(genre) {
 		if(genre === "male"){
 			if(!isMale){
-				setIsMale(true)
+				setIsMale(true);
 			}
 		}else if(genre === "female"){
 			if(isMale){
-				setIsMale(false)
+				setIsMale(false);
 			}
 		}
 	}
 
-	function RadioButton(params) {
+	function _radioButton(params) {
 		return (
 			<TouchableOpacity
 				onPress={() => _toggleGenre(params.genre)}
@@ -30,9 +30,9 @@ const Signup = () => {
 					width: 18,
 					borderRadius: 12,
 					borderWidth: 2,
-					borderColor: '#353232',
-					alignItems: 'center',
-					justifyContent: 'center',
+					borderColor: "#353232",
+					alignItems: "center",
+					justifyContent: "center",
 				}}>
 				{
 					params.selected ?
@@ -40,7 +40,7 @@ const Signup = () => {
 						height: 10,
 						width: 10,
 						borderRadius: 6,
-						backgroundColor: '#353232',
+						backgroundColor: "#353232",
 					}}/>
 					: null
 				}
@@ -59,11 +59,11 @@ const Signup = () => {
 						</View>
 						<View style={styles.radioContainerInnerElements}>
 							<Text>Male </Text>
-							{RadioButton({selected: isMale, genre: "male"})}
+							{_radioButton({selected: isMale, genre: "male"})}
 						</View>
 						<View style={styles.radioContainerInnerElements}>
 							<Text>Female </Text>
-							{RadioButton({selected: !isMale, genre: "female"})}
+							{_radioButton({selected: !isMale, genre: "female"})}
 						</View>
 					</View>
 
@@ -80,14 +80,14 @@ const Signup = () => {
 
 				<View>
 					<Text style={styles.textBottom}>Already have an account?
-						<TouchableWithoutFeedback onPress={() => alert('Login')}>
+						<TouchableWithoutFeedback onPress={() => alert("Login")}>
 							<Text style={styles.signinText}> SIGN IN</Text>
 						</TouchableWithoutFeedback>
 					</Text>
 				</View>
 			</ScrollView>
 		</View>
-	)
+	);
 }
 
 export default Signup;
@@ -95,19 +95,19 @@ export default Signup;
 const styles = StyleSheet.create({
 	viewContainer: {
 		"flex": 1,
-		"justifyContent": 'center',
-		"alignItems": 'center',
+		"justifyContent": "center",
+		"alignItems": "center",
 		"marginTop": 20,
 	},
 	firstBlockContainer: {
-		"width": '100%',
-		"justifyContent": 'center',
-		"alignItems": 'center',
+		"width": "100%",
+		"justifyContent": "center",
+		"alignItems": "center",
 	},
 	radioContainer: {
-		"flexDirection": 'row',
-		"justifyContent": 'space-around',
-		"width": '80%',
+		"flexDirection": "row",
+		"justifyContent": "space-around",
+		"width": "80%",
 		"marginBottom": 10,
 	},
 	radioContainerInnerGender: {
@@ -115,14 +115,14 @@ const styles = StyleSheet.create({
 	},
 	radioContainerInnerElements: {
 		"flex": 1,
-		"flexDirection": 'row',
+		"flexDirection": "row",
 	},
 	textBottom: {
-		"position": 'relative',
+		"position": "relative",
 		"top": 25,
-		"color": '#888'
+		"color": "#888",
 		},
 	signinText: {
-		"fontWeight": 'bold',
-	}
-})
+		"fontWeight": "bold",
+	},
+});

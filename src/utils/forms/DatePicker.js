@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const DatePicker = () => {
 
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-	const [birthDate, setBirthDate] = useState('');
+	const [birthDate, setBirthDate] = useState("");
 
 	const showDatePicker = () => {
 	setDatePickerVisibility(true);
@@ -18,8 +18,7 @@ const DatePicker = () => {
 	};
 
 	const handleConfirm = (date) => {
-			setBirthDate('');
-			console.log(date);
+			setBirthDate("");
 			hideDatePicker();
 	};
 
@@ -45,16 +44,16 @@ const DatePicker = () => {
 				onCancel={hideDatePicker}
 			/>
 		</View>
-	)
+	);
 }
 
-export default DatePicker
+export default DatePicker;
 
 const styles = StyleSheet.create({
 	datePickerContainer: {
-		"flexDirection": 'row',
-		"justifyContent": 'space-around',
-		"width": '80%',
+		"flexDirection": "row",
+		"justifyContent": "space-around",
+		"width": "80%",
 	},
 	textInput: {
 		"height": 40,
@@ -63,10 +62,10 @@ const styles = StyleSheet.create({
 		"borderBottomRightRadius": 4,
 		"borderBottomLeftRadius": 4,
 		"borderWidth": 1,
-		"borderColor": '#aa9e9e',
-		"borderStyle": 'solid',
+		"borderColor": "#aa9e9e",
+		"borderStyle": "solid",
 		"paddingLeft": 40,
 		"marginBottom": 10,
-		"paddingRight": 35
+		"paddingRight": 35,
 	},
-})
+});
