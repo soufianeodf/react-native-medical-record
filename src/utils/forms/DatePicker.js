@@ -18,7 +18,7 @@ const DatePicker = () => {
 	};
 
 	const handleConfirm = (date) => {
-			setBirthDate("");
+			setBirthDate(Moment(date).utc().format("YYYY-MM-DD"));
 			hideDatePicker();
 	};
 
