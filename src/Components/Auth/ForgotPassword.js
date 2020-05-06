@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   thirdBlockContainer: {
     "flex": 1,
-    "justifyContent": "flex-end",
+    "justifyContent": "center",
     "alignItems": "center",
     "marginBottom": 20,
   },
