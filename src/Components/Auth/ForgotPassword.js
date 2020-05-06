@@ -4,7 +4,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const ForgotPassword = () => {
+const ForgotPassword = props => {
   return (
     <View style={styles.viewContainer}>
       <View style={styles.firstBlockContainer}>
@@ -18,12 +18,12 @@ const ForgotPassword = () => {
 
       <View style={styles.secondBlockContainer}>
         <Input placeholder={"E-mail address"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} />
+        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} navigate={() => props.navigation.navigate("CheckEmail")} />
       </View>
 
       <View style={styles.thirdBlockContainer}>
         <Text style={styles.bottomText}>Don't have an account?</Text>
-        <TouchableWithoutFeedback onPress={() => alert("Signup")}>
+        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
           <Text style={styles.signupText}>SIGN UP</Text>
         </TouchableWithoutFeedback>
       </View>

@@ -33,11 +33,11 @@ const Login = props => {
 			<Input placeholder={"Password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
 			<CustomButton title={"LOG IN"} color={"#2db7ff"} />
 			<View style={styles.bottomContainer}>
-				<TouchableWithoutFeedback onPress={() => alert("test")}>
+				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("ForgotPassword")}>
 					<Text style={styles.forgotPasswordText}>Forgot password?</Text>
 				</TouchableWithoutFeedback>
 				<Text style={styles.bottomText}>Don't have an account?
-				<TouchableWithoutFeedback onPress={() => alert("test")}>
+				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
 					<Text style={styles.signupText}> SIGN UP</Text>
 				</TouchableWithoutFeedback>
 				</Text>

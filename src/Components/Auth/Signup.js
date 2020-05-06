@@ -4,7 +4,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
 
-const Signup = () => {
+const Signup = props => {
 
 	const [isMale, setIsMale] = useState(true);
 
@@ -80,7 +80,7 @@ const Signup = () => {
 
 				<View>
 					<Text style={styles.textBottom}>Already have an account?
-						<TouchableWithoutFeedback onPress={() => alert("Login")}>
+						<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Login")}>
 							<Text style={styles.signinText}> SIGN IN</Text>
 						</TouchableWithoutFeedback>
 					</Text>

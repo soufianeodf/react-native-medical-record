@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomButton from '../../utils/forms/CustomButton';
 
 
-const CheckEmail = () => {
+const CheckEmail = props => {
   return (
     <View style={styles.viewContainer}>
       <View style={styles.firstBlockContainer}>
@@ -17,7 +17,7 @@ const CheckEmail = () => {
       </View>
 
       <View style={styles.secondBlockContainer}>
-        <CustomButton title={"BACK TO LOGIN PAGE"} color={"#2db7ff"} />
+        <CustomButton title={"BACK TO LOGIN PAGE"} color={"#2db7ff"}  navigate={() => props.navigation.navigate("Login")} />
       </View>
     </View>
   );

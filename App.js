@@ -1,9 +1,10 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import Signup from './src/Components/Auth/Signup';
+import Navigation from './src/Navigation/Navigation';
 
 export default function App() {
   return (
-    <Signup />
+    <Navigation />
   );
 }
 

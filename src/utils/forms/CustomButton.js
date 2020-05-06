@@ -5,7 +5,7 @@ const CustomButton = props => {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button
-				onPress={() => alert("button pressed")}
+				onPress={props.navigate}
 				title={props.title}
 				color={props.color}
 			/>
