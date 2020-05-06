@@ -1,9 +1,9 @@
 import React from 'react';
-import Login from './src/Components/Auth/Login';
+import Signup from './src/Components/Auth/Signup';
 
 export default function App() {
   return (
-    <Login />
+    <Signup />
   );
 }
 

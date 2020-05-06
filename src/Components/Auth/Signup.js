@@ -2,6 +2,7 @@ import React , {useState} from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
+import DatePicker from '../../utils/forms/DatePicker';
 
 const Signup = () => {
 
@@ -64,6 +65,9 @@ const Signup = () => {
 						{RadioButton({selected: !isMale, genre: "female"})}
 					</View>
 				</View>
+
+				<DatePicker />
+
 				<Input placeholder={"Username"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
 				<Input placeholder={"Full name*"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
 				<Input placeholder={"Email*"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
