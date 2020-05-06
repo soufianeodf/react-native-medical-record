@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import Moment from 'moment';
+import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const DatePicker = () => {
@@ -18,7 +18,7 @@ const DatePicker = () => {
 	};
 
 	const handleConfirm = (date) => {
-			setBirthDate(Moment(date).utc().format("YYYY-MM-DD"));
+			setBirthDate(moment(date).utc().format("YYYY-MM-DD"));
 			hideDatePicker();
 	};
 
