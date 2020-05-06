@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button
-} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomButton from '../../utils/forms/CustomButton';
 
 
 const CheckEmail = () => {
     return (
-        <View style={styles.viewContainer}>
+      <View style={styles.viewContainer}>
 
         <View style={styles.firstBlockContainer}>
           <Ionicons
@@ -22,10 +18,7 @@ const CheckEmail = () => {
         </View>
 
         <View style={styles.secondBlockContainer}>
-          <Button
-            title="BACK TO LOGIN PAGE"
-            onPress={() => alert('Login')}
-          />
+          <CustomButton title={"BACK TO LOGIN PAGE"} color={"#2db7ff"} />
         </View>
 
       </View>
