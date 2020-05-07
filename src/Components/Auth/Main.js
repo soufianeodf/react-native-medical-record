@@ -1,12 +1,28 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { firebaseAuth } from '../../environment/config';
 
-const Main = () => {
+const Main = (props) => {
+
+  function _handleLogout() {
+    firebaseAuth.signOut()
+    .then(() => props.navigation.navigate("Login"));
+  }
+
   return (
-    <View>
-      <Text>Welcome to the home page</Text>
+    <View style={styles.buttonView}>
+      <Text>Welcome to the Main page</Text>
+      <Button title="sign out" onPress={_handleLogout} />
     </View>
   );
 }
 
 export default Main;
+
+const styles = StyleSheet.create({
+  buttonView: {
+    "flex": 1,
+    "justifyContent": "center",
+    "alignItems": "center",
+  },
+});
