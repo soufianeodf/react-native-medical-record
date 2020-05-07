@@ -53,7 +53,7 @@ const Signup = (props) => {
 		);
 	}
 
-	function _handleLogin() {
+	function _handleSignup() {
     firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
     .catch((error) => setErrorMessage(error.message));
 	}
@@ -95,7 +95,7 @@ const Signup = (props) => {
 						iconName={"email"} 
 						iconSize={18} 
 						onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
-						action={_handleLogin}  
+						action={_handleSignup}  
 					/>
 					<Input placeholder={"Phone"} keyboardType={"phone-pad"} iconType={"Foundation"} iconName={"telephone"} iconSize={18} />
 					<Input 
@@ -104,10 +104,10 @@ const Signup = (props) => {
 						iconName={"ios-lock"} 
 						iconSize={18} showOrHidePassword={true} 
 						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
-						action={_handleLogin} 
+						action={_handleSignup} 
 					/>
 					<Input placeholder={"Repeat password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleLogin} />
+					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleSignup} />
 				</View>
 
 				<View>
