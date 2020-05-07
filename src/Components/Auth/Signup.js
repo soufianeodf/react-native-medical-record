@@ -54,7 +54,6 @@ const Signup = (props) => {
 	}
 
 	function _handleLogin() {
-		console.log(email + ' ' + password);
     firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
     .catch((error) => setErrorMessage(error.message));
 	}
@@ -62,7 +61,14 @@ const Signup = (props) => {
 	return (
 		<View style={styles.viewContainer}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 , justifyContent: "center", alignItems: "center"}} >
-			{errorMessage ? (<Text>{errorMessage}</Text>) : null}
+			
+				{errorMessage ? 
+					(<View style={styles.errorContainer}>
+						<Text style={styles.errorLabel}>{errorMessage}</Text>
+					</View>
+					) : null
+				}
+
 				<View style={styles.firstBlockContainer}>
 					<View style={styles.radioContainer}>
 						<View style={styles.radioContainerInnerGender}>
@@ -151,4 +157,13 @@ const styles = StyleSheet.create({
 	signinText: {
 		"fontWeight": "bold",
 	},
+	errorContainer: {
+    "padding": 5,
+		"width": "80%",
+  },
+  errorLabel: {
+    "color": "#f44336",
+    "textAlign": "center",
+    "textAlignVertical": "center",
+  },
 });

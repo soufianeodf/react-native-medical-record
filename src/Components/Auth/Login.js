@@ -34,7 +34,14 @@ const Login = (props) => {
 
 	return (
 		<View style={styles.viewContainer}>
-			{errorMessage ? (<Text>{errorMessage}</Text>) : null}
+
+			{errorMessage ? 
+				(<View style={styles.errorContainer}>
+					<Text style={styles.errorLabel}>{errorMessage}</Text>
+				</View>
+				) : null
+			}
+			
 			{_loginMethodButton("logo-facebook", "#39589A", "Login with Facebook")}
 			{_loginMethodButton("logo-twitter", "#50ABF1", "Login with Twitter")}
 			{_loginMethodButton("logo-google", "#DD4B39", "Login with Google")}
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
 		"justifyContent": "center",
 	},
 	loginMethodButtonContainer: {
-		"width": "80%" , 
+		"width": "80%", 
 		"marginBottom": 10,
 	},
 	bottomContainer: {
@@ -99,4 +106,13 @@ const styles = StyleSheet.create({
 	signupText: {
 		"fontWeight": "bold",
 	},
+	errorContainer: {
+    "padding": 5,
+		"width": "80%",
+  },
+  errorLabel: {
+    "color": "#f44336",
+    "textAlign": "center",
+    "textAlignVertical": "center",
+  },
 });
