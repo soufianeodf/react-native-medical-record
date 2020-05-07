@@ -29,7 +29,7 @@ const Login = (props) => {
 
 	function _handleLogin() {
     firebaseAuth.signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate('Main'); })
-    .catch(error => setErrorMessage(error.message) );
+    .catch(error => setErrorMessage(error.message));
 	}
 
 	return (
