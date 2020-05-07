@@ -28,8 +28,8 @@ const Login = (props) => {
 	}
 
 	function _handleLogin() {
-    firebaseAuth.signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate('Main'); })
-    .catch(error => setErrorMessage(error.message));
+    firebaseAuth.signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
+    .catch((error) => setErrorMessage(error.message));
 	}
 
 	return (
@@ -45,7 +45,7 @@ const Login = (props) => {
 				iconType={"Zocial"} 
 				iconName={"email"} 
 				iconSize={18}    
-				onChangeText={email => {setEmail(email); setErrorMessage("")}} 
+				onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
 				action={_handleLogin} 
 			/>
 			<Input 
@@ -54,7 +54,7 @@ const Login = (props) => {
 				iconName={"ios-lock"} 
 				iconSize={18} 
 				showOrHidePassword={true} 
-				onChangeText={password => {setPassword(password); setErrorMessage("")}} 
+				onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
 				action={_handleLogin} 
 			/>
 			<CustomButton title={"LOG IN"} color={"#2db7ff"} action={_handleLogin} />
