@@ -57,10 +57,10 @@ const Input = props => {
 			{_renderIconType(props.iconType, props.iconName, props.iconSize)}
 			<TextInput
 				style={styles.textInput}
-				onChangeText={text => setText(text)}
+				onChangeText={props.onChangeText}
 				placeholder={props.placeholder}
 				keyboardType={props.keyboardType}
-				onSubmitEditing={() => alert("done")}
+				onSubmitEditing={props.action}
 				secureTextEntry={!showPass}
 			/>
 			{props.showOrHidePassword ? _renderIconShowOrHidePassword(props.iconSize) : null}

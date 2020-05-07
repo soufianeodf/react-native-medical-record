@@ -18,7 +18,7 @@ const ForgotPassword = (props) => {
 
       <View style={styles.secondBlockContainer}>
         <Input placeholder={"E-mail address"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} navigate={() => props.navigation.navigate("CheckEmail")} />
+        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} action={() => props.navigation.navigate("CheckEmail")} />
       </View>
 
       <View style={styles.thirdBlockContainer}>
