@@ -3,10 +3,14 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity, Scr
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
+import { firebaseAuth } from '../../environment/config';
 
 const Signup = (props) => {
 
 	const [isMale, setIsMale] = useState(true);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
 
 	function _toggleGenre(genre) {
 		if(genre === "male"){
@@ -49,9 +53,16 @@ const Signup = (props) => {
 		);
 	}
 
+	function _handleLogin() {
+		console.log(email + ' ' + password);
+    firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
+    .catch((error) => setErrorMessage(error.message));
+	}
+
 	return (
 		<View style={styles.viewContainer}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 , justifyContent: "center", alignItems: "center"}} >
+			{errorMessage ? (<Text>{errorMessage}</Text>) : null}
 				<View style={styles.firstBlockContainer}>
 					<View style={styles.radioContainer}>
 						<View style={styles.radioContainerInnerGender}>
@@ -71,11 +82,26 @@ const Signup = (props) => {
 
 					<Input placeholder={"Username"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
 					<Input placeholder={"Full name*"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
-					<Input placeholder={"Email*"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
+					<Input 
+						placeholder={"Email*"} 
+						keyboardType={"email-address"} 
+						iconType={"Zocial"} 
+						iconName={"email"} 
+						iconSize={18} 
+						onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
+						action={_handleLogin}  
+					/>
 					<Input placeholder={"Phone"} keyboardType={"phone-pad"} iconType={"Foundation"} iconName={"telephone"} iconSize={18} />
-					<Input placeholder={"Password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
+					<Input 
+						placeholder={"Password*"} 
+						iconType={"Ionicons"} 
+						iconName={"ios-lock"} 
+						iconSize={18} showOrHidePassword={true} 
+						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
+						action={_handleLogin} 
+					/>
 					<Input placeholder={"Repeat password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-					<CustomButton title={"sign up"} color={"#2db7ff"} />
+					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleLogin} />
 				</View>
 
 				<View>
