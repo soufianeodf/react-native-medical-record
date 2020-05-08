@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { firebaseAuth } from '../../environment/config';
+import firebase from '../../environment/config';
 
 const ForgotPassword = (props) => {
 
@@ -11,7 +11,7 @@ const ForgotPassword = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   
   function _handleForgotPassword() {
-    firebaseAuth.sendPasswordResetEmail(email).then(() => { props.navigation.navigate("CheckEmail"); })
+    firebase.auth().sendPasswordResetEmail(email).then(() => { props.navigation.navigate("CheckEmail"); })
     .catch((error) => setErrorMessage(error.message));
   }
   

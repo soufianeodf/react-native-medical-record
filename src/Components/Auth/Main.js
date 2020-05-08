@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { firebaseAuth } from '../../environment/config';
+import firebase from '../../environment/config';
 
 const Main = (props) => {
 
   function _handleLogout() {
-    firebaseAuth.signOut()
+    firebase.auth().signOut()
     .then(() => props.navigation.navigate("Login"));
   }
 
