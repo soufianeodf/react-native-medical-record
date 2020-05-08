@@ -1,15 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { firebaseAuth } from '../../environment/config';
+import firebase from '../../environment/config';
 
 const Login = (props) => {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+    props.navigation.addListener('focus', () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					props.navigation.navigate("Main");
+				} else {
+					setEmail("");
+					setPassword("");
+					setErrorMessage("");
+				}
+      });
+		});
+  }, [props.navigation]);
 
 	function _loginMethodButton(name, bgColor, text) {
 		return(
@@ -28,7 +42,7 @@ const Login = (props) => {
 	}
 
 	function _handleLogin() {
-    firebaseAuth.signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
     .catch((error) => setErrorMessage(error.message));
 	}
 
@@ -54,6 +68,7 @@ const Login = (props) => {
 				iconSize={18}    
 				onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
 				action={_handleLogin} 
+				value={email}
 			/>
 			<Input 
 				placeholder={"Password"} 
@@ -63,6 +78,7 @@ const Login = (props) => {
 				showOrHidePassword={true} 
 				onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
 				action={_handleLogin} 
+				value={password}
 			/>
 			<CustomButton title={"LOG IN"} color={"#2db7ff"} action={_handleLogin} />
 			<View style={styles.bottomContainer}>
