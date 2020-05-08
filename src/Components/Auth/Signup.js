@@ -1,16 +1,35 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity, ScrollView } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
-import { firebaseAuth } from '../../environment/config';
+import firebase from '../../environment/config';
 
 const Signup = (props) => {
 
 	const [isMale, setIsMale] = useState(true);
+	const [birthDate, setBirthDate] = useState("");
+	const [username, setUsername] = useState("");
+	const [fullName, setFullName] = useState("");
 	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
 	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+    props.navigation.addListener('focus', () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					props.navigation.navigate("Main");
+				}
+      });
+		});
+	}, [props.navigation]);
+	
+	const _setBirthDate = (date) => {
+		setBirthDate(date);
+	}
 
 	function _toggleGenre(genre) {
 		if(genre === "male"){
@@ -54,8 +73,20 @@ const Signup = (props) => {
 	}
 
 	function _handleSignup() {
-    firebaseAuth.createUserWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
-    .catch((error) => setErrorMessage(error.message));
+		console.log(isMale + ' ' + birthDate + ' ' + username + ' ' + phone);
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((credentials) => {
+			firebase.firestore().collection("users").doc(credentials.user.uid).set({
+				gender: isMale ? "Male" : "Female",
+				birthDate: birthDate,
+				username: username,
+				fullName: fullName,
+				phone: phone,
+			})
+			.then(() => {
+				console.log(isMale + ' ' + birthDate + ' ' + username + ' ' + phone);
+				props.navigation.navigate("Main"); 
+			}).catch((error) => setErrorMessage(error.message));
+		}).catch((error) => setErrorMessage(error.message));
 	}
 
 	return (
@@ -84,10 +115,24 @@ const Signup = (props) => {
 						</View>
 					</View>
 
-					<DatePicker />
+					<DatePicker setBirthDate={_setBirthDate} />
 
-					<Input placeholder={"Username"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
-					<Input placeholder={"Full name*"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
+					<Input 
+						placeholder={"Username"} 
+						iconType={"Ionicons"} 
+						iconName={"md-person"} 
+						iconSize={18} 
+						onChangeText={(username) => {setUsername(username); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<Input 
+						placeholder={"Full name*"} 
+						iconType={"Ionicons"} 
+						iconName={"md-person"} 
+						iconSize={18} 
+						onChangeText={(fullName) => {setFullName(fullName); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
 					<Input 
 						placeholder={"Email*"} 
 						keyboardType={"email-address"} 
@@ -97,7 +142,15 @@ const Signup = (props) => {
 						onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
 						action={_handleSignup}  
 					/>
-					<Input placeholder={"Phone"} keyboardType={"phone-pad"} iconType={"Foundation"} iconName={"telephone"} iconSize={18} />
+					<Input 
+						placeholder={"Phone"} 
+						keyboardType={"phone-pad"} 
+						iconType={"Foundation"} 
+						iconName={"telephone"} 
+						iconSize={18} 
+						onChangeText={(phone) => {setPhone(phone); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
 					<Input 
 						placeholder={"Password*"} 
 						iconType={"Ionicons"} 
@@ -106,7 +159,15 @@ const Signup = (props) => {
 						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
 						action={_handleSignup} 
 					/>
-					<Input placeholder={"Repeat password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
+					<Input 
+						placeholder={"Repeat password*"} 
+						iconType={"Ionicons"} 
+						iconName={"ios-lock"} 
+						iconSize={18} 
+						showOrHidePassword={true} 
+						onChangeText={(confirmPassword) => {setConfirmPassword(confirmPassword); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
 					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleSignup} />
 				</View>
 
