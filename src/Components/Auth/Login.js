@@ -12,7 +12,7 @@ const Login = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-    props.navigation.addListener('focus', () => {
+    props.navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
 					props.navigation.navigate("Main");

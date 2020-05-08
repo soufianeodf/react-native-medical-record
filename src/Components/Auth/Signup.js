@@ -18,7 +18,7 @@ const Signup = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-    props.navigation.addListener('focus', () => {
+    props.navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
 					props.navigation.navigate("Main");
@@ -73,17 +73,15 @@ const Signup = (props) => {
 	}
 
 	function _handleSignup() {
-		console.log(isMale + ' ' + birthDate + ' ' + username + ' ' + phone);
     firebase.auth().createUserWithEmailAndPassword(email, password).then((credentials) => {
 			firebase.firestore().collection("users").doc(credentials.user.uid).set({
 				gender: isMale ? "Male" : "Female",
-				birthDate: birthDate,
-				username: username,
-				fullName: fullName,
-				phone: phone,
+				birthDate,
+				username,
+				fullName,
+				phone,
 			})
 			.then(() => {
-				console.log(isMale + ' ' + birthDate + ' ' + username + ' ' + phone);
 				props.navigation.navigate("Main"); 
 			}).catch((error) => setErrorMessage(error.message));
 		}).catch((error) => setErrorMessage(error.message));
