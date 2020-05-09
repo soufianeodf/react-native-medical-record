@@ -169,7 +169,7 @@ const Signup = (props) => {
 					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleSignup} />
 				</View>
 
-				<View>
+				<View style={styles.bottomContainer}>
 					<Text style={styles.textBottom}>Already have an account?
 						<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Login")}>
 							<Text style={styles.signinText}> SIGN IN</Text>
@@ -208,9 +208,11 @@ const styles = StyleSheet.create({
 		"flex": 1,
 		"flexDirection": "row",
 	},
+	bottomContainer: {
+    "alignItems": "center",
+    "marginVertical": 20,
+		},
 	textBottom: {
-		"position": "relative",
-		"top": 25,
 		"color": "#888",
 		},
 	signinText: {
