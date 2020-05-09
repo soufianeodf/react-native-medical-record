@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import firebase from '../../environment/config';
 
 const ForgotPassword = (props) => {
+
+  const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  
+  function _handleForgotPassword() {
+    firebase.auth().sendPasswordResetEmail(email).then(() => { props.navigation.navigate("CheckEmail"); })
+    .catch((error) => setErrorMessage(error.message));
+  }
+  
   return (
     <View style={styles.viewContainer}>
       <View style={styles.firstBlockContainer}>
@@ -17,8 +27,24 @@ const ForgotPassword = (props) => {
       </View>
 
       <View style={styles.secondBlockContainer}>
-        <Input placeholder={"E-mail address"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} navigate={() => props.navigation.navigate("CheckEmail")} />
+
+      {errorMessage ? 
+				(<View style={styles.errorContainer}>
+					<Text style={styles.errorLabel}>{errorMessage}</Text>
+				</View>
+				) : null
+			}
+
+        <Input 
+          placeholder={"E-mail address"} 
+          keyboardType={"email-address"} 
+          iconType={"Zocial"} 
+          iconName={"email"} 
+          iconSize={18} 
+          onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
+          action={_handleForgotPassword} 
+        />
+        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} action={_handleForgotPassword}  />
       </View>
 
       <View style={styles.thirdBlockContainer}>
@@ -71,5 +97,14 @@ const styles = StyleSheet.create({
     "justifyContent": "center",
     "alignItems": "center",
     "marginBottom": 20,
+  },
+  errorContainer: {
+    "padding": 5,
+		"width": "80%",
+  },
+  errorLabel: {
+    "color": "#f44336",
+    "textAlign": "center",
+    "textAlignVertical": "center",
   },
 });

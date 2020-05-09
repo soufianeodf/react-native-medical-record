@@ -6,7 +6,6 @@ import Foundation from 'react-native-vector-icons/Foundation';
 
 const Input = props => {
 
-	const [text, setText] = useState("");
 	const [showPass, setShowPass] = useState(!props.showOrHidePassword);
 
 	function _renderIconType(iconType, iconName, iconSize) {
@@ -57,11 +56,12 @@ const Input = props => {
 			{_renderIconType(props.iconType, props.iconName, props.iconSize)}
 			<TextInput
 				style={styles.textInput}
-				onChangeText={text => setText(text)}
+				onChangeText={props.onChangeText}
 				placeholder={props.placeholder}
 				keyboardType={props.keyboardType}
-				onSubmitEditing={() => alert("done")}
+				onSubmitEditing={props.action}
 				secureTextEntry={!showPass}
+				value={props.value}
 			/>
 			{props.showOrHidePassword ? _renderIconShowOrHidePassword(props.iconSize) : null}
 		</View>

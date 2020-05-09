@@ -17,7 +17,7 @@ const CheckEmail = (props) => {
       </View>
 
       <View style={styles.secondBlockContainer}>
-        <CustomButton title={"BACK TO LOGIN PAGE"} color={"#2db7ff"}  navigate={() => props.navigation.navigate("Login")} />
+        <CustomButton title={"BACK TO LOGIN PAGE"} color={"#2db7ff"}  action={() => props.navigation.navigate("Login")} />
       </View>
     </View>
   );

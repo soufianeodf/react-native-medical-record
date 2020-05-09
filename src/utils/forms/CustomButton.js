@@ -5,7 +5,7 @@ const CustomButton = (props) => {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button
-				onPress={props.navigate}
+				onPress={props.action}
 				title={props.title}
 				color={props.color}
 			/>

@@ -1,11 +1,29 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import firebase from '../../environment/config';
 
 const Login = (props) => {
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+    props.navigation.addListener("focus", () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					props.navigation.navigate("Main");
+				} else {
+					setEmail("");
+					setPassword("");
+					setErrorMessage("");
+				}
+      });
+		});
+  }, [props.navigation]);
 
 	function _loginMethodButton(name, bgColor, text) {
 		return(
@@ -23,15 +41,46 @@ const Login = (props) => {
 		);
 	}
 
+	function _handleLogin() {
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
+    .catch((error) => setErrorMessage(error.message));
+	}
+
 	return (
 		<View style={styles.viewContainer}>
+
+			{errorMessage ? 
+				(<View style={styles.errorContainer}>
+					<Text style={styles.errorLabel}>{errorMessage}</Text>
+				</View>
+				) : null
+			}
+			
 			{_loginMethodButton("logo-facebook", "#39589A", "Login with Facebook")}
 			{_loginMethodButton("logo-twitter", "#50ABF1", "Login with Twitter")}
 			{_loginMethodButton("logo-google", "#DD4B39", "Login with Google")}
 
-			<Input placeholder={"Email"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-			<Input placeholder={"Password"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-			<CustomButton title={"LOG IN"} color={"#2db7ff"} />
+			<Input 
+				placeholder={"Email"} 
+				keyboardType={"email-address"} 
+				iconType={"Zocial"} 
+				iconName={"email"} 
+				iconSize={18}    
+				onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
+				action={_handleLogin} 
+				value={email}
+			/>
+			<Input 
+				placeholder={"Password"} 
+				iconType={"Ionicons"} 
+				iconName={"ios-lock"} 
+				iconSize={18} 
+				showOrHidePassword={true} 
+				onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
+				action={_handleLogin} 
+				value={password}
+			/>
+			<CustomButton title={"LOG IN"} color={"#2db7ff"} action={_handleLogin} />
 			<View style={styles.bottomContainer}>
 				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("ForgotPassword")}>
 					<Text style={styles.forgotPasswordText}>Forgot password?</Text>
@@ -55,7 +104,7 @@ const styles = StyleSheet.create({
 		"justifyContent": "center",
 	},
 	loginMethodButtonContainer: {
-		"width": "80%" , 
+		"width": "80%", 
 		"marginBottom": 10,
 	},
 	bottomContainer: {
@@ -73,4 +122,13 @@ const styles = StyleSheet.create({
 	signupText: {
 		"fontWeight": "bold",
 	},
+	errorContainer: {
+    "padding": 5,
+		"width": "80%",
+  },
+  errorLabel: {
+    "color": "#f44336",
+    "textAlign": "center",
+    "textAlignVertical": "center",
+  },
 });

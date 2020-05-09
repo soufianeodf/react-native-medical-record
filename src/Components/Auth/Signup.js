@@ -1,12 +1,35 @@
-import React , {useState} from 'react';
+import React , {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity, ScrollView } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
+import firebase from '../../environment/config';
 
 const Signup = (props) => {
 
 	const [isMale, setIsMale] = useState(true);
+	const [birthDate, setBirthDate] = useState("");
+	const [username, setUsername] = useState("");
+	const [fullName, setFullName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+    props.navigation.addListener("focus", () => {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					props.navigation.navigate("Main");
+				}
+      });
+		});
+	}, [props.navigation]);
+	
+	const _setBirthDate = (date) => {
+		setBirthDate(date);
+	}
 
 	function _toggleGenre(genre) {
 		if(genre === "male"){
@@ -49,9 +72,32 @@ const Signup = (props) => {
 		);
 	}
 
+	function _handleSignup() {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then((credentials) => {
+			firebase.firestore().collection("users").doc(credentials.user.uid).set({
+				gender: isMale ? "Male" : "Female",
+				birthDate,
+				username,
+				fullName,
+				phone,
+			})
+			.then(() => {
+				props.navigation.navigate("Main"); 
+			}).catch((error) => setErrorMessage(error.message));
+		}).catch((error) => setErrorMessage(error.message));
+	}
+
 	return (
 		<View style={styles.viewContainer}>
 			<ScrollView contentContainerStyle={{ flexGrow: 1 , justifyContent: "center", alignItems: "center"}} >
+			
+				{errorMessage ? 
+					(<View style={styles.errorContainer}>
+						<Text style={styles.errorLabel}>{errorMessage}</Text>
+					</View>
+					) : null
+				}
+
 				<View style={styles.firstBlockContainer}>
 					<View style={styles.radioContainer}>
 						<View style={styles.radioContainerInnerGender}>
@@ -67,15 +113,60 @@ const Signup = (props) => {
 						</View>
 					</View>
 
-					<DatePicker />
+					<DatePicker setBirthDate={_setBirthDate} />
 
-					<Input placeholder={"Username"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
-					<Input placeholder={"Full name*"} iconType={"Ionicons"} iconName={"md-person"} iconSize={18} />
-					<Input placeholder={"Email*"} keyboardType={"email-address"} iconType={"Zocial"} iconName={"email"} iconSize={18} />
-					<Input placeholder={"Phone"} keyboardType={"phone-pad"} iconType={"Foundation"} iconName={"telephone"} iconSize={18} />
-					<Input placeholder={"Password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-					<Input placeholder={"Repeat password*"} iconType={"Ionicons"} iconName={"ios-lock"} iconSize={18} showOrHidePassword={true} />
-					<CustomButton title={"sign up"} color={"#2db7ff"} />
+					<Input 
+						placeholder={"Username"} 
+						iconType={"Ionicons"} 
+						iconName={"md-person"} 
+						iconSize={18} 
+						onChangeText={(username) => {setUsername(username); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<Input 
+						placeholder={"Full name*"} 
+						iconType={"Ionicons"} 
+						iconName={"md-person"} 
+						iconSize={18} 
+						onChangeText={(fullName) => {setFullName(fullName); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<Input 
+						placeholder={"Email*"} 
+						keyboardType={"email-address"} 
+						iconType={"Zocial"} 
+						iconName={"email"} 
+						iconSize={18} 
+						onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
+						action={_handleSignup}  
+					/>
+					<Input 
+						placeholder={"Phone"} 
+						keyboardType={"phone-pad"} 
+						iconType={"Foundation"} 
+						iconName={"telephone"} 
+						iconSize={18} 
+						onChangeText={(phone) => {setPhone(phone); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<Input 
+						placeholder={"Password*"} 
+						iconType={"Ionicons"} 
+						iconName={"ios-lock"} 
+						iconSize={18} showOrHidePassword={true} 
+						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<Input 
+						placeholder={"Repeat password*"} 
+						iconType={"Ionicons"} 
+						iconName={"ios-lock"} 
+						iconSize={18} 
+						showOrHidePassword={true} 
+						onChangeText={(confirmPassword) => {setConfirmPassword(confirmPassword); setErrorMessage("");}} 
+						action={_handleSignup} 
+					/>
+					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleSignup} />
 				</View>
 
 				<View>
@@ -125,4 +216,13 @@ const styles = StyleSheet.create({
 	signinText: {
 		"fontWeight": "bold",
 	},
+	errorContainer: {
+    "padding": 5,
+		"width": "80%",
+  },
+  errorLabel: {
+    "color": "#f44336",
+    "textAlign": "center",
+    "textAlignVertical": "center",
+  },
 });
