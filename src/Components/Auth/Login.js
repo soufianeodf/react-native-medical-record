@@ -31,7 +31,7 @@ const Login = (props) => {
 				<Ionicons.Button
 					name={name}
 					backgroundColor={bgColor}
-					onPress={() => alert("log in with" + name)}
+					onPress={() => alert("Not implemented yet")}
 				>
 					<Text style={{fontSize: 15 , color: "#fff"}}>
 						{text}
