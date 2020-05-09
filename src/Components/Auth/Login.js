@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
-import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import firebase from '../../environment/config';
 
@@ -48,6 +48,7 @@ const Login = (props) => {
 
 	return (
 		<View style={styles.viewContainer}>
+			<ScrollView contentContainerStyle={styles.scrollViewContainer} >
 
 			{errorMessage ? 
 				(<View style={styles.errorContainer}>
@@ -80,17 +81,21 @@ const Login = (props) => {
 				action={_handleLogin} 
 				value={password}
 			/>
+
 			<CustomButton title={"LOG IN"} color={"#2db7ff"} action={_handleLogin} />
+			
 			<View style={styles.bottomContainer}>
 				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("ForgotPassword")}>
 					<Text style={styles.forgotPasswordText}>Forgot password?</Text>
 				</TouchableWithoutFeedback>
 				<Text style={styles.bottomText}>Don't have an account?
-				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
-					<Text style={styles.signupText}> SIGN UP</Text>
-				</TouchableWithoutFeedback>
+					<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
+						<Text style={styles.signupText}> SIGN UP</Text>
+					</TouchableWithoutFeedback>
 				</Text>
 			</View>
+
+			</ScrollView>
 		</View>
 	);
 }
@@ -100,17 +105,20 @@ export default Login;
 const styles = StyleSheet.create({
 	viewContainer: {
 		"flex": 1,
+		"marginTop": 20,
+	},
+	scrollViewContainer: {
+		"flexGrow": 1, 
+		"justifyContent": "center", 
 		"alignItems": "center",
-		"justifyContent": "center",
 	},
 	loginMethodButtonContainer: {
 		"width": "80%", 
 		"marginBottom": 10,
 	},
 	bottomContainer: {
-		"position": "relative",
-		"top": 25,
-		"alignItems": "center",
+    "alignItems": "center",
+    "marginVertical": 20,
 		},
 	forgotPasswordText: {
 		"color": "#2db7ff",
