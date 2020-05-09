@@ -4,9 +4,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import Foundation from 'react-native-vector-icons/Foundation';
 
-const Input = props => {
+const Input = ({showOrHidePassword, iconType, iconName, iconSize, onChangeText, placeholder, keyboardType, action, value}) => {
 
-	const [showPass, setShowPass] = useState(!props.showOrHidePassword);
+	const [showPass, setShowPass] = useState(!showOrHidePassword);
 
 	function _renderIconType(iconType, iconName, iconSize) {
 		switch (iconType) {
@@ -53,17 +53,17 @@ const Input = props => {
 
 	return (
 		<View style={styles.textInputContainer}>
-			{_renderIconType(props.iconType, props.iconName, props.iconSize)}
+			{_renderIconType(iconType, iconName, iconSize)}
 			<TextInput
 				style={styles.textInput}
-				onChangeText={props.onChangeText}
-				placeholder={props.placeholder}
-				keyboardType={props.keyboardType}
-				onSubmitEditing={props.action}
+				onChangeText={onChangeText}
+				placeholder={placeholder}
+				keyboardType={keyboardType}
+				onSubmitEditing={action}
 				secureTextEntry={!showPass}
-				value={props.value}
+				value={value}
 			/>
-			{props.showOrHidePassword ? _renderIconShowOrHidePassword(props.iconSize) : null}
+			{showOrHidePassword ? _renderIconShowOrHidePassword(iconSize) : null}
 		</View>
 	);
 }

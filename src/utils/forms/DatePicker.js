@@ -4,34 +4,34 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const DatePicker = (props) => {
+const DatePicker = ({_setBirthDate}) => {
 
 	const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 	const [birthDate, setBirthDate] = useState("");
 
-	const showDatePicker = () => {
+	const _showDatePicker = () => {
 	setDatePickerVisibility(true);
 	};
 
-	const hideDatePicker = () => {
+	const _hideDatePicker = () => {
 			setDatePickerVisibility(false);
 	};
 
-	const handleConfirm = (date) => {
+	const _handleConfirm = (date) => {
 			date = moment(date).utc().format("YYYY-MM-DD");
+			_hideDatePicker();
 			setBirthDate(date);
-			props.setBirthDate(date);
-			hideDatePicker();
+			_setBirthDate(date);
 	};
 
 	return (
-		<View style={[styles.datePickerContainer]}>
+		<View style={[styles.datePickerViewContainer]}>
 			<Text>Date of Birth: </Text>
-			<View style={{flexDirection: "row", flex: 1}}>
-				<View style={{flex: 1}}>
+			<View style={styles.textInputContainer}>
+				<View style={styles.textInputInnerView}>
 					<TextInput style={styles.textInput} editable={false} value={birthDate} />
 				</View>
-				<TouchableWithoutFeedback onPress={showDatePicker} >
+				<TouchableWithoutFeedback onPress={_showDatePicker} >
 					<FontAwesome 
 						name={"calendar"}
 						style={{marginLeft: 5}}
@@ -42,8 +42,8 @@ const DatePicker = (props) => {
 			<DateTimePickerModal
 				isVisible={isDatePickerVisible}
 				mode="date"
-				onConfirm={handleConfirm}
-				onCancel={hideDatePicker}
+				onConfirm={_handleConfirm}
+				onCancel={_hideDatePicker}
 			/>
 		</View>
 	);
@@ -52,10 +52,17 @@ const DatePicker = (props) => {
 export default DatePicker;
 
 const styles = StyleSheet.create({
-	datePickerContainer: {
+	datePickerViewContainer: {
 		"flexDirection": "row",
 		"justifyContent": "space-around",
 		"width": "80%",
+	},
+	textInputContainer: {
+		"flexDirection": "row", 
+		"flex": 1,
+	},
+	textInputInnerView: {
+		"flex": 1,
 	},
 	textInput: {
 		"height": 40,

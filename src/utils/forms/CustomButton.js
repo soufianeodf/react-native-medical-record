@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 
-const CustomButton = (props) => {
+const CustomButton = ({action, title, color}) => {
 	return (
 		<View style={styles.buttonContainer}>
 			<Button
-				onPress={props.action}
-				title={props.title}
-				color={props.color}
+				onPress={action}
+				title={title}
+				color={color}
 			/>
 		</View>
 	);

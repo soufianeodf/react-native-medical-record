@@ -113,7 +113,7 @@ const Signup = (props) => {
 						</View>
 					</View>
 
-					<DatePicker setBirthDate={_setBirthDate} />
+					<DatePicker _setBirthDate={_setBirthDate} />
 
 					<Input 
 						placeholder={"Username"} 
@@ -153,7 +153,8 @@ const Signup = (props) => {
 						placeholder={"Password*"} 
 						iconType={"Ionicons"} 
 						iconName={"ios-lock"} 
-						iconSize={18} showOrHidePassword={true} 
+						iconSize={18} 
+						showOrHidePassword={true} 
 						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
 						action={_handleSignup} 
 					/>
