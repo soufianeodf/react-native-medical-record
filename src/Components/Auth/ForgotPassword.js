@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -17,42 +17,44 @@ const ForgotPassword = (props) => {
   
   return (
     <View style={styles.viewContainer}>
-      <View style={styles.firstBlockContainer}>
-        <Ionicons
-          name="ios-lock"
-          size={50}
-        />
-        <Text style={styles.forgotText}>Forgot password?</Text>
-        <Text style={styles.descriptionText}>We just need your registered email address to send you password reset</Text>
-      </View>
+      <ScrollView contentContainerStyle={{ flexGrow: 1}} >
+        <View style={styles.firstBlockContainer}>
+          <Ionicons
+            name="ios-lock"
+            size={50}
+          />
+          <Text style={styles.forgotText}>Forgot password?</Text>
+          <Text style={styles.descriptionText}>We just need your registered email address to send you password reset</Text>
+        </View>
 
-      <View style={styles.secondBlockContainer}>
+        <View style={styles.secondBlockContainer}>
 
-      {errorMessage ? 
-				(<View style={styles.errorContainer}>
-					<Text style={styles.errorLabel}>{errorMessage}</Text>
-				</View>
-				) : null
-			}
+        {errorMessage ? 
+          (<View style={styles.errorContainer}>
+            <Text style={styles.errorLabel}>{errorMessage}</Text>
+          </View>
+          ) : null
+        }
 
-        <Input 
-          placeholder={"E-mail address"} 
-          keyboardType={"email-address"} 
-          iconType={"Zocial"} 
-          iconName={"email"} 
-          iconSize={18} 
-          onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
-          action={_handleForgotPassword} 
-        />
-        <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} action={_handleForgotPassword}  />
-      </View>
+          <Input 
+            placeholder={"E-mail address"} 
+            keyboardType={"email-address"} 
+            iconType={"Zocial"} 
+            iconName={"email"} 
+            iconSize={18} 
+            onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
+            action={_handleForgotPassword} 
+          />
+          <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} action={_handleForgotPassword}  />
+        </View>
 
-      <View style={styles.thirdBlockContainer}>
-        <Text style={styles.bottomText}>Don't have an account?</Text>
-        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
-          <Text style={styles.signupText}>SIGN UP</Text>
-        </TouchableWithoutFeedback>
-      </View>
+        <View style={styles.thirdBlockContainer}>
+          <Text style={styles.bottomText}>Don't have an account?</Text>
+          <TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
+            <Text style={styles.signupText}>SIGN UP</Text>
+          </TouchableWithoutFeedback>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     "flex": 1,
     "justifyContent": "center",
     "alignItems": "center",
-    "marginBottom": 20,
+    "marginVertical": 20,
   },
   errorContainer: {
     "padding": 5,
