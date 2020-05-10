@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Zocial from 'react-native-vector-icons/Zocial';
 import Foundation from 'react-native-vector-icons/Foundation';
 
-const Input = ({showOrHidePassword, iconType, iconName, iconSize, onChangeText, placeholder, keyboardType, action, value}) => {
+const Input = ({showOrHidePassword, iconType, iconName, iconSize, onChangeText, placeholder, keyboardType, _action, value}) => {
 
 	const [showPass, setShowPass] = useState(!showOrHidePassword);
 
@@ -59,7 +59,7 @@ const Input = ({showOrHidePassword, iconType, iconName, iconSize, onChangeText, 
 				onChangeText={onChangeText}
 				placeholder={placeholder}
 				keyboardType={keyboardType}
-				onSubmitEditing={action}
+				onSubmitEditing={_action}
 				secureTextEntry={!showPass}
 				value={value}
 			/>

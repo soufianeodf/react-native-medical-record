@@ -5,7 +5,7 @@ import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePicker';
 import firebase from '../../environment/config';
 
-const Signup = (props) => {
+const Signup = ({navigation}) => {
 
 	const [isMale, setIsMale] = useState(true);
 	const [birthDate, setBirthDate] = useState("");
@@ -18,14 +18,14 @@ const Signup = (props) => {
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-    props.navigation.addListener("focus", () => {
+    navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
-					props.navigation.navigate("Main");
+					navigation.navigate("Main");
 				}
       });
 		});
-	}, [props.navigation]);
+	}, [navigation]);
 	
 	const _setBirthDate = (date) => {
 		setBirthDate(date);
@@ -82,7 +82,7 @@ const Signup = (props) => {
 				phone,
 			})
 			.then(() => {
-				props.navigation.navigate("Main"); 
+				navigation.navigate("Main"); 
 			}).catch((error) => setErrorMessage(error.message));
 		}).catch((error) => setErrorMessage(error.message));
 	}
@@ -121,7 +121,7 @@ const Signup = (props) => {
 						iconName={"md-person"} 
 						iconSize={18} 
 						onChangeText={(username) => {setUsername(username); setErrorMessage("");}} 
-						action={_handleSignup} 
+						_action={_handleSignup} 
 					/>
 					<Input 
 						placeholder={"Full name*"} 
@@ -129,7 +129,7 @@ const Signup = (props) => {
 						iconName={"md-person"} 
 						iconSize={18} 
 						onChangeText={(fullName) => {setFullName(fullName); setErrorMessage("");}} 
-						action={_handleSignup} 
+						_action={_handleSignup} 
 					/>
 					<Input 
 						placeholder={"Email*"} 
@@ -138,7 +138,7 @@ const Signup = (props) => {
 						iconName={"email"} 
 						iconSize={18} 
 						onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
-						action={_handleSignup}  
+						_action={_handleSignup}  
 					/>
 					<Input 
 						placeholder={"Phone"} 
@@ -147,7 +147,7 @@ const Signup = (props) => {
 						iconName={"telephone"} 
 						iconSize={18} 
 						onChangeText={(phone) => {setPhone(phone); setErrorMessage("");}} 
-						action={_handleSignup} 
+						_action={_handleSignup} 
 					/>
 					<Input 
 						placeholder={"Password*"} 
@@ -156,7 +156,7 @@ const Signup = (props) => {
 						iconSize={18} 
 						showOrHidePassword={true} 
 						onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
-						action={_handleSignup} 
+						_action={_handleSignup} 
 					/>
 					<Input 
 						placeholder={"Repeat password*"} 
@@ -165,14 +165,14 @@ const Signup = (props) => {
 						iconSize={18} 
 						showOrHidePassword={true} 
 						onChangeText={(confirmPassword) => {setConfirmPassword(confirmPassword); setErrorMessage("");}} 
-						action={_handleSignup} 
+						_action={_handleSignup} 
 					/>
-					<CustomButton title={"sign up"} color={"#2db7ff"} action={_handleSignup} />
+					<CustomButton title={"sign up"} color={"#2db7ff"} _action={_handleSignup} />
 				</View>
 
 				<View style={styles.bottomContainer}>
 					<Text style={styles.textBottom}>Already have an account?
-						<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Login")}>
+						<TouchableWithoutFeedback onPress={() => navigation.navigate("Login")}>
 							<Text style={styles.signinText}> SIGN IN</Text>
 						</TouchableWithoutFeedback>
 					</Text>

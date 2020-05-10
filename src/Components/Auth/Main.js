@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import firebase from '../../environment/config';
 
-const Main = (props) => {
+const Main = ({navigation}) => {
 
   function _handleLogout() {
     firebase.auth().signOut()
-    .then(() => props.navigation.navigate("Login"));
+    .then(() => navigation.navigate("Login"));
   }
 
   return (

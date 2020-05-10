@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import { StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import firebase from '../../environment/config';
 
-const Loading = (props) => {
+const Loading = ({navigation}) => {
 
   useEffect(() => {
-    props.navigation.addListener("focus", () => {
+    navigation.addListener("focus", () => {
       firebase.auth().onAuthStateChanged((user) => {
-        props.navigation.navigate(user ? "Main" : "Login");
+        navigation.navigate(user ? "Main" : "Login");
       });
     });
   }, []);

@@ -5,13 +5,13 @@ import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import firebase from '../../environment/config';
 
-const ForgotPassword = (props) => {
+const ForgotPassword = ({navigation}) => {
 
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   
   function _handleForgotPassword() {
-    firebase.auth().sendPasswordResetEmail(email).then(() => { props.navigation.navigate("CheckEmail"); })
+    firebase.auth().sendPasswordResetEmail(email).then(() => { navigation.navigate("CheckEmail"); })
     .catch((error) => setErrorMessage(error.message));
   }
   
@@ -43,14 +43,14 @@ const ForgotPassword = (props) => {
             iconName={"email"} 
             iconSize={18} 
             onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
-            action={_handleForgotPassword} 
+            _action={_handleForgotPassword} 
           />
-          <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} action={_handleForgotPassword}  />
+          <CustomButton title={"RESET PASSWORD"} color={"#2db7ff"} _action={_handleForgotPassword}  />
         </View>
 
         <View style={styles.thirdBlockContainer}>
           <Text style={styles.bottomText}>Don't have an account?</Text>
-          <TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate("Signup")}>
             <Text style={styles.signupText}>SIGN UP</Text>
           </TouchableWithoutFeedback>
         </View>

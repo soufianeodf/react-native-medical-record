@@ -5,17 +5,17 @@ import {View, Text, StyleSheet, TouchableWithoutFeedback, ScrollView} from 'reac
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import firebase from '../../environment/config';
 
-const Login = (props) => {
+const Login = ({navigation}) => {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 
 	useEffect(() => {
-    props.navigation.addListener("focus", () => {
+    navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
-					props.navigation.navigate("Main");
+					navigation.navigate("Main");
 				} else {
 					setEmail("");
 					setPassword("");
@@ -23,7 +23,7 @@ const Login = (props) => {
 				}
       });
 		});
-  }, [props.navigation]);
+  }, [navigation]);
 
 	function _loginMethodButton(name, bgColor, text) {
 		return(
@@ -42,7 +42,7 @@ const Login = (props) => {
 	}
 
 	function _handleLogin() {
-    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { props.navigation.navigate("Main"); })
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { navigation.navigate("Main"); })
     .catch((error) => setErrorMessage(error.message));
 	}
 
@@ -68,7 +68,7 @@ const Login = (props) => {
 				iconName={"email"} 
 				iconSize={18}    
 				onChangeText={(email) => {setEmail(email); setErrorMessage("");}} 
-				action={_handleLogin} 
+				_action={_handleLogin} 
 				value={email}
 			/>
 			<Input 
@@ -78,18 +78,18 @@ const Login = (props) => {
 				iconSize={18} 
 				showOrHidePassword={true} 
 				onChangeText={(password) => {setPassword(password); setErrorMessage("");}} 
-				action={_handleLogin} 
+				_action={_handleLogin} 
 				value={password}
 			/>
 
-			<CustomButton title={"LOG IN"} color={"#2db7ff"} action={_handleLogin} />
+			<CustomButton title={"LOG IN"} color={"#2db7ff"} _action={_handleLogin} />
 			
 			<View style={styles.bottomContainer}>
-				<TouchableWithoutFeedback onPress={() => props.navigation.navigate("ForgotPassword")}>
+				<TouchableWithoutFeedback onPress={() => navigation.navigate("ForgotPassword")}>
 					<Text style={styles.forgotPasswordText}>Forgot password?</Text>
 				</TouchableWithoutFeedback>
 				<Text style={styles.bottomText}>Don't have an account?
-					<TouchableWithoutFeedback onPress={() => props.navigation.navigate("Signup")}>
+					<TouchableWithoutFeedback onPress={() => navigation.navigate("Signup")}>
 						<Text style={styles.signupText}> SIGN UP</Text>
 					</TouchableWithoutFeedback>
 				</Text>
