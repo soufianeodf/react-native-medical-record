@@ -27,9 +27,9 @@ const Navigation = () => {
   const DrawerScreen = () => (
       <Drawer.Navigator
         initialRouteName="Main" 
-        drawerContent={props => <CustomDrawerContent {...props} />} 
+        drawerContent={(props) => <CustomDrawerContent {...props} />} 
         drawerStyle={{marginTop: -30}} 
-        drawerContentOptions={{activeBackgroundColor: 'transparent'}}
+        drawerContentOptions={{activeBackgroundColor: "transparent"}}
       >
         <Drawer.Screen 
           name="Main" 
