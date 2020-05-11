@@ -21,7 +21,7 @@ const Signup = ({navigation}) => {
     navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
-					navigation.navigate("Main");
+					navigation.navigate("Home");
 				}
       });
 		});
@@ -82,7 +82,7 @@ const Signup = ({navigation}) => {
 				phone,
 			})
 			.then(() => {
-				navigation.navigate("Main"); 
+				navigation.navigate("Home"); 
 			}).catch((error) => setErrorMessage(error.message));
 		}).catch((error) => setErrorMessage(error.message));
 	}

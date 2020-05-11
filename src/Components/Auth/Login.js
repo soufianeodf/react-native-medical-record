@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
     navigation.addListener("focus", () => {
 			firebase.auth().onAuthStateChanged((user) => {
 				if (user) {
-					navigation.navigate("Main");
+					navigation.navigate("Home");
 				} else {
 					setEmail("");
 					setPassword("");
@@ -42,7 +42,7 @@ const Login = ({navigation}) => {
 	}
 
 	function _handleLogin() {
-    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { navigation.navigate("Main"); })
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() => { navigation.navigate("Home"); })
     .catch((error) => setErrorMessage(error.message));
 	}
 

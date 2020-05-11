@@ -7,7 +7,7 @@ const Loading = ({navigation}) => {
   useEffect(() => {
     navigation.addListener("focus", () => {
       firebase.auth().onAuthStateChanged((user) => {
-        navigation.navigate(user ? "Main" : "Login");
+        navigation.navigate(user ? "Home" : "Login");
       });
     });
   }, []);

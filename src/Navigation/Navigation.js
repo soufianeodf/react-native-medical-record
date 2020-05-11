@@ -7,10 +7,12 @@ import Login from '../Components/Auth/Login';
 import Signup from '../Components/Auth/Signup';
 import ForgotPassword from '../Components/Auth/ForgotPassword';
 import CheckEmail from '../Components/Auth/CheckEmail';
-import Main from '../Components/Auth/Main';
+import Home from '../Components/Screens/Home';
 import Loading from '../Components/Auth/Loading';
 
+import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Navigation = () => {
@@ -19,21 +21,21 @@ const Navigation = () => {
     <DrawerContentScrollView {...props}>
       <HeaderDrawer/>
       <DrawerItemList {...props} />
-      {/* <DrawerItem label="Help" onPress={() => alert('Link to help')} /> */}
+      <DrawerItem label={() => <Logout/> } onPress={() => _handleLogout(props.navigation.navigate("Login"))} />
     </DrawerContentScrollView>
   );
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
       <Drawer.Navigator
-        initialRouteName="Main" 
+        initialRouteName="Home" 
         drawerContent={(props) => <CustomDrawerContent {...props} />} 
         drawerStyle={{marginTop: -30}} 
         drawerContentOptions={{activeBackgroundColor: "transparent"}}
       >
         <Drawer.Screen 
-          name="Main" 
-          component={Main} 
+          name="Home" 
+          component={Home} 
           options={{ 
             drawerLabel: "Home", 
             title: "Home",  
@@ -51,7 +53,7 @@ const Navigation = () => {
     <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
     <Stack.Screen name="CheckEmail" component={CheckEmail} />
     <Stack.Screen name="Loading" component={Loading} />
-    <Stack.Screen name="Main" component={DrawerScreen} />
+    <Stack.Screen name="Home" component={DrawerScreen} />
   </Stack.Navigator>
   );
 
