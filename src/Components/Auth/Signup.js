@@ -2,7 +2,7 @@ import React , {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableOpacity, ScrollView } from 'react-native';
 import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
-import DatePicker from '../../utils/forms/DatePicker';
+import DatePicker from '../../utils/forms/DatePickerInput';
 import firebase from '../../environment/config';
 
 const Signup = ({navigation}) => {
