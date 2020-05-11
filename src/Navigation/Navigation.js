@@ -9,11 +9,22 @@ import ForgotPassword from '../Components/Auth/ForgotPassword';
 import CheckEmail from '../Components/Auth/CheckEmail';
 import Home from '../Components/Screens/Home';
 import Loading from '../Components/Auth/Loading';
+import EventsCalendar from '../Components/Screens/EventsCalendar';
+import Measurment from '../Components/Screens/Measurment';
+import MedicationCourses from '../Components/Screens/MedicationCourses';
+import Profile from '../Components/Screens/Profile';
+import ReferenceData from '../Components/Screens/ReferenceData';
+import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
+import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Navigation = () => {
 
@@ -37,9 +48,72 @@ const Navigation = () => {
           name="Home" 
           component={Home} 
           options={{ 
-            drawerLabel: "Home", 
-            title: "Home",  
-            drawerIcon: () => <Ionicons name="md-home" size={22} /> 
+            drawerLabel: " Home", 
+            title: " Home", 
+            drawerIcon: () => <Ionicons name="md-home" size={22} />  
+          }} 
+        />
+        <Drawer.Screen 
+          name="EventsCalendar" 
+          component={EventsCalendar} 
+          options={{ 
+            drawerLabel: " Events calendar", 
+            title: " Events calendar", 
+            drawerIcon: () => <Ionicons name="md-calendar" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="Measurment" 
+          component={Measurment} 
+          options={{ 
+            drawerLabel: "Measurment", 
+            title: "Measurment", 
+            drawerIcon: () => <FontAwesome name="heartbeat" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="Medication courses" 
+          component={MedicationCourses} 
+          options={{ 
+            drawerLabel: "Medication courses", 
+            title: "MedicationCourses", 
+            drawerIcon: () => <Fontisto name="pills" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="Profile" 
+          component={Profile} 
+          options={{ 
+            drawerLabel: "Profile", 
+            title: "Profile", 
+            drawerIcon: () => <SimpleLineIcons name="user" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="ReferenceData" 
+          component={ReferenceData} 
+          options={{ 
+            drawerLabel: "Reference data", 
+            title: "Reference data", 
+            drawerIcon: () => <MaterialCommunityIcons name="library-books" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="JoinAnotherAccount" 
+          component={JoinAnotherAccount} 
+          options={{ 
+            drawerLabel: "Join another account", 
+            title: "Join another account", 
+            drawerIcon: () => <MaterialCommunityIcons name="account-group-outline" size={22} /> 
+          }} 
+        />
+        <Drawer.Screen 
+          name="ChatWithMembers" 
+          component={ChatWithMembers} 
+          options={{ 
+            drawerLabel: "Chat with members", 
+            title: "Chat with members", 
+            drawerIcon: () => <MaterialCommunityIcons name="chat" size={22} /> 
           }} 
         />
       </Drawer.Navigator>

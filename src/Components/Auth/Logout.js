@@ -7,7 +7,7 @@ export const Logout = () => {
   return (
     <View style={styles.viewContainer}>
         <FontAwesome5 name="power-off" size={18} />
-        <Text style={styles.text}>Quit</Text>
+        <Text style={styles.text}> Quit</Text>
     </View>
   );
 }
