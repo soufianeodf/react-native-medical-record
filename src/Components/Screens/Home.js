@@ -28,18 +28,21 @@ const Main = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <View style={styles.drawerButtonView}>
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()} >
+        <TouchableOpacity style={styles.touchableOpacity} onPress={() => navigation.toggleDrawer()} >
           <FontAwesome name={"navicon"} color={"grey"} size={25} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.touchableOpacity}>
           <Text>{username}</Text>   
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.touchableOpacity}>
           <Ionicons name={"md-search"} color={"grey"} size={30} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.touchableOpacity}>
           <MaterialIcons name={"filter-list"} color={"grey"} size={25} />
         </TouchableOpacity>
+      </View>
+      <View style={styles.textContainer}>
+        <Text>List of events</Text>
       </View>
     </View>
   );
@@ -53,8 +56,17 @@ const styles = StyleSheet.create({
     "marginTop": 20,
   },
   drawerButtonView: {
-    "flex": 1,
+    marginTop: 20,
     "flexDirection": "row",
     "justifyContent": "space-around",
+  },
+  touchableOpacity: {
+    "width": 50, 
+    "height": 50,
+  },
+  textContainer: {
+    "flex": 1,
+    "alignItems": "center",
+    "justifyContent": "center",
   },
 });
