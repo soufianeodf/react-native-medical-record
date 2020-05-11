@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     "flexDirection": "row",
     "justifyContent": "space-around",
   },
-  touchableOpacity: {
-    "width": 50, 
+  touchableOpacity: { 
+    "alignSelf": "flex-start",
     "height": 50,
   },
   textContainer: {
