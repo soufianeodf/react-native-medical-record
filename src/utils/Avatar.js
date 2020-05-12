@@ -5,7 +5,7 @@ const Avatar = ({avatar}) => {
   return (
     <TouchableOpacity
       style={styles.touchableOpacity}
-      onPress={() => alert("image clicked")}>
+      onPress={() => alert("Not implemented yet")}>
       <Image style={styles.avatar} source={avatar} />
     </TouchableOpacity>
   );
