@@ -2,13 +2,17 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Modal, TouchableHighlight } from 'react-native';
 import Avatar from '../../utils/Avatar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
 import firebase from '../../environment/config';
+import CustomModal from '../../utils/CustomModal';
 
 const Profile = ({navigation}) => {
 
   const [uid, setUid] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   // first card
 	const [username, setUsername] = useState("");
@@ -36,6 +40,7 @@ const Profile = ({navigation}) => {
   useEffect(() => {
     navigation.addListener("focus", () => {
       let isMounted = true;
+      setSuccessMessage("");
       firebase.auth().onAuthStateChanged((user) => {
         setUid(user.uid);
         if(user && isMounted){
@@ -100,9 +105,22 @@ const Profile = ({navigation}) => {
         attachmentNumber,
 			})
 			.then(() => {
-				navigation.navigate("Home"); 
-			}).catch((error) => setErrorMessage(error.message));
-	}
+				setSuccessMessage("Your changes have been saved.");
+			}).catch(() => setErrorMessage("There was a problem saving your changes."));
+  }
+  
+  const _clearMessage = () => {
+    if (successMessage) {
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 5000);
+    }
+    if (errorMessage) {
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+    }
+  }
   
   return (
     <ScrollView keyboardShouldPersistTaps="always">
@@ -119,6 +137,32 @@ const Profile = ({navigation}) => {
         </View>
         <Text style={styles.headerText}>Profile information</Text>
       </View>
+
+      {successMessage ? 
+        (<View style={{alignItems: "center"}}>
+          <View style={{"position": "absolute", "top": "20%", "left": "16%",zIndex: 5,}}>
+            <Entypo name={"check"} size={20} />
+          </View>
+          <Text style={{textAlign: "center", backgroundColor: "#4AB866", alignItems: "center", padding: 8, width: "92%", borderRadius: 2}}>
+            {successMessage}
+          </Text>
+        </View>
+				) : null
+			}
+
+      {_clearMessage()}
+
+      {errorMessage ? 
+        (<View style={{alignItems: "center"}}>
+          <View style={{"position": "absolute", "top": "21%", "left": "7%",zIndex: 5,}}>
+            <FontAwesome name={"exclamation-circle"} size={20} />
+          </View>
+          <Text style={{textAlign: "center", backgroundColor: "#D94F4F", alignItems: "center", padding: 8, width: "92%", borderRadius: 2}}>
+            {errorMessage}
+          </Text>
+        </View>
+				) : null
+			}
 
       <Text style={styles.cardTitle}>Main info</Text>
       <View style={styles.card}>
@@ -231,33 +275,25 @@ const Profile = ({navigation}) => {
         </View>
       </View>
 
-      <Modal visible={isGenderVisible} transparent={true} animationType="fade" onRequestClose={() => setIsGenderVisible(!isGenderVisible)}>
-        <View style={{flex: 1, backgroundColor: "#000000aa", justifyContent: "center"}}>
-          <View style={{backgroundColor: "#fff", margin: 50}}>
-            <Text style={{borderBottomWidth: 1, width: "100%", textAlign: "center", padding: 15, color: "grey"}}>Gender</Text>
-            <TouchableHighlight onPress={() => {setGender("MALE"); setIsGenderVisible(!isGenderVisible)}} style={{ width: "100%", borderBottomWidth: 1}}>
-              <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>MALE</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => {setGender("FEMALE"); setIsGenderVisible(!isGenderVisible)}}>
-              <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>FEMALE</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
+      <CustomModal 
+        isItVisible={isGenderVisible} 
+        _onRequestClose={() => setIsGenderVisible(!isGenderVisible)} 
+        title={"Gender"} 
+        _onPress_1={() => {setGender("MALE"); setIsGenderVisible(!isGenderVisible)}} 
+        variable_1={"MALE"} 
+        _onPress_2={() => {setGender("FEMALE"); setIsGenderVisible(!isGenderVisible)}} 
+        variable_2={"FEMALE"} 
+      />
 
-      <Modal visible={isRelationshipVisible} transparent={true} animationType="fade" onRequestClose={() => setIsRelationshipVisible(!isRelationshipVisible)}>
-        <View style={{flex: 1, backgroundColor: "#000000aa", justifyContent: "center"}}>
-          <View style={{backgroundColor: "#fff", margin: 50}}>
-            <Text style={{borderBottomWidth: 1, width: "100%", textAlign: "center", padding: 15, color: "grey"}}>Relationship of the beneficiary</Text>
-            <TouchableHighlight onPress={() => {setRelationship("CHILD"); setIsRelationshipVisible(!isRelationshipVisible)}} style={{ width: "100%", borderBottomWidth: 1}}>
-              <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>CHILD</Text>
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => {setRelationship("SPOUSE"); setIsRelationshipVisible(!isRelationshipVisible)}}>
-              <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>SPOUSE</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
+      <CustomModal 
+        isItVisible={isRelationshipVisible} 
+        _onRequestClose={() => setIsRelationshipVisible(!isRelationshipVisible)} 
+        title={"Relationship of the beneficiary"} 
+        _onPress_1={() => {setRelationship("CHILD"); setIsRelationshipVisible(!isRelationshipVisible)}} 
+        variable_1={"CHILD"} 
+        _onPress_2={() => {setRelationship("SPOUSE"); setIsRelationshipVisible(!isRelationshipVisible)}}
+        variable_2={"SPOUSE"} 
+      />
 
 			<DateTimePickerModal
 				isVisible={isDatePickerVisible}
