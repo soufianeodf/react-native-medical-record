@@ -26,10 +26,6 @@ const Signup = ({navigation}) => {
       });
 		});
 	}, [navigation]);
-	
-	const _setBirthDate = (date) => {
-		setBirthDate(date);
-	}
 
 	function _toggleGenre(genre) {
 		if(genre === "male"){
@@ -122,7 +118,7 @@ const Signup = ({navigation}) => {
 						</View>
 					</View>
 
-					<DatePicker _setBirthDate={_setBirthDate} />
+					<DatePicker _setBirthDate={(date) => setBirthDate(date)} />
 
 					<Input 
 						placeholder={"Username"} 
