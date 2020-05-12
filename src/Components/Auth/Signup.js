@@ -80,6 +80,15 @@ const Signup = ({navigation}) => {
 				username,
 				fullName,
 				phone,
+
+				fullName2: "",
+        affiliationNumber: "",
+        registrationNumber: "",
+        cin: "",
+        relationship: "",
+        address: "",
+        amoutOfFees: "",
+        attachmentNumber: "",
 			})
 			.then(() => {
 				navigation.navigate("Home"); 
