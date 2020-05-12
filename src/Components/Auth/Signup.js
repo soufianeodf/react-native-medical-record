@@ -4,6 +4,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePickerInput';
 import firebase from '../../environment/config';
+import Avatar from '../../utils/Avatar';
 
 const Signup = ({navigation}) => {
 
@@ -94,7 +95,9 @@ const Signup = ({navigation}) => {
 
 	return (
 		<View style={styles.viewContainer}>
-			<ScrollView contentContainerStyle={{ flexGrow: 1 , justifyContent: "center", alignItems: "center"}} >
+			<ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: "center"}} >
+
+				<Avatar avatar={require("../../../Images/avatar.png")} />
 			
 				{errorMessage ? 
 					(<View style={styles.errorContainer}>
@@ -194,12 +197,12 @@ const styles = StyleSheet.create({
 		"flex": 1,
 		"justifyContent": "center",
 		"alignItems": "center",
-		"marginTop": 20,
 	},
 	firstBlockContainer: {
 		"width": "100%",
 		"justifyContent": "center",
 		"alignItems": "center",
+		"marginTop": 10,
 	},
 	radioContainer: {
 		"flexDirection": "row",
