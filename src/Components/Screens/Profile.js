@@ -21,7 +21,6 @@ const Profile = ({navigation}) => {
 	const [gender, setGender] = useState("");
 	const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  
   // second card
 	const [fullName_card_2, setFullName_card_2] = useState("");
 	const [affiliationNumber, setAffiliationNumber] = useState("");
@@ -31,7 +30,6 @@ const Profile = ({navigation}) => {
 	const [address, setAddress] = useState("");
 	const [amoutOfFees, setAmoutOfFees] = useState("");
   const [attachmentNumber, setAttachmentNumber] = useState("");
-  
   // modals
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isGenderVisible, setIsGenderVisible] = useState(false);
@@ -150,8 +148,6 @@ const Profile = ({navigation}) => {
 				) : null
 			}
 
-      {_clearMessage()}
-
       {errorMessage ? 
         (<View style={{alignItems: "center"}}>
           <View style={{"position": "absolute", "top": "21%", "left": "7%",zIndex: 5,}}>
@@ -163,6 +159,8 @@ const Profile = ({navigation}) => {
         </View>
 				) : null
 			}
+      
+      {_clearMessage()}
 
       <Text style={styles.cardTitle}>Main info</Text>
       <View style={styles.card}>
@@ -196,7 +194,7 @@ const Profile = ({navigation}) => {
             style={styles.textInput}
             onChangeText={(text) => console.log(text)}
             placeholder={"Gender"}
-            onTouchStart={() => setIsGenderVisible(true)}
+            onTouchEnd={() => setIsGenderVisible(true)}
             value={gender}
             caretHidden={true}
           />
@@ -248,7 +246,7 @@ const Profile = ({navigation}) => {
           <TextInput
             style={[styles.textInput, { width: "100%"}]}
             placeholder={"Relationship of the beneficiary to the insured"}
-            onTouchStart={() => setIsRelationshipVisible(true)}
+            onTouchEnd={() => setIsRelationshipVisible(true)}
             value={relationship}
             caretHidden={true}
           />
@@ -283,6 +281,8 @@ const Profile = ({navigation}) => {
         variable_1={"MALE"} 
         _onPress_2={() => {setGender("FEMALE"); setIsGenderVisible(!isGenderVisible)}} 
         variable_2={"FEMALE"} 
+        _onPress_3={() => {setGender(""); setIsGenderVisible(!isGenderVisible)}} 
+        variable_3={"I'M NOT SURE"} 
       />
 
       <CustomModal 
@@ -293,6 +293,8 @@ const Profile = ({navigation}) => {
         variable_1={"CHILD"} 
         _onPress_2={() => {setRelationship("SPOUSE"); setIsRelationshipVisible(!isRelationshipVisible)}}
         variable_2={"SPOUSE"} 
+        _onPress_3={() => {setRelationship(""); setIsRelationshipVisible(!isRelationshipVisible)}}
+        variable_3={"I'M NOT SURE"} 
       />
 
 			<DateTimePickerModal
