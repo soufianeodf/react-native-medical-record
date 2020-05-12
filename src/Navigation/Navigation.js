@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 
 import Login from '../Components/Auth/Login';
@@ -12,21 +13,55 @@ import Loading from '../Components/Auth/Loading';
 import EventsCalendar from '../Components/Screens/EventsCalendar';
 import Measurment from '../Components/Screens/Measurment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
-import Profile from '../Components/Screens/Profile';
 import ReferenceData from '../Components/Screens/ReferenceData';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
+import Profile from '../Components/Screens/Profile/Profile';
+import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
+import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Navigation = () => {
+
+  const Tab = createBottomTabNavigator();
+  const ProfileTabs = () => (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeBackgroundColor: '#DDDDDD',
+        inactiveBackgroundColor: '#FFFFFF',
+      }}>
+      <Tab.Screen
+        name="General"
+        component={Profile}
+        options={{
+          tabBarIcon: () => <Ionicons name="md-information-circle-outline" size={22} />  
+        }}
+      />
+      <Tab.Screen
+        name="Medical precedents"
+        component={MedicalPrecedents}
+        options={{
+          tabBarIcon: () => <FontAwesome5 name="user-alt" size={22} /> 
+        }}
+      />
+      <Tab.Screen
+        name="Familial precedents"
+        component={FamilialPrecedents}
+        options={{
+          tabBarIcon: () => <FontAwesome5 name="user-friends" size={22} /> 
+        }}
+      />
+    </Tab.Navigator>
+  );
 
   const CustomDrawerContent = (props) => (
     <DrawerContentScrollView {...props}>
@@ -82,7 +117,7 @@ const Navigation = () => {
         />
         <Drawer.Screen 
           name="Profile" 
-          component={Profile} 
+          component={ProfileTabs} 
           options={{ 
             drawerLabel: "Profile", 
             title: "Profile", 

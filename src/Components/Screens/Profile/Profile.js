@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Keyboard } from 'react-native';
-import Avatar from '../../utils/Avatar';
+import Avatar from '../../../utils/Avatar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
-import firebase from '../../environment/config';
-import CustomModal from '../../utils/CustomModal';
+import firebase from '../../../environment/config';
+import CustomModal from '../../../utils/CustomModal';
 
 const Profile = ({navigation}) => {
 
@@ -129,7 +129,7 @@ const Profile = ({navigation}) => {
             <MaterialIcons name={"check"} size={35} />
           </TouchableOpacity>
         </View>
-        <Avatar avatar={require("../../../Images/avatar.png")}/>
+        <Avatar avatar={require("../../../../Images/avatar.png")}/>
         <View style={styles.icon}>
           <MaterialIcons name={"edit"} size={25} />
         </View>
