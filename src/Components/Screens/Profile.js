@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Modal, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Keyboard } from 'react-native';
 import Avatar from '../../utils/Avatar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -192,9 +192,8 @@ const Profile = ({navigation}) => {
 
           <TextInput
             style={styles.textInput}
-            onChangeText={(text) => console.log(text)}
             placeholder={"Gender"}
-            onTouchEnd={() => setIsGenderVisible(true)}
+            onTouchEnd={() => {setIsGenderVisible(true); Keyboard.dismiss()}}
             value={gender}
             caretHidden={true}
           />
@@ -246,7 +245,7 @@ const Profile = ({navigation}) => {
           <TextInput
             style={[styles.textInput, { width: "100%"}]}
             placeholder={"Relationship of the beneficiary to the insured"}
-            onTouchEnd={() => setIsRelationshipVisible(true)}
+            onTouchEnd={() => {setIsRelationshipVisible(true); Keyboard.dismiss()}}
             value={relationship}
             caretHidden={true}
           />
