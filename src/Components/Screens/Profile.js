@@ -8,6 +8,8 @@ import firebase from '../../environment/config';
 
 const Profile = ({navigation}) => {
 
+  const [uid, setUid] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   // first card
 	const [username, setUsername] = useState("");
 	const [fullName_card_1, setFullName_card_1] = useState("");
@@ -35,6 +37,7 @@ const Profile = ({navigation}) => {
     navigation.addListener("focus", () => {
       let isMounted = true;
       firebase.auth().onAuthStateChanged((user) => {
+        setUid(user.uid);
         if(user && isMounted){
           firebase.firestore().collection("users").doc(user.uid).get()
           .then(doc => { 
@@ -77,11 +80,39 @@ const Profile = ({navigation}) => {
 			_hideDatePicker();
 			setBirthDate(date);
   };
+
+  function _handleUpdate() {
+			firebase.firestore().collection("users").doc(uid).set({
+        // card 1
+				gender,
+				birthDate,
+				username,
+				fullName: fullName_card_1,
+        phone,
+        // card 2
+        fullName2: fullName_card_2 ,
+        affiliationNumber,
+        registrationNumber,
+        cin,
+        relationship,
+        address,
+        amoutOfFees,
+        attachmentNumber,
+			})
+			.then(() => {
+				navigation.navigate("Home"); 
+			}).catch((error) => setErrorMessage(error.message));
+	}
   
   return (
     <ScrollView keyboardShouldPersistTaps="always">
 
       <View style={styles.headerContainer}>
+        <View style={styles.iconCheck}>
+          <TouchableOpacity onPress={_handleUpdate}>
+            <MaterialIcons name={"check"} size={35} />
+          </TouchableOpacity>
+        </View>
         <Avatar avatar={require("../../../Images/avatar.png")}/>
         <View style={styles.icon}>
           <MaterialIcons name={"edit"} size={25} />
@@ -248,6 +279,11 @@ const styles = StyleSheet.create({
     "backgroundColor": "#2db7ff",
     "paddingBottom": 20,
     "marginBottom": 10
+  },
+  iconCheck: {
+    "position": "absolute",
+    "top": "18%",
+    "right": "5%",
   },
   icon: {
     "position": "absolute",
