@@ -1,17 +1,18 @@
-import React , {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, Modal, TouchableHighlight } from 'react-native';
 import Avatar from '../../utils/Avatar';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment';
+import firebase from '../../environment/config';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
 
   // first card
 	const [username, setUsername] = useState("");
 	const [fullName_card_1, setFullName_card_1] = useState("");
 	const [birthDate, setBirthDate] = useState("");
-	const [isMale, setIsMale] = useState(true);
+	const [gender, setGender] = useState("");
 	const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   
@@ -29,6 +30,39 @@ const Profile = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isGenderVisible, setIsGenderVisible] = useState(false);
   const [isRelationshipVisible, setIsRelationshipVisible] = useState(false);
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      let isMounted = true;
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user && isMounted){
+          firebase.firestore().collection("users").doc(user.uid).get()
+          .then(doc => { 
+            // card 1
+            setUsername(doc.data().username ? doc.data().username : "Primary"); 
+            setFullName_card_1(doc.data().fullName); 
+            setBirthDate(doc.data().birthDate); 
+            setGender(doc.data().gender); 
+            setEmail(user.email); 
+            setPhone(doc.data().phone); 
+            // card 2
+            setFullName_card_2(doc.data().fullName2);
+            setAffiliationNumber(doc.data().affiliationNumber);
+            setRegistrationNumber(doc.data().registrationNumber);
+            setCin(doc.data().cin);
+            setRelationship(doc.data().relationship);
+            setAddress(doc.data().address);
+            setAmoutOfFees(doc.data().amoutOfFees);
+            setAttachmentNumber(doc.data().attachmentNumber);
+          })
+          .catch((error) => { console.log(error.message); });
+        }else {
+          navigation.navigate("Login");
+        }
+      });
+    });
+    return () => { isMounted = false };
+  }, []);
 
 	const _showDatePicker = () => {
 	setDatePickerVisibility(true);
@@ -88,7 +122,7 @@ const Profile = () => {
             onChangeText={(text) => console.log(text)}
             placeholder={"Gender"}
             onTouchStart={() => setIsGenderVisible(true)}
-            value={isMale ? "MALE" : "FEMALE"}
+            value={gender}
             caretHidden={true}
           />
           <TextInput
@@ -170,10 +204,10 @@ const Profile = () => {
         <View style={{flex: 1, backgroundColor: "#000000aa", justifyContent: "center"}}>
           <View style={{backgroundColor: "#fff", margin: 50}}>
             <Text style={{borderBottomWidth: 1, width: "100%", textAlign: "center", padding: 15, color: "grey"}}>Gender</Text>
-            <TouchableHighlight onPress={() => {setIsMale(true); setIsGenderVisible(!isGenderVisible)}} style={{ width: "100%", borderBottomWidth: 1}}>
+            <TouchableHighlight onPress={() => {setGender("MALE"); setIsGenderVisible(!isGenderVisible)}} style={{ width: "100%", borderBottomWidth: 1}}>
               <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>MALE</Text>
             </TouchableHighlight>
-            <TouchableHighlight onPress={() => {setIsMale(false); setIsGenderVisible(!isGenderVisible)}}>
+            <TouchableHighlight onPress={() => {setGender("FEMALE"); setIsGenderVisible(!isGenderVisible)}}>
               <Text style={{textAlign: "center", padding: 15, fontWeight: "bold"}}>FEMALE</Text>
             </TouchableHighlight>
           </View>
