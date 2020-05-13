@@ -61,7 +61,7 @@ const Profile = ({navigation}) => {
             setAmoutOfFees(doc.data().amoutOfFees);
             setAttachmentNumber(doc.data().attachmentNumber);
           })
-          .catch((error) => { console.log(error.message); });
+          .catch((error) => setErrorMessage(error.message));
         }else {
           navigation.navigate("Login");
         }
