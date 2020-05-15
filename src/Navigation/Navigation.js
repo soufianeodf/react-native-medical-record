@@ -43,21 +43,21 @@ const Navigation = () => {
         name="General"
         component={Profile}
         options={{
-          tabBarIcon: () => <Ionicons name="md-information-circle-outline" size={22} />  
+          tabBarIcon: ({color, size}) => <Ionicons name="md-information-circle-outline" size={size} color={color} />  
         }}
       />
       <Tab.Screen
         name="Medical precedents"
         component={MedicalPrecedents}
         options={{
-          tabBarIcon: () => <FontAwesome5 name="user-alt" size={22} /> 
+          tabBarIcon: ({color, size}) => <FontAwesome5 name="user-alt" size={size} color={color} /> 
         }}
       />
       <Tab.Screen
         name="Familial precedents"
         component={FamilialPrecedents}
         options={{
-          tabBarIcon: () => <FontAwesome5 name="user-friends" size={22} /> 
+          tabBarIcon: ({color, size}) => <FontAwesome5 name="user-friends" size={size} color={color} /> 
         }}
       />
     </Tab.Navigator>
