@@ -194,6 +194,7 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'com.android.support:multidex:1.0.3'
+    implementation project(path: ":@react-native-firebase_storage")
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
