@@ -41,7 +41,7 @@ const HeaderDrawer = () => {
 
   return (
     <View style={styles.viewContainer}>
-      <Avatar avatar={require('../../Images/avatar.png')} />
+      <Avatar />
       <View style={styles.textView}>
         <Text>{username}</Text>
         <Text>{email}</Text>

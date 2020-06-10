@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
+import storage from '@react-native-firebase/storage';
 
 const Avatar = ({avatar}) => {
+  const [url, setUrl] = useState('gs://react-native-medical-record.appspot.com/app-images/avatar.png');
+
+  useEffect(() => {
+    storage()
+      .ref('app-images/avatar.png')
+      .getDownloadURL()
+      .then(url => {
+        setUrl(url);
+      })
+      .catch(error => alert(error));
+  }, [url]);
+
   return (
     <TouchableOpacity
       style={styles.touchableOpacity}
       onPress={() => alert('Not implemented yet')}>
-      <Image style={styles.avatar} source={avatar} />
+      <Image style={styles.avatar} source={{uri: url}} />
     </TouchableOpacity>
   );
 };

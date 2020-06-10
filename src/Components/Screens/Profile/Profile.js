@@ -149,7 +149,7 @@ const Profile = ({navigation}) => {
             <MaterialIcons name={'check'} size={35} />
           </TouchableOpacity>
         </View>
-        <Avatar avatar={require('../../../../Images/avatar.png')} />
+        <Avatar />
         <View style={styles.icon}>
           <MaterialIcons name={'edit'} size={25} />
         </View>

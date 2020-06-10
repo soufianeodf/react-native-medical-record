@@ -15,6 +15,7 @@ import firestore from '@react-native-firebase/firestore';
 import Avatar from '../../utils/Avatar';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
 
+
 const Signup = ({navigation}) => {
   const [isMale, setIsMale] = useState(true);
   const [birthDate, setBirthDate] = useState('');
@@ -116,7 +117,7 @@ const Signup = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
-        <Avatar avatar={require('../../../Images/avatar.png')} />
+        <Avatar />
 
         {errorMessage ? (
           <View style={styles.errorContainer}>
