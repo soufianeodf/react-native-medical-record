@@ -206,12 +206,14 @@ const Profile = ({navigation}) => {
             onChangeText={username => setUsername(username)}
             placeholder={'Username'}
             value={username}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
             onChangeText={fullName => setFullName_card_1(fullName)}
             placeholder={'Full Name'}
             value={fullName_card_1}
+            onSubmitEditing={_handleUpdate}
           />
 
           <TouchableOpacity
@@ -247,6 +249,7 @@ const Profile = ({navigation}) => {
             placeholder={'Phone'}
             keyboardType={'phone-pad'}
             value={phone}
+            onSubmitEditing={_handleUpdate}
           />
         </View>
       </View>
@@ -259,6 +262,7 @@ const Profile = ({navigation}) => {
             onChangeText={fullName => setFullName_card_2(fullName)}
             placeholder={'Full Name'}
             value={fullName_card_2}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
@@ -268,6 +272,7 @@ const Profile = ({navigation}) => {
             placeholder={'Affiliation number'}
             keyboardType={'numeric'}
             value={affiliationNumber}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
@@ -277,12 +282,14 @@ const Profile = ({navigation}) => {
             placeholder={'Registration number'}
             keyboardType={'numeric'}
             value={registrationNumber}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
             onChangeText={cin => setCin(cin)}
             placeholder={'CIN'}
             value={cin}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={[styles.textInput, {width: '100%'}]}
@@ -299,6 +306,7 @@ const Profile = ({navigation}) => {
             onChangeText={address => setAddress(address)}
             placeholder={'Address'}
             value={address}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
@@ -306,6 +314,7 @@ const Profile = ({navigation}) => {
             placeholder={'Amount of fees (Dhs)'}
             keyboardType={'decimal-pad'}
             value={amoutOfFees}
+            onSubmitEditing={_handleUpdate}
           />
           <TextInput
             style={styles.textInput}
@@ -315,6 +324,7 @@ const Profile = ({navigation}) => {
             placeholder={'Number of attachments'}
             keyboardType={'numeric'}
             value={attachmentNumber}
+            onSubmitEditing={_handleUpdate}
           />
         </View>
       </View>
