@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import storage from '@react-native-firebase/storage';
 
-const Avatar = ({avatar}) => {
+const Avatar = () => {
   const [url, setUrl] = useState('gs://react-native-medical-record.appspot.com/app-images/avatar.png');
 
   useEffect(() => {
