@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
+import firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.json';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -52,8 +53,21 @@ const Login = ({navigation}) => {
         .then(() => {
           navigation.navigate('Home');
         })
-        .catch(error => setErrorMessage(error.message));
+        .catch(error =>
+          setErrorMessage(_firebaseAuthErrorMessages(error.code)),
+        );
     }
+  }
+
+  function _firebaseAuthErrorMessages(errorCode) {
+    for (var key in firebaseAuthErrorMessages) {
+      if (firebaseAuthErrorMessages.hasOwnProperty(key)) {
+        if ('auth/' + key === errorCode) {
+          return firebaseAuthErrorMessages[key];
+        }
+      }
+    }
+    return 'Something went wrong';
   }
 
   return (
