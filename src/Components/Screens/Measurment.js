@@ -1,13 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import BloodPressure from './Measurment/Weight';
 
 const Measurment = () => {
-  return (
-    <View>
-      <Text>welcome to Measurment page</Text>
-    </View>
-  );
-}
+  return <BloodPressure />;
+};
 
 export default Measurment;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const Test = () => {
   return (
@@ -7,7 +7,7 @@ const Test = () => {
       <Text>welcome to Test page</Text>
     </View>
   );
-}
+};
 
 export default Test;
 

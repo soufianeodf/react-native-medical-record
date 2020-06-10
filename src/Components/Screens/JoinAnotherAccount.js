@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const JoinAnotherAccount = () => {
   return (
@@ -7,7 +7,7 @@ const JoinAnotherAccount = () => {
       <Text>welcome to JoinAnotherAccount page.</Text>
     </View>
   );
-}
+};
 
 export default JoinAnotherAccount;
 

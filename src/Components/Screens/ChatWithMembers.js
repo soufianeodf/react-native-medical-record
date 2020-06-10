@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const ChatWithMembers = () => {
   return (
@@ -7,7 +7,7 @@ const ChatWithMembers = () => {
       <Text>welcome to ChatWithMembers page.</Text>
     </View>
   );
-}
+};
 
 export default ChatWithMembers;
 

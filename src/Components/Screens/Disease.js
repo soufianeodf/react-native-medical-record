@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const Disease = () => {
   return (
@@ -7,7 +7,7 @@ const Disease = () => {
       <Text>welcome to Disease page</Text>
     </View>
   );
-}
+};
 
 export default Disease;
 

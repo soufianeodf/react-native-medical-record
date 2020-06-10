@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const EventsCalendar = () => {
   return (
@@ -7,7 +7,7 @@ const EventsCalendar = () => {
       <Text>welcome to EventsCalendar page</Text>
     </View>
   );
-}
+};
 
 export default EventsCalendar;
 

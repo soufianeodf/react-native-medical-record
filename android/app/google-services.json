@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "486776422497",
+    "firebase_url": "https://react-native-medical-record.firebaseio.com",
+    "project_id": "react-native-medical-record",
+    "storage_bucket": "react-native-medical-record.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486776422497:android:66c70a410d2145d8a8ea20",
+        "android_client_info": {
+          "package_name": "com.carnetmedical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486776422497-l4l7659jjumu541dnigu1187odkouass.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE_4IxjBnSQpKf60eypN9F4DSFN6ErzAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486776422497-l4l7659jjumu541dnigu1187odkouass.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
