@@ -10,18 +10,25 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
+import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
 
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   function _handleForgotPassword() {
-    auth()
-      .sendPasswordResetEmail(email)
-      .then(() => {
-        navigation.navigate('CheckEmail');
-      })
-      .catch(error => setErrorMessage(error.message));
+    if (email === '') {
+      setErrorMessage('The email field is empty');
+    } else {
+      auth()
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          navigation.navigate('CheckEmail');
+        })
+        .catch(error =>
+          setErrorMessage(_firebaseAuthErrorMessages(error.code)),
+        );
+    }
   }
 
   return (
