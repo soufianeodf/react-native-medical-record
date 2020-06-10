@@ -44,12 +44,16 @@ const Login = ({navigation}) => {
   }
 
   function _handleLogin() {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        navigation.navigate('Home');
-      })
-      .catch(error => setErrorMessage(error.message));
+    if (email === '' || password === '') {
+      setErrorMessage('The email or password is empty');
+    } else {
+      auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          navigation.navigate('Home');
+        })
+        .catch(error => setErrorMessage(error.message));
+    }
   }
 
   return (
