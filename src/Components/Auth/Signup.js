@@ -13,6 +13,7 @@ import DatePicker from '../../utils/forms/DatePickerInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Avatar from '../../utils/Avatar';
+import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
 
 const Signup = ({navigation}) => {
   const [isMale, setIsMale] = useState(true);
@@ -76,34 +77,40 @@ const Signup = ({navigation}) => {
   }
 
   function _handleSignup() {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(credentials => {
-        firestore()
-          .collection('users')
-          .doc(credentials.user.uid)
-          .set({
-            gender: isMale ? 'Male' : 'Female',
-            birthDate,
-            username,
-            fullName,
-            phone,
-
-            fullName2: '',
-            affiliationNumber: '',
-            registrationNumber: '',
-            cin: '',
-            relationship: '',
-            address: '',
-            amoutOfFees: '',
-            attachmentNumber: '',
-          })
-          .then(() => {
-            navigation.navigate('Home');
-          })
-          .catch(error => setErrorMessage(error.message));
-      })
-      .catch(error => setErrorMessage(error.message));
+    if (email === '' || password === '' || fullName === '') {
+      setErrorMessage('Please fill up the necessary fields.');
+    } else {
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(credentials => {
+          firestore()
+            .collection('users')
+            .doc(credentials.user.uid)
+            .set({
+              gender: isMale ? 'Male' : 'Female',
+              birthDate,
+              username,
+              fullName,
+              phone,
+  
+              fullName2: '',
+              affiliationNumber: '',
+              registrationNumber: '',
+              cin: '',
+              relationship: '',
+              address: '',
+              amoutOfFees: '',
+              attachmentNumber: '',
+            })
+            .then(() => {
+              navigation.navigate('Home');
+            })
+            .catch(error => setErrorMessage(error.message));
+        })
+        .catch(error =>
+          setErrorMessage(_firebaseAuthErrorMessages(error.code)),
+        );
+    }
   }
 
   return (
