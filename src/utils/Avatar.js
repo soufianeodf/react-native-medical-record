@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   touchableOpacity: {
     marginLeft: 16,
     marginTop: 42,
-    marginBottom: 5,
+    marginBottom: 6,
     width: 60,
     height: 60,
   },
@@ -99,5 +99,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#9B9B9B',
     borderWidth: 1.5,
+    marginBottom: 3,
   },
 });
