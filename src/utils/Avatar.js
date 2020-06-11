@@ -3,6 +3,7 @@ import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
 import ImagePicker from 'react-native-image-picker';
+import ProgressBar from 'react-native-progress/Bar';
 
 const Avatar = () => {
   const [url, setUrl] = useState(
@@ -63,6 +64,7 @@ const Avatar = () => {
       style={styles.touchableOpacity}
       onPress={() => _avatarClicked()}>
       <Image style={styles.avatar} source={{uri: url}} />
+      <ProgressBar progress={progressBarPercentage} width={60} color={'green'} />
     </TouchableOpacity>
   );
 };
