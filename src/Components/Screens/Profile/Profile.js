@@ -43,6 +43,8 @@ const Profile = ({navigation}) => {
   const [isGenderVisible, setIsGenderVisible] = useState(false);
   const [isRelationshipVisible, setIsRelationshipVisible] = useState(false);
 
+  const [refresh, setRefresh] = useState(0);
+
   useEffect(() => {
     navigation.addListener('focus', () => {
       let isMounted = true;
@@ -83,7 +85,7 @@ const Profile = ({navigation}) => {
     return () => {
       isMounted = false;
     };
-  }, [navigation]);
+  }, [navigation, refresh]);
 
   const _showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -147,6 +149,11 @@ const Profile = ({navigation}) => {
         <View style={styles.iconCheck}>
           <TouchableOpacity onPress={_handleUpdate}>
             <MaterialIcons name={'check'} size={35} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.iconRefresh}>
+          <TouchableOpacity onPress={() => setRefresh(value => ++value)}>
+            <MaterialIcons name={'refresh'} size={30} />
           </TouchableOpacity>
         </View>
         <Avatar />
@@ -395,6 +402,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '18%',
     right: '5%',
+  },
+  iconRefresh: {
+    position: 'absolute',
+    top: '18%',
+    left: '5%',
   },
   icon: {
     position: 'absolute',
