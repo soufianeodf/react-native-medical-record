@@ -10,6 +10,8 @@ const Avatar = () => {
     'gs://react-native-medical-record.appspot.com/app-images/avatar.png',
   );
   const [uuid, setUuid] = useState(null);
+  const [progressBarPercentage, setProgressBarPercentage] = useState(0.5);
+  const [onUpload, setOnUpload] = useState(false);
   const isInitMounted = useRef(true);
   const reference = storage().ref(`app-images/${uuid}/avatar.png`);
 
@@ -51,11 +53,23 @@ const Avatar = () => {
       .catch(error => console.log(error));
   }
 
-  async function _uploadImage(uri) {
+  function _uploadImage(uri) {
+    // set the progress bar to zero
+    setProgressBarPercentage(0);
+    // make the progress bar visible
+    setOnUpload(true);
+
     // path to existing file on filesystem
     const pathToFile = uri;
     // uploads file
-    await reference.putFile(pathToFile);
+    reference.putFile(pathToFile).on('state_changed', task => {
+      setProgressBarPercentage(task.bytesTransferred / task.totalBytes);
+      if (task.state === 'success') {
+        console.log('not yeeeeet');
+        setOnUpload(false);
+      }
+    });
+
     _getImage();
   }
 
@@ -64,7 +78,7 @@ const Avatar = () => {
       style={styles.touchableOpacity}
       onPress={() => _avatarClicked()}>
       <Image style={styles.avatar} source={{uri: url}} />
-      <ProgressBar progress={progressBarPercentage} width={60} color={'green'} />
+      {onUpload ?  <ProgressBar progress={progressBarPercentage} width={60} color={'green'} /> : null}
     </TouchableOpacity>
   );
 };
