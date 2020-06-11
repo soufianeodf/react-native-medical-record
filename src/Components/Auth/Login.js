@@ -19,15 +19,18 @@ const Login = ({navigation}) => {
 
   useEffect(() => {
     navigation.addListener('focus', () => {
-      auth().onAuthStateChanged(user => {
-        if (user) {
-          navigation.navigate('Home');
-        } else {
-          setEmail('');
-          setPassword('');
-          setErrorMessage('');
-        }
-      });
+      // set the time to one millisecond to be sure of the state of the user
+      setTimeout(() => {
+        auth().onAuthStateChanged(user => {
+          if (user) {
+            navigation.navigate('Home');
+          } else {
+            setEmail('');
+            setPassword('');
+            setErrorMessage('');
+          }
+        });
+      }, 1);
     });
   }, [navigation]);
 
