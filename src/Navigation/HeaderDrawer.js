@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
   },
   textView: {
     margin: 16,
+    marginTop: 8,
   },
 });
