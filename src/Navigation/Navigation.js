@@ -21,7 +21,7 @@ import MedicationCourses from '../Components/Screens/MedicationCourses';
 import ReferenceData from '../Components/Screens/ReferenceData';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
-import Profile from '../Components/Screens/Profile/Profile';
+import Profile from '../Components/Screens/Profile';
 import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 
