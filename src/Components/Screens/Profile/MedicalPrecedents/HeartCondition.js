@@ -1,18 +1,51 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import Accordian from '../../../../utils/Accordian';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
-export default function HeartCondition() {
-  const [toggleCheckBox_1, settoggleCheckBox_1] = useState(true);
-  const [toggleCheckBox_2, settoggleCheckBox_2] = useState(true);
-  const [toggleCheckBox_3, settoggleCheckBox_3] = useState(true);
-  const [toggleCheckBox_4, settoggleCheckBox_4] = useState(true);
+export default function HeartCondition({navigation}) {
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      auth().onAuthStateChanged(user => {
+        if (user) {
+          setUid(user.uid);
+          firestore()
+            .collection('medicalPrecedents')
+            .doc(user.uid)
+            .get()
+            .then(doc => {
+              settoggleCheckBox_1(doc.data().checkBox_1);
+              settoggleCheckBox_2(doc.data().checkBox_2);
+              settoggleCheckBox_3(doc.data().checkBox_3);
+              settoggleCheckBox_4(doc.data().checkBox_4);
+              settoggleCheckBox_5(doc.data().checkBox_5);
+              settoggleCheckBox_6(doc.data().checkBox_6);
+              settoggleCheckBox_7(doc.data().checkBox_7);
+              settoggleCheckBox_8(doc.data().checkBox_8);
+              settoggleCheckBox_9(doc.data().checkBox_9);
+              settoggleCheckBox_10(doc.data().checkBox_10);
+            })
+            .catch(error => alert(error.message));
+        } else {
+          navigation.navigate('Login');
+        }
+      });
+    });
+  }, [navigation]);
+
+  const [uid, setUid] = useState('');
+
+  const [toggleCheckBox_1, settoggleCheckBox_1] = useState(false);
+  const [toggleCheckBox_2, settoggleCheckBox_2] = useState(false);
+  const [toggleCheckBox_3, settoggleCheckBox_3] = useState(false);
+  const [toggleCheckBox_4, settoggleCheckBox_4] = useState(false);
   const [toggleCheckBox_5, settoggleCheckBox_5] = useState(false);
   const [toggleCheckBox_6, settoggleCheckBox_6] = useState(false);
   const [toggleCheckBox_7, settoggleCheckBox_7] = useState(false);
   const [toggleCheckBox_8, settoggleCheckBox_8] = useState(false);
   const [toggleCheckBox_9, settoggleCheckBox_9] = useState(false);
-  const [toggleCheckBox_10, settoggleCheckBox_10] = useState(true);
+  const [toggleCheckBox_10, settoggleCheckBox_10] = useState(false);
 
   const getCheckBox_1_State = () => toggleCheckBox_1;
   const getCheckBox_2_State = () => toggleCheckBox_2;
@@ -25,16 +58,16 @@ export default function HeartCondition() {
   const getCheckBox_9_State = () => toggleCheckBox_9;
   const getCheckBox_10_State = () => toggleCheckBox_10;
 
-  const setCheckBox_1_state = value => settoggleCheckBox_1(value);
-  const setCheckBox_2_state = value => settoggleCheckBox_2(value);
-  const setCheckBox_3_state = value => settoggleCheckBox_3(value);
-  const setCheckBox_4_state = value => settoggleCheckBox_4(value);
-  const setCheckBox_5_state = value => settoggleCheckBox_5(value);
-  const setCheckBox_6_state = value => settoggleCheckBox_6(value);
-  const setCheckBox_7_state = value => settoggleCheckBox_7(value);
-  const setCheckBox_8_state = value => settoggleCheckBox_8(value);
-  const setCheckBox_9_state = value => settoggleCheckBox_9(value);
-  const setCheckBox_10_state = value => settoggleCheckBox_10(value);
+  const setCheckBox_1_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_1: value });
+  const setCheckBox_2_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_2: value });
+  const setCheckBox_3_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_3: value });
+  const setCheckBox_4_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_4: value });
+  const setCheckBox_5_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_5: value });
+  const setCheckBox_6_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_6: value });
+  const setCheckBox_7_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_7: value });
+  const setCheckBox_8_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_8: value });
+  const setCheckBox_9_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_9: value });
+  const setCheckBox_10_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_10: value });
 
   const menu = [
     {
