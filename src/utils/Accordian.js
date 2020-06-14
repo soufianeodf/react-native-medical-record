@@ -9,7 +9,7 @@ import {
   UIManager,
 } from 'react-native';
 import {Colors} from './Colors';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import CheckBox from '@react-native-community/checkbox';
 
 export default class Accordian extends Component {
@@ -29,29 +29,28 @@ export default class Accordian extends Component {
   render() {
     return (
       <View>
-        <View ref={this.accordian} style={styles.row}>
-          <CheckBox
-            disabled={false}
-            value={this.state.toggleCheckBox}
-            onValueChange={() =>
-              this.state.toggleCheckBox
-                ? this.setState({toggleCheckBox: false})
-                : this.setState({toggleCheckBox: true})
-            }
-          />
-          <Text style={[styles.title, styles.font]}>{this.props.title}</Text>
-          <TouchableOpacity onPress={() => this.toggleExpand()}>
-            <Icon
-              name={
-                this.state.expanded
-                  ? 'keyboard-arrow-up'
-                  : 'keyboard-arrow-down'
+        <TouchableOpacity
+          ref={this.accordian}
+          style={styles.row}
+          onPress={() => this.toggleExpand()}>
+          <View style={styles.checkboxWithTitle}>
+            <CheckBox
+              disabled={false}
+              value={this.state.toggleCheckBox}
+              onValueChange={() =>
+                this.state.toggleCheckBox
+                  ? this.setState({toggleCheckBox: false})
+                  : this.setState({toggleCheckBox: true})
               }
-              size={30}
-              color={Colors.DARKGRAY}
             />
-          </TouchableOpacity>
-        </View>
+            <Text style={[styles.title, styles.font]}>{this.props.title}</Text>
+          </View>
+          <Icon
+            name={this.state.expanded ? 'ios-close' : 'ios-add'}
+            size={35}
+            color={Colors.DARKGRAY}
+          />
+        </TouchableOpacity>
         <View style={styles.parentHr} />
         {this.state.expanded && (
           <View style={styles.child}>
@@ -73,6 +72,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: Colors.DARKGRAY,
+  },
+  checkboxWithTitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   row: {
     flexDirection: 'row',
