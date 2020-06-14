@@ -74,7 +74,7 @@ export default function HeartCondition({navigation}) {
       key: 1,
       title: 'Coronary heart disease',
       data:
-        'The most common heart condition in Scotland is coronary heart disease. This is caused when the heart’s blood vessels - the coronary arteries - become narrowed or blocked and can’t supply enough blood to the heart. It can lead to angina and/or a heart attack.',
+        'The most common heart condition in Scotland is coronary heart disease. This is caused when the heart’s blood vessels - the coronary arteries - become narrowed or blocked and can’t supply enough blood to the heart.\n\nIt can lead to angina and/or a heart attack.',
       getCheckBoxState: getCheckBox_1_State,
       setCheckBoxState: setCheckBox_1_state,
     },
@@ -82,7 +82,7 @@ export default function HeartCondition({navigation}) {
       key: 2,
       title: 'Angina',
       data:
-        'Angina is a pain or discomfort in your chest, arm, neck, stomach or jaw that happens when the blood supply to your heart becomes restricted because of your arteries becoming narrowed. This clogging is called atheroma. Angina is a symptom of coronary heart disease, not an illness in itself. Angina is your heart’s way of telling you it’s not getting enough oxygen when you’re doing something strenuous or you’re feeling under stress. Many people learn to recognise how much activity will bring on an angina attack - this is called stable angina. If you have unexplained chest pain, seek urgent medical advice - you will need an assessment of your overall health.',
+        'Angina is a pain or discomfort in your chest, arm, neck, stomach or jaw that happens when the blood supply to your heart becomes restricted because of your arteries becoming narrowed. This clogging is called atheroma. Angina is a symptom of coronary heart disease, not an illness in itself. \n\nAngina is your heart’s way of telling you it’s not getting enough oxygen when you’re doing something strenuous or you’re feeling under stress. Many people learn to recognise how much activity will bring on an angina attack - this is called stable angina. \n\nIf you have unexplained chest pain, seek urgent medical advice - you will need an assessment of your overall health.',
       getCheckBoxState: getCheckBox_2_State,
       setCheckBoxState: setCheckBox_2_state,
     },
@@ -90,7 +90,7 @@ export default function HeartCondition({navigation}) {
       key: 3,
       title: 'Unstable angina',
       data:
-        'Unstable angina can be undiagnosed chest pain or a sudden worsening of existing angina. It happens when the blood supply to the heart is severely restricted and angina attacks occur more frequently, with less and less activity. These attacks may even happen at rest or wake you from sleep. They can last up to 10 minutes. You should see your doctor urgently, and you may be admitted to hospital. Until tests confirm the diagnosis, this is sometimes called Acute Coronary Syndrome (ACS).',
+        'Unstable angina can be undiagnosed chest pain or a sudden worsening of existing angina. It happens when the blood supply to the heart is severely restricted and angina attacks occur more frequently, with less and less activity.\n\nThese attacks may even happen at rest or wake you from sleep. They can last up to 10 minutes. \n\nYou should see your doctor urgently, and you may be admitted to hospital. \n\nUntil tests confirm the diagnosis, this is sometimes called Acute Coronary Syndrome (ACS).',
       getCheckBoxState: getCheckBox_3_State,
       setCheckBoxState: setCheckBox_3_state,
     },
@@ -122,7 +122,7 @@ export default function HeartCondition({navigation}) {
       key: 7,
       title: 'Valve disease ',
       data:
-        'The valves open and close to regulate the flow of blood through the heart. Problems with the valves can increase the workload of your heart and can put a strain on your heart muscle, leading to a range of symptoms, like: 1- shortness of breath. 2- swollen ankles. 3- fatigue. 4- chest pain (angina or palpitations). 5- dizziness or fainting',
+        'The valves open and close to regulate the flow of blood through the heart. Problems with the valves can increase the workload of your heart and can put a strain on your heart muscle, leading to a range of symptoms, like: \n\n▪ shortness of breath. \n▪ swollen ankles. \n▪ fatigue. \n▪ chest pain (angina or palpitations). \n▪ dizziness or fainting',
       getCheckBoxState: getCheckBox_7_State,
       setCheckBoxState: setCheckBox_7_state,
     },
@@ -146,7 +146,7 @@ export default function HeartCondition({navigation}) {
       key: 10,
       title: 'Inherited heart conditions',
       data:
-        'Inherited conditions can be passed on through families. They are sometimes called familial or genetic heart conditions. They can affect people of any age and can be life-threatening. The first sign there’s a problem is often when someone dies suddenly with no obvious cause. These conditions are different from most congenital heart conditions, although some congenital conditions can also be inherited.',
+        'Inherited conditions can be passed on through families. They are sometimes called familial or genetic heart conditions. \n\nThey can affect people of any age and can be life-threatening. The first sign there’s a problem is often when someone dies suddenly with no obvious cause. \n\nThese conditions are different from most congenital heart conditions, although some congenital conditions can also be inherited.',
       getCheckBoxState: getCheckBox_10_State,
       setCheckBoxState: setCheckBox_10_state,
     },
