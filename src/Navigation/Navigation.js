@@ -24,6 +24,11 @@ import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Profile from '../Components/Screens/Profile';
 import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
 import HeartCondition from '../Components/Screens/Profile/MedicalPrecedents/HeartCondition';
+import Diabetes from '../Components/Screens/Profile/MedicalPrecedents/Diabetes';
+import Allergy from '../Components/Screens/Profile/MedicalPrecedents/Allergy';
+import Vaccination from '../Components/Screens/Profile/MedicalPrecedents/Vaccination';
+import Surgery from '../Components/Screens/Profile/MedicalPrecedents/Surgery';
+import AlcoholSmoking from '../Components/Screens/Profile/MedicalPrecedents/AlcoholSmoking';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
@@ -186,7 +191,13 @@ const Navigation = () => {
       <Stack.Screen name="CheckEmail" component={CheckEmail} />
       <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Home" component={DrawerScreen} />
+      {/* Medical Precedents pages */}
       <Stack.Screen name="HeartCondition" component={HeartCondition} />
+      <Stack.Screen name="Diabetes" component={Diabetes} />
+      <Stack.Screen name="Allergy" component={Allergy} />
+      <Stack.Screen name="Vaccination" component={Vaccination} />
+      <Stack.Screen name="Surgery" component={Surgery} />
+      <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
     </Stack.Navigator>
   );
 
