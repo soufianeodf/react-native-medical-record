@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Colors} from './Colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import CheckBox from '@react-native-community/checkbox';
 
 export default class Accordian extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class Accordian extends Component {
     this.state = {
       data: props.data,
       expanded: false,
+      toggleCheckBox: false,
     };
 
     if (Platform.OS === 'android') {
@@ -28,6 +30,15 @@ export default class Accordian extends Component {
     return (
       <View>
         <View ref={this.accordian} style={styles.row}>
+          <CheckBox
+            disabled={false}
+            value={this.state.toggleCheckBox}
+            onValueChange={() =>
+              this.state.toggleCheckBox
+                ? this.setState({toggleCheckBox: false})
+                : this.setState({toggleCheckBox: true})
+            }
+          />
           <Text style={[styles.title, styles.font]}>{this.props.title}</Text>
           <TouchableOpacity onPress={() => this.toggleExpand()}>
             <Icon
