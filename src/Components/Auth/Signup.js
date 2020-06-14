@@ -12,9 +12,8 @@ import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePickerInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import Avatar from '../../utils/Avatar';
+// import Avatar from '../../utils/Avatar';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
-
 
 const Signup = ({navigation}) => {
   const [isMale, setIsMale] = useState(true);
@@ -93,7 +92,7 @@ const Signup = ({navigation}) => {
               username,
               fullName,
               phone,
-  
+
               fullName2: '',
               affiliationNumber: '',
               registrationNumber: '',
@@ -104,7 +103,25 @@ const Signup = ({navigation}) => {
               attachmentNumber: '',
             })
             .then(() => {
-              navigation.navigate('Home');
+              firestore()
+                .collection('medicalPrecedents')
+                .doc(credentials.user.uid)
+                .set({
+                  checkBox_1: false,
+                  checkBox_2: false,
+                  checkBox_3: false,
+                  checkBox_4: false,
+                  checkBox_5: false,
+                  checkBox_6: false,
+                  checkBox_7: false,
+                  checkBox_8: false,
+                  checkBox_9: false,
+                  checkBox_10: false,
+                })
+                .then(() => {
+                  navigation.navigate('Home');
+                })
+                .catch(error => setErrorMessage(error.message));
             })
             .catch(error => setErrorMessage(error.message));
         })
@@ -117,7 +134,7 @@ const Signup = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
-        <Avatar />
+        {/* <Avatar /> */}
 
         {errorMessage ? (
           <View style={styles.errorContainer}>
