@@ -23,6 +23,7 @@ import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Profile from '../Components/Screens/Profile';
 import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
+import HeartCondition from '../Components/Screens/Profile/MedicalPrecedents/HeartCondition';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
@@ -185,6 +186,7 @@ const Navigation = () => {
       <Stack.Screen name="CheckEmail" component={CheckEmail} />
       <Stack.Screen name="Loading" component={Loading} />
       <Stack.Screen name="Home" component={DrawerScreen} />
+      <Stack.Screen name="HeartCondition" component={HeartCondition} />
     </Stack.Navigator>
   );
 
