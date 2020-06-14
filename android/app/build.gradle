@@ -195,6 +195,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(path: ":@react-native-firebase_storage")
     implementation project(':react-native-image-picker')
+    implementation project(':react-native-community-checkbox')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
