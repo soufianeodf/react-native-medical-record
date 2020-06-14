@@ -6,61 +6,76 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const MedicalPrecedents = () => {
+  const itemInformations = [
+    {
+      iconType: 'FontAwesome',
+      iconName: 'heartbeat',
+      iconSize: 28,
+      title: 'Heart condition',
+    },
+    {
+      iconType: 'MaterialCommunityIcons',
+      iconName: 'blood-bag',
+      iconSize: 28,
+      title: 'Diabetes',
+    },
+    {
+      iconType: 'FontAwesome5',
+      iconName: 'allergies',
+      iconSize: 32,
+      title: 'Allergy',
+    },
+    {
+      iconType: 'Fontisto',
+      iconName: 'injection-syringe',
+      iconSize: 28,
+      title: 'Vaccination',
+    },
+    {
+      iconType: 'MaterialCommunityIcons',
+      iconName: 'bed-empty',
+      iconSize: 28,
+      title: 'Surgery',
+    },
+    {
+      iconType: 'FontAwesome5',
+      iconName: 'smoking',
+      iconSize: 23,
+      title: 'Alcohol / Smoking',
+    },
+  ];
+
+  function _renderIconType(iconType, iconName, iconSize) {
+    switch (iconType) {
+      case 'FontAwesome':
+        return <FontAwesome name={iconName} size={iconSize} />;
+      case 'MaterialCommunityIcons':
+        return <MaterialCommunityIcons name={iconName} size={iconSize} />;
+      case 'FontAwesome5':
+        return <FontAwesome5 name={iconName} size={iconSize} />;
+      case 'Fontisto':
+        return <Fontisto name={iconName} size={iconSize} />;
+      default:
+        return null;
+    }
+  }
+
   return (
     <View style={styles.viewContainer}>
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <FontAwesome name={'heartbeat'} size={28} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Heart condition</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <MaterialCommunityIcons name={'blood-bag'} size={28} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Diabetes</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <FontAwesome5 name={'allergies'} size={32} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Allergy</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <Fontisto name={'injection-syringe'} size={28} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Vaccination</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <MaterialCommunityIcons name={'bed-empty'} size={28} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Surgery</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.innerContainer}>
-        <View style={styles.iconView}>
-          <FontAwesome5 name={'smoking'} size={23} />
-        </View>
-        <View style={styles.textView}>
-          <Text style={styles.textStyle}>Alcohol / Smoking</Text>
-        </View>
-      </TouchableOpacity>
+      {itemInformations.map(value => {
+        return (
+          <TouchableOpacity
+            style={styles.innerContainer}
+            onPress={() => alert('Not implemented yet')}>
+            <View style={styles.iconView}>
+              {_renderIconType(value.iconType, value.iconName, value.iconSize)}
+            </View>
+            <View style={styles.textView}>
+              <Text style={styles.textStyle}>{value.title}</Text>
+            </View>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 };
@@ -71,7 +86,7 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     marginTop: 20,
-    alignItems: "center"
+    alignItems: 'center',
   },
   innerContainer: {
     flexDirection: 'row',
@@ -85,15 +100,15 @@ const styles = StyleSheet.create({
   iconView: {
     borderRadius: 2,
     padding: 12,
-    backgroundColor: "#e2dede",
+    backgroundColor: '#e2dede',
   },
   textView: {
-    alignItems: "center",
+    alignItems: 'center',
     marginLeft: 10,
-    justifyContent: "center"
+    justifyContent: 'center',
   },
   textStyle: {
     fontSize: 20,
-    fontFamily: "serif",
+    fontFamily: 'serif',
   },
 });
