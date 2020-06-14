@@ -79,8 +79,7 @@ const MedicalPrecedents = ({navigation}) => {
           <TouchableOpacity
             style={styles.innerContainer}
             onPress={() => navigation.navigate(value.goToPage)}
-            key={value.key}
-            >
+            key={value.key}>
             <View style={styles.iconView}>
               {_renderIconType(value.iconType, value.iconName, value.iconSize)}
             </View>
