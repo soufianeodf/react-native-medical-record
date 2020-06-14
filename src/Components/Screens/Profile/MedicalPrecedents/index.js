@@ -5,43 +5,49 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const MedicalPrecedents = () => {
+const MedicalPrecedents = ({navigation}) => {
   const itemInformations = [
     {
       iconType: 'FontAwesome',
       iconName: 'heartbeat',
       iconSize: 28,
       title: 'Heart condition',
+      goToPage: 'HeartCondition',
     },
     {
       iconType: 'MaterialCommunityIcons',
       iconName: 'blood-bag',
       iconSize: 28,
       title: 'Diabetes',
+      goToPage: 'Diabetes',
     },
     {
       iconType: 'FontAwesome5',
       iconName: 'allergies',
       iconSize: 32,
       title: 'Allergy',
+      goToPage: 'Allergy',
     },
     {
       iconType: 'Fontisto',
       iconName: 'injection-syringe',
       iconSize: 28,
       title: 'Vaccination',
+      goToPage: 'Vaccination',
     },
     {
       iconType: 'MaterialCommunityIcons',
       iconName: 'bed-empty',
       iconSize: 28,
       title: 'Surgery',
+      goToPage: 'Surgery',
     },
     {
       iconType: 'FontAwesome5',
       iconName: 'smoking',
       iconSize: 23,
       title: 'Alcohol / Smoking',
+      goToPage: 'AlcoholSmoking',
     },
   ];
 
@@ -66,7 +72,7 @@ const MedicalPrecedents = () => {
         return (
           <TouchableOpacity
             style={styles.innerContainer}
-            onPress={() => alert('Not implemented yet')}>
+            onPress={() => navigation.navigate(value.goToPage)}>
             <View style={styles.iconView}>
               {_renderIconType(value.iconType, value.iconName, value.iconSize)}
             </View>
