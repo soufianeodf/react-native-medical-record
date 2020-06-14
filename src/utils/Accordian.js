@@ -53,7 +53,7 @@ export default class Accordian extends Component {
         <View style={styles.parentHr} />
         {this.state.expanded && (
           <View style={styles.child}>
-            <Text>{this.props.data}</Text>
+            <Text style={styles.dataText}>{this.props.data}</Text>
           </View>
         )}
       </View>
@@ -84,6 +84,10 @@ const styles = StyleSheet.create({
     paddingRight: 18,
     alignItems: 'center',
     backgroundColor: Colors.CGRAY,
+  },
+  dataText: {
+    fontFamily: 'serif',
+    lineHeight: 18,
   },
   parentHr: {
     height: 1,
