@@ -18,7 +18,6 @@ export default class Accordian extends Component {
     this.state = {
       data: props.data,
       expanded: false,
-      toggleCheckBox: false,
     };
 
     if (Platform.OS === 'android') {
@@ -36,11 +35,11 @@ export default class Accordian extends Component {
           <View style={styles.checkboxWithTitle}>
             <CheckBox
               disabled={false}
-              value={this.state.toggleCheckBox}
+              value={this.props.getCheckBoxState()}
               onValueChange={() =>
-                this.state.toggleCheckBox
-                  ? this.setState({toggleCheckBox: false})
-                  : this.setState({toggleCheckBox: true})
+                this.props.getCheckBoxState()
+                  ? this.props.setCheckBoxState(false)
+                  : this.props.setCheckBoxState(true)
               }
             />
             <Text style={[styles.title, styles.font]}>{this.props.title}</Text>
