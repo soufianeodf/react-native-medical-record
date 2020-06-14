@@ -8,6 +8,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 const MedicalPrecedents = ({navigation}) => {
   const itemInformations = [
     {
+      key: 1,
       iconType: 'FontAwesome',
       iconName: 'heartbeat',
       iconSize: 28,
@@ -15,6 +16,7 @@ const MedicalPrecedents = ({navigation}) => {
       goToPage: 'HeartCondition',
     },
     {
+      key: 2,
       iconType: 'MaterialCommunityIcons',
       iconName: 'blood-bag',
       iconSize: 28,
@@ -22,6 +24,7 @@ const MedicalPrecedents = ({navigation}) => {
       goToPage: 'Diabetes',
     },
     {
+      key: 3,
       iconType: 'FontAwesome5',
       iconName: 'allergies',
       iconSize: 32,
@@ -29,6 +32,7 @@ const MedicalPrecedents = ({navigation}) => {
       goToPage: 'Allergy',
     },
     {
+      key: 4,
       iconType: 'Fontisto',
       iconName: 'injection-syringe',
       iconSize: 28,
@@ -36,6 +40,7 @@ const MedicalPrecedents = ({navigation}) => {
       goToPage: 'Vaccination',
     },
     {
+      key: 5,
       iconType: 'MaterialCommunityIcons',
       iconName: 'bed-empty',
       iconSize: 28,
@@ -43,6 +48,7 @@ const MedicalPrecedents = ({navigation}) => {
       goToPage: 'Surgery',
     },
     {
+      key: 6,
       iconType: 'FontAwesome5',
       iconName: 'smoking',
       iconSize: 23,
@@ -72,7 +78,9 @@ const MedicalPrecedents = ({navigation}) => {
         return (
           <TouchableOpacity
             style={styles.innerContainer}
-            onPress={() => navigation.navigate(value.goToPage)}>
+            onPress={() => navigation.navigate(value.goToPage)}
+            key={value.key}
+            >
             <View style={styles.iconView}>
               {_renderIconType(value.iconType, value.iconName, value.iconSize)}
             </View>
