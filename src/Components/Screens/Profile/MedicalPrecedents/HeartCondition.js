@@ -6,7 +6,6 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function HeartCondition({navigation}) {
   useEffect(() => {
-    console.log("**********use effect***********")
     navigation.addListener('focus', () => {
       auth().onAuthStateChanged(user => {
         if (user) {

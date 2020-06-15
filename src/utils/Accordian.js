@@ -37,8 +37,8 @@ export default class Accordian extends Component {
               value={this.props.getCheckBoxState()}
               onValueChange={() =>
                 this.props.getCheckBoxState()
-                  ? (this.props.setCheckBoxState(false) && console.log("*** set false****"))
-                  : (this.props.setCheckBoxState(true) && console.log("**** set true****"))
+                  ? this.props.setCheckBoxState(false)
+                  : this.props.setCheckBoxState(true)
               }
             />
             <Text style={[styles.title, styles.font]}>{this.props.title}</Text>
