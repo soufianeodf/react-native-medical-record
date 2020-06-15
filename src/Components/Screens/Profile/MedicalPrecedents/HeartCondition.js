@@ -6,6 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function HeartCondition({navigation}) {
   useEffect(() => {
+    console.log("**********use effect***********")
     navigation.addListener('focus', () => {
       auth().onAuthStateChanged(user => {
         if (user) {
@@ -58,7 +59,7 @@ export default function HeartCondition({navigation}) {
   const getCheckBox_9_State = () => toggleCheckBox_9;
   const getCheckBox_10_State = () => toggleCheckBox_10;
 
-  const setCheckBox_1_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_1: value });
+  const setCheckBox_1_state = value => {firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_1: value }); console.log(value)};
   const setCheckBox_2_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_2: value });
   const setCheckBox_3_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_3: value });
   const setCheckBox_4_state = value => firestore().collection('medicalPrecedents').doc(uid).update({ checkBox_4: value });
