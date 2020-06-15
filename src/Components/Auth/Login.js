@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   ScrollView,
+  Image,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
@@ -65,6 +66,10 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <Image
+          style={styles.logoImage}
+          source={require('../../../images/medical.png')}
+        />
         {errorMessage ? (
           <View style={styles.errorContainer}>
             <Text style={styles.errorLabel}>{errorMessage}</Text>
@@ -131,12 +136,17 @@ export default Login;
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    marginTop: 20,
   },
   scrollViewContainer: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  logoImage: {
+    width: 200,
+    height: 164,
+    marginBottom: 10,
+    marginLeft: 15,
   },
   loginMethodButtonContainer: {
     width: '80%',
