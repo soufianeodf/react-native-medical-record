@@ -12,6 +12,8 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
+import firestore from '@react-native-firebase/firestore';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -35,17 +37,92 @@ const Login = ({navigation}) => {
     });
   }, [navigation]);
 
-  function _loginMethodButton(name, bgColor, text) {
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
+
+  function _loginMethodButton(name, bgColor, text, signInFunction) {
     return (
       <View style={styles.loginMethodButtonContainer}>
         <Ionicons.Button
           name={name}
           backgroundColor={bgColor}
-          onPress={() => alert('Not implemented yet')}>
+          onPress={() => signInFunction ? signInFunction().then(() => alert('you are logged in')) : alert('Not implemented yet.')}>
           <Text style={{fontSize: 15, color: '#fff'}}>{text}</Text>
         </Ionicons.Button>
       </View>
     );
+  }
+
+  function _firebasestuff() {
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        firestore()
+          .collection('users')
+          .doc(user.uid)
+          .update({
+            gender: '',
+            birthDate: '',
+            username: '',
+            fullName: '',
+            phone: '',
+
+            fullName2: '',
+            affiliationNumber: '',
+            registrationNumber: '',
+            cin: '',
+            relationship: '',
+            address: '',
+            amoutOfFees: '',
+            attachmentNumber: '',
+          })
+          .then(() => {
+            firestore()
+              .collection('medicalPrecedents')
+              .doc(user.uid)
+              .update({
+                checkBox_1: false,
+                checkBox_2: false,
+                checkBox_3: false,
+                checkBox_4: false,
+                checkBox_5: false,
+                checkBox_6: false,
+                checkBox_7: false,
+                checkBox_8: false,
+                checkBox_9: false,
+                checkBox_10: false,
+              })
+              .then(() => {
+                navigation.navigate('Home');
+              })
+              .catch(error => console.log(error.message + ' 1'));
+          })
+          .catch(error => console.log(error.message + ' 2'));
+      }
+    });
   }
 
   function _handleLogin() {
@@ -76,7 +153,7 @@ const Login = ({navigation}) => {
           </View>
         ) : null}
 
-        {_loginMethodButton('logo-facebook', '#39589A', 'Login with Facebook')}
+        {_loginMethodButton('logo-facebook', '#39589A', 'Login with Facebook', onFacebookButtonPress)}
         {_loginMethodButton('logo-twitter', '#50ABF1', 'Login with Twitter')}
         {_loginMethodButton('logo-google', '#DD4B39', 'Login with Google')}
 
