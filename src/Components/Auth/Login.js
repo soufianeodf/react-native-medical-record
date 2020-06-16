@@ -220,9 +220,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoImage: {
-    width: 200,
-    height: 164,
-    marginBottom: 10,
+    width: 215,
+    height: 176,
+    marginBottom: 8,
     marginLeft: 15,
   },
   loginMethodButtonContainer: {
