@@ -196,6 +196,7 @@ dependencies {
     implementation project(path: ":@react-native-firebase_storage")
     implementation project(':react-native-image-picker')
     implementation project(':react-native-community-checkbox')
+    implementation project(':react-native-fbsdk')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
