@@ -56,6 +56,11 @@ const Weight = () => {
     hideTimePicker();
   };
 
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
   return (
     <View style={styles.viewContainer}>
       <View style={styles.validateIcon}>
@@ -108,10 +113,15 @@ const Weight = () => {
             <Text style={styles.text}>Information</Text>
           </View>
 
+          <Text style={{position: 'absolute', top: isFocused ? 52 : 72, left: 10, zIndex: 1,backgroundColor: '#dee1f2', paddingHorizontal: 5}}>
+            Weight
+          </Text>
+
           <TextInput
             style={styles.textInput}
-            placeholder="Weight"
             onChangeText={text => console.log(text)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
         </View>
       </ScrollView>
