@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   ScrollView,
+  Animated,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
@@ -17,6 +18,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Weight = () => {
+
+  const animatedIsFocused = new Animated.Value(value === '' ? 0 : 1);
+  const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+  
+  const [value, setValue] = useState('');
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setdate] = useState(
@@ -56,10 +65,13 @@ const Weight = () => {
     hideTimePicker();
   };
 
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  useEffect(() => {
+    Animated.timing(animatedIsFocused, {
+      toValue: isFocused || value !== '' ? 1 : 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  });
 
   return (
     <View style={styles.viewContainer}>
@@ -113,13 +125,24 @@ const Weight = () => {
             <Text style={styles.text}>Information</Text>
           </View>
 
-          <Text style={{position: 'absolute', top: isFocused ? 52 : 72, left: 10, zIndex: 1,backgroundColor: '#dee1f2', paddingHorizontal: 5}}>
+          <Animated.Text
+            style={{
+              position: 'absolute',
+              top: animatedIsFocused.interpolate({
+                inputRange: [0, 1],
+                outputRange: [72, 52],
+              }),
+              left: 10,
+              zIndex: 1,
+              backgroundColor: '#dee1f2',
+              paddingHorizontal: 5,
+            }}>
             Weight
-          </Text>
+          </Animated.Text>
 
           <TextInput
             style={styles.textInput}
-            onChangeText={text => console.log(text)}
+            onChangeText={text => setValue(text)}
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
