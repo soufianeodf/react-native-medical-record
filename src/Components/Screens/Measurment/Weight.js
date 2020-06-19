@@ -114,16 +114,6 @@ const Weight = () => {
             onChangeText={text => setValue(text)}
             label="Weight"
           />
-          <FloatingLabelInput
-            value={value}
-            onChangeText={text => setValue(text)}
-            label="Height"
-          />
-          <FloatingLabelInput
-            value={value}
-            onChangeText={text => setValue(text)}
-            label="Appointment date"
-          />
         </View>
       </ScrollView>
     </View>

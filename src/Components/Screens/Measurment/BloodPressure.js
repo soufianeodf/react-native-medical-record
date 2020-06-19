@@ -15,8 +15,11 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 
 const BloodPressure = () => {
+  const [upperBound, setUpperBound] = useState('');
+  const [lowerBound, setLowerBound] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setdate] = useState(
@@ -108,15 +111,15 @@ const BloodPressure = () => {
             <Text style={styles.text}>Information</Text>
           </View>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="Upper bound"
-            onChangeText={text => console.log(text)}
+          <FloatingLabelInput
+            value={upperBound}
+            onChangeText={text => setUpperBound(text)}
+            label="Upper bound"
           />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Lower bound"
-            onChangeText={text => console.log(text)}
+          <FloatingLabelInput
+            value={lowerBound}
+            onChangeText={text => setLowerBound(text)}
+            label="Lower bound"
           />
         </View>
       </ScrollView>

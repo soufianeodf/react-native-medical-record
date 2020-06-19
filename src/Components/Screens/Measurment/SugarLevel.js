@@ -15,8 +15,10 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 
 const SugarLevel = () => {
+  const [value, setValue] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setdate] = useState(
@@ -108,10 +110,10 @@ const SugarLevel = () => {
             <Text style={styles.text}>Information</Text>
           </View>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="Sugar level"
-            onChangeText={text => console.log(text)}
+          <FloatingLabelInput
+            value={value}
+            onChangeText={text => setValue(text)}
+            label="Sugar level"
           />
         </View>
       </ScrollView>
@@ -154,15 +156,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-  },
-  textInput: {
-    height: 40,
-    width: '100%',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#aa9e9e',
-    borderStyle: 'solid',
-    paddingHorizontal: 20,
-    marginBottom: 10,
   },
 });
