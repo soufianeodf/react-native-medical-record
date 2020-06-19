@@ -1,13 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableWithoutFeedback,
-  TextInput,
   ScrollView,
-  Animated,
+  Alert,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
@@ -16,16 +14,10 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 
 const Weight = () => {
-
-  const animatedIsFocused = new Animated.Value(value === '' ? 0 : 1);
-  const [isFocused, setIsFocused] = useState(false);
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
-  
   const [value, setValue] = useState('');
-
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setdate] = useState(
@@ -65,18 +57,10 @@ const Weight = () => {
     hideTimePicker();
   };
 
-  useEffect(() => {
-    Animated.timing(animatedIsFocused, {
-      toValue: isFocused || value !== '' ? 1 : 0,
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
-  });
-
   return (
     <View style={styles.viewContainer}>
       <View style={styles.validateIcon}>
-        <TouchableOpacity onPress={() => alert('button pressed')}>
+        <TouchableOpacity onPress={() => Alert.alert('button pressed')}>
           <Entypo name={'check'} size={35} />
         </TouchableOpacity>
       </View>
@@ -125,26 +109,20 @@ const Weight = () => {
             <Text style={styles.text}>Information</Text>
           </View>
 
-          <Animated.Text
-            style={{
-              position: 'absolute',
-              top: animatedIsFocused.interpolate({
-                inputRange: [0, 1],
-                outputRange: [72, 52],
-              }),
-              left: 10,
-              zIndex: 1,
-              backgroundColor: '#dee1f2',
-              paddingHorizontal: 5,
-            }}>
-            Weight
-          </Animated.Text>
-
-          <TextInput
-            style={styles.textInput}
+          <FloatingLabelInput
+            value={value}
             onChangeText={text => setValue(text)}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            label="Weight"
+          />
+          <FloatingLabelInput
+            value={value}
+            onChangeText={text => setValue(text)}
+            label="Height"
+          />
+          <FloatingLabelInput
+            value={value}
+            onChangeText={text => setValue(text)}
+            label="Appointment date"
           />
         </View>
       </ScrollView>
@@ -187,15 +165,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-  },
-  textInput: {
-    height: 40,
-    width: '100%',
-    borderRadius: 4,
-    borderWidth: 1,
-    borderColor: '#aa9e9e',
-    borderStyle: 'solid',
-    paddingHorizontal: 20,
-    marginBottom: 10,
   },
 });
