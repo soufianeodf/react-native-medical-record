@@ -15,7 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ReferenceData = () => {
   const [loading, setLoading] = useState(true);
-  const [users, setUsers] = useState([{code: 1, nom: 'test'}]);
+  const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
 
   useEffect(() => {
@@ -25,12 +25,12 @@ const ReferenceData = () => {
       .collection('medications')
       .get()
       .then(querySnapshot => {
-        const users = [];
-        console.log('Total users: ', querySnapshot.size);
+        let medications = [];
+        console.log('Total medications: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-          users.push(documentSnapshot.data());
+          medications.push(documentSnapshot.data());
         });
-        setUsers(users);
+        setMedications(medications);
         setLoading(false);
       })
       .catch(error => Alert.alert(error));
@@ -45,63 +45,30 @@ const ReferenceData = () => {
   };
 
   if (loading) {
-    return <ActivityIndicator />;
+    return (
+      <View style={styles.activityIndicatorView}>
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View
-        style={{
-          flex: isKeyboardOn ? 1.9 : 0.8,
-          backgroundColor: 'orange',
-          borderBottomRightRadius: 25,
-          borderBottomLeftRadius: 25,
-          justifyContent: 'center',
-        }}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 24,
-            textAlign: 'center',
-            marginBottom: 8,
-            fontFamily: 'serif',
-            marginVertical: 15,
-          }}>
-          Medications list
-        </Text>
-        <View style={{alignItems: 'center', marginBottom: 5}}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'white',
-              borderRadius: 50,
-              alignItems: 'center',
-              flexDirection: 'row',
-              paddingLeft: 5,
-            }}>
+    <View style={styles.viewContainer}>
+      <View style={[styles.firstInnerView, {flex: isKeyboardOn ? 1.9 : 0.8}]}>
+        <Text style={styles.titleText}>Medications list</Text>
+        <View style={styles.searchBarView}>
+          <TouchableOpacity style={styles.searchBar}>
             <Ionicons name={'md-search'} color={'grey'} size={30} />
-            <TextInput style={{width: 320, height: 40}}>Type Here...</TextInput>
+            <TextInput style={styles.searchBarText}>Type Here...</TextInput>
           </TouchableOpacity>
         </View>
       </View>
-      <View
-        style={{flex: 4, backgroundColor: 'white', padding: 5, paddingTop: 10}}>
+      <View style={styles.secondInnerView}>
         <FlatList
-          data={users}
+          data={medications}
           keyExtractor={item => item.CODE}
           renderItem={({item}) => (
-            <Text
-              style={{
-                borderWidth: 0.5,
-                borderColor: 'white',
-                paddingVertical: 15,
-                margin: 8,
-                borderRadius: 3,
-                elevation: 1,
-                paddingLeft: 5,
-              }}>
-              {' '}
-              {item.NOM}{' '}
-            </Text>
+            <Text style={styles.itemsStyle}> {item.NOM} </Text>
           )}
         />
       </View>
@@ -111,4 +78,58 @@ const ReferenceData = () => {
 
 export default ReferenceData;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  activityIndicatorView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  viewContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  firstInnerView: {
+    backgroundColor: 'orange',
+    borderBottomRightRadius: 25,
+    borderBottomLeftRadius: 25,
+    justifyContent: 'center',
+  },
+  titleText: {
+    color: 'white',
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 8,
+    fontFamily: 'serif',
+    marginVertical: 15,
+  },
+  searchBarView: {
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  searchBar: {
+    backgroundColor: 'white',
+    borderRadius: 50,
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingLeft: 5,
+  },
+  searchBarText: {
+    width: 320,
+    height: 40,
+  },
+  secondInnerView: {
+    flex: 4,
+    backgroundColor: 'white',
+    padding: 5,
+    paddingTop: 10,
+  },
+  itemsStyle: {
+    borderWidth: 0.5,
+    borderColor: 'white',
+    paddingVertical: 15,
+    margin: 8,
+    borderRadius: 3,
+    elevation: 1,
+    paddingLeft: 5,
+  },
+});
