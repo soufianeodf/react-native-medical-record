@@ -23,6 +23,7 @@ const ReferenceData = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [medicationName, setMedicationName] = useState('');
   const [search, setSearch] = useState('');
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -44,7 +45,7 @@ const ReferenceData = () => {
         setLoading(false);
       })
       .catch(error => Alert.alert(error));
-  }, [medicationName]);
+  }, [medicationName, selected]);
 
   const _keyboardDidShow = () => {
     setIsKeyboardOn(true);
@@ -100,6 +101,14 @@ const ReferenceData = () => {
       .catch(error => Alert.alert(error));
   };
 
+  const _deleteSelectedMedicine = item => {
+    firestore()
+      .collection('medications')
+      .doc(item.key)
+      .delete()
+      .then(() => setSelected(!selected));
+  };
+
   if (loading) {
     return (
       <View style={styles.activityIndicatorView}>
@@ -130,8 +139,25 @@ const ReferenceData = () => {
       <View style={styles.secondInnerView}>
         <FlatList
           data={medications}
+          extraData={selected}
           renderItem={({item}) => (
-            <Text style={styles.itemsStyle}> {item.NOM} </Text>
+            <TouchableOpacity
+              onLongPress={() =>
+                Alert.alert(
+                  'Delete chosen medication',
+                  'Are you sure to delete.',
+                  [
+                    {
+                      text: 'Cancel',
+                      style: 'cancel',
+                    },
+                    {text: 'OK', onPress: () => _deleteSelectedMedicine(item)},
+                  ],
+                  {cancelable: false},
+                )
+              }>
+              <Text style={styles.itemsStyle}> {item.NOM} </Text>
+            </TouchableOpacity>
           )}
         />
       </View>
