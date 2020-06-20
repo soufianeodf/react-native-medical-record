@@ -76,6 +76,11 @@ const ReferenceData = () => {
           )}
         />
       </View>
+      <View style={styles.buttonView}>
+        <TouchableOpacity onPress={() => Alert.alert('button clicked')}>
+          <Ionicons name={'ios-add-circle'} color={'orange'} size={66} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -141,5 +146,10 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     elevation: 1,
     paddingLeft: 5,
+  },
+  buttonView: {
+    position: 'absolute',
+    bottom: '1.5%',
+    right: '4%',
   },
 });
