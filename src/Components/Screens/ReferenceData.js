@@ -21,6 +21,7 @@ const ReferenceData = () => {
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [medicationName, setMedicationName] = useState('');
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -32,13 +33,16 @@ const ReferenceData = () => {
         let medications = [];
         console.log('Total medications: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-          medications.push(documentSnapshot.data());
+          medications.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
         });
         setMedications(medications);
         setLoading(false);
       })
       .catch(error => Alert.alert(error));
-  }, []);
+  }, [medicationName]);
 
   const _keyboardDidShow = () => {
     setIsKeyboardOn(true);
@@ -46,6 +50,33 @@ const ReferenceData = () => {
 
   const _keyboardDidHide = () => {
     setIsKeyboardOn(false);
+  };
+
+  const _addMedicine = () => {
+    if (medicationName !== '') {
+      firestore()
+        .collection('medications')
+        .add({
+          CODE: '',
+          DCI1: '',
+          DOSAGE1: '',
+          FORME: '',
+          NOM: medicationName,
+          PH: '',
+          PPV: '',
+          PRESENTATION: '',
+          PRINCEPS_GENERIQUE: '',
+          PRIX_BR: '',
+          TAUX_REMBOURSEMENT: '',
+          UNITE_DOSAGE1: '',
+        })
+        .then(() => {
+          setMedicationName('');
+          setIsVisible(false);
+        });
+    } else {
+      Alert.alert('You canno\'t enter an empty name.');
+    }
   };
 
   if (loading) {
@@ -73,7 +104,6 @@ const ReferenceData = () => {
       <View style={styles.secondInnerView}>
         <FlatList
           data={medications}
-          keyExtractor={item => item.CODE}
           renderItem={({item}) => (
             <Text style={styles.itemsStyle}> {item.NOM} </Text>
           )}
@@ -102,9 +132,13 @@ const ReferenceData = () => {
                 </TouchableOpacity>
               </View>
               <Text style={styles.modalInputTextTitle}>Name</Text>
-              <TextInput style={styles.modalInputText} />
+              <TextInput
+                style={styles.modalInputText}
+                value={medicationName}
+                onChangeText={text => setMedicationName(text)}
+              />
               <TouchableOpacity
-                onPress={() => Alert.alert('adding...')}
+                onPress={_addMedicine}
                 style={styles.modalButtonContainer}>
                 <Text style={styles.modalButtonText}>Add Medicine</Text>
               </TouchableOpacity>
