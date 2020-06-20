@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Spinner from 'react-native-spinkit';
 
 const ReferenceData = () => {
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ const ReferenceData = () => {
   if (loading) {
     return (
       <View style={styles.activityIndicatorView}>
-        <ActivityIndicator />
+        <Spinner isVisible={true} type={'Pulse'} color="orange" size={70} />
       </View>
     );
   }
