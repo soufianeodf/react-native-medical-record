@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   },
   modalInputText: {
     borderBottomWidth: 1,
-    borderBottomColor: '#000',
+    borderBottomColor: 'grey',
     marginHorizontal: 3,
     marginBottom: 10,
     padding: 3,
