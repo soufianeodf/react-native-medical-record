@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
-  ActivityIndicator,
   Alert,
   FlatList,
   View,
