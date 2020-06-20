@@ -22,12 +22,14 @@ const ReferenceData = () => {
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [medicationName, setMedicationName] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
     firestore()
       .collection('medications')
+      .where('NOM', '>=', '')
       .get()
       .then(querySnapshot => {
         let medications = [];
@@ -75,8 +77,27 @@ const ReferenceData = () => {
           setIsVisible(false);
         });
     } else {
-      Alert.alert('You canno\'t enter an empty name.');
+      Alert.alert("You canno't enter an empty name.");
     }
+  };
+
+  const _search = () => {
+    firestore()
+      .collection('medications')
+      .where('NOM', '>=', search)
+      .get()
+      .then(querySnapshot => {
+        let medications = [];
+        console.log('Total medications ----------->: ', querySnapshot.size);
+        querySnapshot.forEach(documentSnapshot => {
+          medications.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
+        });
+        setMedications(medications);
+      })
+      .catch(error => Alert.alert(error));
   };
 
   if (loading) {
@@ -97,7 +118,12 @@ const ReferenceData = () => {
         <View style={styles.searchBarView}>
           <TouchableOpacity style={styles.searchBar}>
             <Ionicons name={'md-search'} color={'grey'} size={30} />
-            <TextInput style={styles.searchBarText}>Type Here...</TextInput>
+            <TextInput
+              style={styles.searchBarText}
+              onChangeText={text => setSearch(text)}
+              onSubmitEditing={_search}
+              placeholder="Type here..."
+            />
           </TouchableOpacity>
         </View>
       </View>
