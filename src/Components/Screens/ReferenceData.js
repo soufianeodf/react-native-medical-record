@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-spinkit';
 
 const ReferenceData = () => {
@@ -55,7 +56,10 @@ const ReferenceData = () => {
   return (
     <View style={styles.viewContainer}>
       <View style={[styles.firstInnerView, {flex: isKeyboardOn ? 1.9 : 0.8}]}>
-        <Text style={styles.titleText}>Medications list</Text>
+        <View style={styles.titleView}>
+          <MaterialCommunityIcons name={'pill'} color={'white'} size={30} />
+          <Text style={styles.titleText}>Medications list</Text>
+        </View>
         <View style={styles.searchBarView}>
           <TouchableOpacity style={styles.searchBar}>
             <Ionicons name={'md-search'} color={'grey'} size={30} />
@@ -94,13 +98,19 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 25,
     justifyContent: 'center',
   },
+  titleView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginVertical: 3,
+    paddingTop: 10,
+  },
   titleText: {
     color: 'white',
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 8,
+    marginLeft: 5,
     fontFamily: 'serif',
-    marginVertical: 15,
   },
   searchBarView: {
     alignItems: 'center',
