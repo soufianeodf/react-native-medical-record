@@ -63,7 +63,7 @@ const ReferenceData = () => {
           DCI1: '',
           DOSAGE1: '',
           FORME: '',
-          NOM: medicationName,
+          NOM: medicationName.toUpperCase(),
           PH: '',
           PPV: '',
           PRESENTATION: '',
@@ -84,7 +84,7 @@ const ReferenceData = () => {
   const _search = () => {
     firestore()
       .collection('medications')
-      .where('NOM', '>=', search)
+      .where('NOM', '>=', search.toUpperCase())
       .get()
       .then(querySnapshot => {
         let medications = [];
