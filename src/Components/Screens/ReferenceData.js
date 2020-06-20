@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   itemsStyle: {
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: 'white',
     paddingVertical: 15,
     margin: 8,
