@@ -16,9 +16,10 @@ import CheckEmail from '../Components/Auth/CheckEmail';
 import Home from '../Components/Screens/Home';
 import Loading from '../Components/Auth/Loading';
 import EventsCalendar from '../Components/Screens/EventsCalendar';
-import Measurment from '../Components/Screens/Measurment';
+import Measurment from '../Components/Screens/Measurment/DoctorAppointment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
 import ReferenceData from '../Components/Screens/ReferenceData';
+import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Profile from '../Components/Screens/Profile';
@@ -158,6 +159,17 @@ const Navigation = () => {
         }}
       />
       <Drawer.Screen
+        name="BoughtFromPharmacy"
+        component={BoughtFromPharmacy}
+        options={{
+          drawerLabel: 'BoughtFromPharmacy',
+          title: 'BoughtFromPharmacy',
+          drawerIcon: () => (
+            <MaterialCommunityIcons name="library-books" size={22} />
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="JoinAnotherAccount"
         component={JoinAnotherAccount}
         options={{
@@ -198,6 +210,7 @@ const Navigation = () => {
       <Stack.Screen name="Vaccination" component={Vaccination} />
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
+      <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
     </Stack.Navigator>
   );
 
