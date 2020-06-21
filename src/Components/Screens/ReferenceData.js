@@ -16,7 +16,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-spinkit';
 
-const ReferenceData = () => {
+const ReferenceData = ({route, navigation}) => {
+  // const {_addDrugBought} = route.params;
   const [loading, setLoading] = useState(true);
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
@@ -150,6 +151,12 @@ const ReferenceData = () => {
             extraData={selected}
             renderItem={({item}) => (
               <TouchableOpacity
+                onPress={() => {
+                  if (typeof route.params !== 'undefined') {
+                    route.params._addDrugBought(item);
+                    navigation.navigate('BoughtFromPharmacy');
+                  }
+                }}
                 onLongPress={() =>
                   Alert.alert(
                     'Delete chosen medication',
@@ -260,7 +267,7 @@ const styles = StyleSheet.create({
   searchBarText: {
     width: 320,
     height: 40,
-    paddingLeft: 15
+    paddingLeft: 15,
   },
   secondInnerView: {
     flex: 4,
