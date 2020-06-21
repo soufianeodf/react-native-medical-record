@@ -125,14 +125,14 @@ const ReferenceData = () => {
           <Text style={styles.titleText}>Medications list</Text>
         </View>
         <View style={styles.searchBarView}>
-          <TouchableOpacity style={styles.searchBar}>
-            <Ionicons name={'md-search'} color={'grey'} size={30} />
+          <TouchableOpacity style={styles.searchBar} onPress={_search}>
             <TextInput
               style={styles.searchBarText}
               onChangeText={text => setSearch(text)}
               onSubmitEditing={_search}
               placeholder="Type here..."
             />
+            <Ionicons name={'md-search'} color={'grey'} size={30} />
           </TouchableOpacity>
         </View>
       </View>
@@ -255,11 +255,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     flexDirection: 'row',
-    paddingLeft: 5,
+    paddingHorizontal: 4,
   },
   searchBarText: {
     width: 320,
     height: 40,
+    paddingLeft: 15
   },
   secondInnerView: {
     flex: 4,
