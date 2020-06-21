@@ -137,29 +137,41 @@ const ReferenceData = () => {
         </View>
       </View>
       <View style={styles.secondInnerView}>
-        <FlatList
-          data={medications}
-          extraData={selected}
-          renderItem={({item}) => (
-            <TouchableOpacity
-              onLongPress={() =>
-                Alert.alert(
-                  'Delete chosen medication',
-                  'Are you sure to delete.',
-                  [
-                    {
-                      text: 'Cancel',
-                      style: 'cancel',
-                    },
-                    {text: 'OK', onPress: () => _deleteSelectedMedicine(item)},
-                  ],
-                  {cancelable: false},
-                )
-              }>
-              <Text style={styles.itemsStyle}> {item.NOM} </Text>
-            </TouchableOpacity>
-          )}
-        />
+        {medications.length === 0 ? (
+          <View style={styles.notFoundView}>
+            <Image
+              style={{width: '100%', height: isKeyboardOn ? '100%' : '75%'}}
+              source={require('../../../images/notfound.png')}
+            />
+          </View>
+        ) : (
+          <FlatList
+            data={medications}
+            extraData={selected}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                onLongPress={() =>
+                  Alert.alert(
+                    'Delete chosen medication',
+                    'Are you sure to delete.',
+                    [
+                      {
+                        text: 'Cancel',
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'OK',
+                        onPress: () => _deleteSelectedMedicine(item),
+                      },
+                    ],
+                    {cancelable: false},
+                  )
+                }>
+                <Text style={styles.itemsStyle}> {item.NOM} </Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
       </View>
       <View style={styles.buttonView}>
         <TouchableOpacity onPress={() => setIsVisible(true)}>
@@ -254,6 +266,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 5,
     paddingTop: 10,
+  },
+  notFoundView: {
+    flex: 1,
   },
   itemsStyle: {
     borderWidth: 1,
