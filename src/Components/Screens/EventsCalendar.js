@@ -9,7 +9,7 @@ export default class AgendaScreen extends Component {
     super(props);
 
     this.state = {
-      items: {}
+      items: {},
     };
   }
 
@@ -57,15 +57,17 @@ export default class AgendaScreen extends Component {
           for (let j = 0; j < numItems; j++) {
             this.state.items[strTime].push({
               name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150))
+              height: Math.max(50, Math.floor(Math.random() * 150)),
             });
           }
         }
       }
       const newItems = {};
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+      Object.keys(this.state.items).forEach(key => {
+        newItems[key] = this.state.items[key];
+      });
       this.setState({
-        items: newItems
+        items: newItems,
       });
     }, 1000);
   }
@@ -74,9 +76,8 @@ export default class AgendaScreen extends Component {
     return (
       <TouchableOpacity
         testID={testIDs.agenda.ITEM}
-        style={[styles.item, {height: item.height}]} 
-        onPress={() => Alert.alert(item.name)}
-      >
+        style={[styles.item, {height: item.height}]}
+        onPress={() => Alert.alert(item.name)}>
         <Text>{item.name}</Text>
       </TouchableOpacity>
     );
@@ -107,11 +108,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    marginTop: 17
+    marginTop: 17,
   },
   emptyDate: {
     height: 15,
-    flex:1,
-    paddingTop: 30
-  }
+    flex: 1,
+    paddingTop: 30,
+  },
 });
