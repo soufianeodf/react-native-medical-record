@@ -17,7 +17,6 @@ export default function BoughtFromPharmacy({navigation}) {
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [selected, setSelected] = useState(false);
 
-
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       if (user) {
@@ -79,47 +78,50 @@ export default function BoughtFromPharmacy({navigation}) {
   };
 
   return (
-    <View style={{flex: 1, position: 'relative'}}>
-      <View style={{flex: 1}} >
-        <Image style={{width: '100%', height: '33.5%'}} source={require('../../../images/pharmacie.jpg')} />
+    <View style={styles.viewContainer}>
+      <View style={styles.firstInnerView}>
+        <Image
+          style={styles.imageStyle}
+          source={require('../../../images/pharmacie.jpg')}
+        />
       </View>
-      <View style={{backgroundColor: '#fff', borderTopRightRadius: 30, borderTopLeftRadius: 30, position: 'absolute', top: '29%', width: '100%', height: '100%'}} >
-        <Text style={{textAlign: 'center', marginVertical: 20, fontSize: 18, fontFamily: 'serif'}}>Drugs purchased</Text>
-        <View style={{height: '60%'}}>
-        {medications.length === 0 ? (
-          <View style={{flex: 1}}>
-            <Image
-              style={{width: '100%', height: '75%'}}
-              source={require('../../../images/oops.jpg')}
-            />
-          </View>
+      <View style={styles.secondInnerView}>
+        <Text style={styles.titleText}>Drugs purchased</Text>
+        <View style={styles.contentView}>
+          {medications.length === 0 ? (
+            <View style={styles.emptyContentView}>
+              <Image
+                style={styles.emptyImageStyle}
+                source={require('../../../images/oops.jpg')}
+              />
+            </View>
           ) : (
-        <FlatList
-            data={medications}
-            extraData={selected}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                onLongPress={() =>
-                  Alert.alert(
-                    'Delete chosen medication',
-                    'Are you sure to delete.',
-                    [
-                      {
-                        text: 'Cancel',
-                        style: 'cancel',
-                      },
-                      {
-                        text: 'OK',
-                        onPress: () => _deleteSelectedBoughtMedicine(item),
-                      },
-                    ],
-                    {cancelable: false},
-                  )
-                }>
-                <Text style={styles.itemsStyle}> {item.NOM} </Text>
-              </TouchableOpacity>
-            )}
-          />
+            <FlatList
+              data={medications}
+              extraData={selected}
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onLongPress={() =>
+                    Alert.alert(
+                      'Delete chosen medication',
+                      'Are you sure to delete.',
+                      [
+                        {
+                          text: 'Cancel',
+                          style: 'cancel',
+                        },
+                        {
+                          text: 'OK',
+                          onPress: () => _deleteSelectedBoughtMedicine(item),
+                        },
+                      ],
+                      {cancelable: false},
+                    )
+                  }>
+                  <Text style={styles.itemsStyle}> {item.NOM} </Text>
+                </TouchableOpacity>
+              )}
+            />
           )}
         </View>
       </View>
@@ -153,5 +155,41 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: '1.5%',
     right: '4%',
+  },
+  viewContainer: {
+    flex: 1,
+    position: 'relative',
+  },
+  firstInnerView: {
+    flex: 1,
+  },
+  imageStyle: {
+    width: '100%',
+    height: '33.5%',
+  },
+  secondInnerView: {
+    backgroundColor: '#fff',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    position: 'absolute',
+    top: '29%',
+    width: '100%',
+    height: '100%',
+  },
+  titleText: {
+    textAlign: 'center',
+    marginVertical: 20,
+    fontSize: 18,
+    fontFamily: 'serif',
+  },
+  contentView: {
+    height: '60%',
+  },
+  emptyContentView: {
+    flex: 1,
+  },
+  emptyImageStyle: {
+    width: '100%',
+    height: '75%',
   },
 });
