@@ -17,7 +17,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Spinner from 'react-native-spinkit';
 
 const ReferenceData = ({route, navigation}) => {
-  // const {_addDrugBought} = route.params;
   const [loading, setLoading] = useState(true);
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
@@ -152,8 +151,12 @@ const ReferenceData = ({route, navigation}) => {
             renderItem={({item}) => (
               <TouchableOpacity
                 onPress={() => {
-                  if (typeof route.params !== 'undefined') {
+                  if (
+                    typeof route.params !== 'undefined' &&
+                    route.params !== null
+                  ) {
                     route.params._addDrugBought(item);
+                    route.params = null;
                     navigation.navigate('BoughtFromPharmacy');
                   }
                 }}
