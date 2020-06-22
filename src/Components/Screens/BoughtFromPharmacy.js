@@ -45,7 +45,7 @@ export default function BoughtFromPharmacy({navigation}) {
   const _addDrugBought = medication => {
     firestore()
       .collection(uid)
-      .doc(medication.CODE)
+      .doc(medication.key)
       .set({
         CODE: medication.CODE,
         DCI1: medication.DCI1,
