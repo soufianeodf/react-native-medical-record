@@ -63,14 +63,13 @@ const DoctorAppointment = () => {
 
   return (
     <View style={styles.viewContainer}>
-      <View style={styles.validateIcon}>
-        <TouchableOpacity onPress={() => Alert.alert('button pressed')}>
-          <Entypo name={'check'} size={35} />
-        </TouchableOpacity>
-      </View>
-
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <Text style={styles.textTitle}>Doctor's appointment</Text>
+        <View style={styles.headerView}>
+          <Text style={styles.textTitle}>Appointment</Text>
+          <TouchableOpacity onPress={() => Alert.alert('button pressed')}>
+            <Entypo name={'check'} size={35} />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.textSubTitlesView}>
           <Ionicons name="md-calendar" size={22} style={{marginRight: 10}} />
@@ -151,19 +150,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#dee1f2',
   },
-  validateIcon: {
-    position: 'absolute',
-    top: '5%',
-    right: '5%',
-  },
   scrollViewContainer: {
     flexGrow: 1,
     margin: 20,
   },
+  headerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: '10%',
+  },
   textTitle: {
     fontSize: 35,
-    marginTop: '20%',
-    marginBottom: '13%',
   },
   textSubTitlesView: {
     flexDirection: 'row',
