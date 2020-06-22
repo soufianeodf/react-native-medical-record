@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
+import firestore from '@react-native-firebase/firestore';
 
 const testIDs = require('../testIDs');
 
@@ -21,7 +22,7 @@ export default class AgendaScreen extends Component {
         // Callback that gets called when items for a certain month should be loaded (month became visible)
         loadItemsForMonth={this.loadItems.bind(this)}
         // Initially selected day
-        selected={'2017-05-16'}
+        // selected={'2020-06-22'}
         // Specify how each item should be rendered in agenda
         renderItem={this.renderItem.bind(this)}
         // Specify how empty date content with no items should be rendered
@@ -47,36 +48,44 @@ export default class AgendaScreen extends Component {
   }
 
   loadItems(day) {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = this.timeToString(time);
-        if (!this.state.items[strTime]) {
-          this.state.items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
+    // remove old empty dates first
+    Object.keys(this.state.items).forEach(key => {
+      if (this.state.items[key].length === 0) {
+        delete this.state.items[key];
+      }
+    });
+
+    const time = day.timestamp;
+    const strTime = this.timeToString(time);
+    firestore()
+      .collection('calendar')
+      .get()
+      .then(querySnapshot => {
+        console.log('Total calendar items -----> : ', querySnapshot.size);
+        querySnapshot.forEach(documentSnapshot => {
+          if (!this.state.items[documentSnapshot.data().date]) {
+            this.state.items[documentSnapshot.data().date] = [];
+            this.state.items[documentSnapshot.data().date].push({
+              name: documentSnapshot.data().name,
             });
           }
-        }
-      }
-      const newItems = {};
-      Object.keys(this.state.items).forEach(key => {
-        newItems[key] = this.state.items[key];
-      });
-      this.setState({
-        items: newItems,
-      });
-    }, 1000);
+        });
+      })
+      .catch(error => Alert.alert(error));
+
+    // create empty date for chosen date if does not exist, to return renderEmptyDate() view for the user.
+    // && strTime !== '2020-06-22'
+    if (!this.state.items[strTime]) {
+      this.state.items[strTime] = [];
+      this.state.items[strTime].push();
+    }
   }
 
   renderItem(item) {
     return (
       <TouchableOpacity
         testID={testIDs.agenda.ITEM}
-        style={[styles.item, {height: item.height}]}
+        style={[styles.item]}
         onPress={() => Alert.alert(item.name)}>
         <Text>{item.name}</Text>
       </TouchableOpacity>
