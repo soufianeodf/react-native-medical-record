@@ -57,6 +57,11 @@ const Main = ({navigation}) => {
       <View style={styles.textContainer}>
         <Text>List of events</Text>
       </View>
+      <View style={styles.buttonView}>
+        <TouchableOpacity onPress={() => alert('button clicked.')}>
+          <Ionicons name={'ios-add-circle'} color={'#2529B7'} size={66} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -81,5 +86,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonView: {
+    position: 'absolute',
+    bottom: '1.5%',
+    right: '4%',
   },
 });
