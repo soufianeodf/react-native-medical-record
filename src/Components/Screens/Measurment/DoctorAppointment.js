@@ -26,12 +26,12 @@ const DoctorAppointment = () => {
   const [specialization, setSpecialization] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
-  const [date, setdate] = useState(
+  const [date, setDate] = useState(
     moment(Date.now())
       .utc()
       .format('YYYY-MM-DD'),
   );
-  const [time, settime] = useState(
+  const [time, setTime] = useState(
     moment(Date.now())
       .utc()
       .format('HH:mm'),
@@ -54,12 +54,18 @@ const DoctorAppointment = () => {
   };
 
   const handleDateConfirm = date => {
-    console.warn('A date has been picked: ', date);
+    date = moment(date)
+      .utc()
+      .format('YYYY-MM-DD');
+    setDate(date);
     hideDatePicker();
   };
 
-  const handleTimeConfirm = date => {
-    console.warn('A time has been picked: ', date);
+  const handleTimeConfirm = time => {
+    time = moment(time)
+      .utc()
+      .format('HH:mm');
+    setTime(time);
     hideTimePicker();
   };
 
@@ -79,7 +85,12 @@ const DoctorAppointment = () => {
                 if (key === date) {
                   documentSnapshot.data()[key].map(value => {
                     items.push({
-                      name: value.name,
+                      time: value.time,
+                      appointmentType: value.appointmentType,
+                      appointmentState: value.appointmentState,
+                      treatmentProvider: value.treatmentProvider,
+                      doctor: value.doctor,
+                      specialization: value.specialization,
                     });
                   });
                 }
@@ -88,9 +99,14 @@ const DoctorAppointment = () => {
             let merged = {
               ...{
                 [date]: [
-                  {name: 'test1'},
-                  {name: 'test2'},
-                  {name: 'test3'},
+                  {
+                    time,
+                    appointmentType,
+                    appointmentState,
+                    treatmentProvider,
+                    doctor,
+                    specialization,
+                  },
                   ...items,
                 ],
               },
