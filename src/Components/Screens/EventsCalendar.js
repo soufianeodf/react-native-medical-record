@@ -131,6 +131,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     marginTop: 17,
+    elevation: 1,
+    marginBottom: 1,
   },
   emptyDate: {
     height: 15,
