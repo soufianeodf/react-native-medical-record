@@ -72,7 +72,12 @@ export default class AgendaScreen extends Component {
                 this.state.items[key] = [];
                 documentSnapshot.data()[key].map(value => {
                   this.state.items[key].push({
-                    name: value.name,
+                    time: value.time,
+                    appointmentType: value.appointmentType,
+                    appointmentState: value.appointmentState,
+                    treatmentProvider: value.treatmentProvider,
+                    doctor: value.doctor,
+                    specialization: value.specialization,
                   });
                 });
               }
@@ -94,8 +99,8 @@ export default class AgendaScreen extends Component {
       <TouchableOpacity
         testID={testIDs.agenda.ITEM}
         style={[styles.item]}
-        onPress={() => Alert.alert(item.name)}>
-        <Text>{item.name}</Text>
+        onPress={() => Alert.alert(item.appointmentType)}>
+        <Text>{item.appointmentType}</Text>
       </TouchableOpacity>
     );
   }
@@ -109,7 +114,7 @@ export default class AgendaScreen extends Component {
   }
 
   rowHasChanged(r1, r2) {
-    return r1.name !== r2.name;
+    return r1.appointmentType !== r2.appointmentType;
   }
 
   timeToString(time) {
