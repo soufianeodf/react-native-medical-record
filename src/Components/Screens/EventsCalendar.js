@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const testIDs = require('../testIDs');
 
@@ -57,25 +58,32 @@ export default class AgendaScreen extends Component {
 
     const time = day.timestamp;
     const strTime = this.timeToString(time);
-    firestore()
-      .collection('calendar')
-      .get()
-      .then(querySnapshot => {
-        console.log('Total calendar items -----> : ', querySnapshot.size);
-        querySnapshot.forEach(documentSnapshot => {
-          if (!this.state.items[documentSnapshot.data().date]) {
-            this.state.items[documentSnapshot.data().date] = [];
-            this.state.items[documentSnapshot.data().date].push({
-              name: documentSnapshot.data().name,
+    auth().onAuthStateChanged(user => {
+      firestore()
+        .collection('calendar')
+        .doc(user.uid)
+        .collection('appointment-list')
+        .get()
+        .then(querySnapshot => {
+          console.log('Total calendar items -----> : ', querySnapshot.size);
+          querySnapshot.forEach(documentSnapshot => {
+            Object.keys(documentSnapshot.data()).map(key => {
+              if (!this.state.items[key]) {
+                this.state.items[key] = [];
+                documentSnapshot.data()[key].map(value => {
+                  this.state.items[key].push({
+                    name: value.name,
+                  });
+                });
+              }
             });
-          }
-        });
-      })
-      .catch(error => Alert.alert(error));
+          });
+        })
+        .catch(error => Alert.alert(error));
+    });
 
     // create empty date for chosen date if does not exist, to return renderEmptyDate() view for the user.
-    // && strTime !== '2020-06-22'
-    if (!this.state.items[strTime]) {
+    if (!this.state.items[strTime] && strTime !== '2020-06-23') {
       this.state.items[strTime] = [];
       this.state.items[strTime].push();
     }
