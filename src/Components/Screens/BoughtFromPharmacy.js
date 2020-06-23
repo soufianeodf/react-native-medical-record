@@ -128,7 +128,7 @@ export default function BoughtFromPharmacy({navigation}) {
       <View style={styles.buttonView}>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('ReferenceData', {
+            navigation.navigate('MedicationDatabase', {
               _addDrugBought: _addDrugBought,
             })
           }>
