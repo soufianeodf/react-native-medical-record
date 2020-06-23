@@ -116,7 +116,8 @@ const DoctorAppointment = () => {
               .doc(user.uid)
               .collection('appointment-list')
               .doc(date)
-              .set(merged);
+              .set(merged)
+              .then(() => Alert.alert('Appointment added with success.'));
           })
           .catch(error => Alert.alert(error));
       }
