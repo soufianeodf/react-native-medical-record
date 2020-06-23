@@ -16,7 +16,8 @@ import CheckEmail from '../Components/Auth/CheckEmail';
 import Home from '../Components/Screens/Home';
 import Loading from '../Components/Auth/Loading';
 import EventsCalendar from '../Components/Screens/EventsCalendar';
-import Measurment from '../Components/Screens/Measurment/DoctorAppointment';
+import Measurment from '../Components/Screens/Measurment';
+import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
 import ReferenceData from '../Components/Screens/ReferenceData';
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
@@ -213,6 +214,7 @@ const Navigation = () => {
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
       <Stack.Screen name="EventsList" component={EventsList} />
+      <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
     </Stack.Navigator>
   );
 
