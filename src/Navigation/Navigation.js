@@ -164,10 +164,10 @@ const Navigation = () => {
         name="BoughtFromPharmacy"
         component={BoughtFromPharmacy}
         options={{
-          drawerLabel: 'BoughtFromPharmacy',
-          title: 'BoughtFromPharmacy',
+          drawerLabel: 'Purchase from pharmacy',
+          title: 'Purchase from pharmacy',
           drawerIcon: () => (
-            <MaterialCommunityIcons name="library-books" size={22} />
+            <MaterialCommunityIcons name="pharmacy" size={22} />
           ),
         }}
       />
