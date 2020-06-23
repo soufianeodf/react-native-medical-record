@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -74,6 +74,7 @@ const MedicalPrecedents = ({navigation}) => {
 
   return (
     <View style={styles.viewContainer}>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       {itemInformations.map(value => {
         return (
           <TouchableOpacity
@@ -89,6 +90,7 @@ const MedicalPrecedents = ({navigation}) => {
           </TouchableOpacity>
         );
       })}
+      </ScrollView>
     </View>
   );
 };
@@ -99,6 +101,9 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     marginTop: 20,
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
     alignItems: 'center',
   },
   innerContainer: {
