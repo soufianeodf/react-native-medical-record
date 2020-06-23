@@ -20,6 +20,7 @@ import Measurment from '../Components/Screens/Measurment';
 import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
 import ReferenceData from '../Components/Screens/ReferenceData';
+import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase';
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
@@ -213,6 +214,7 @@ const Navigation = () => {
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
+      <Stack.Screen name="MedicationDatabase" component={MedicationDatabase} />
       <Stack.Screen name="EventsList" component={EventsList} />
       <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
     </Stack.Navigator>
