@@ -15,6 +15,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const DoctorAppointment = () => {
   const [appointmentType, setAppointmentType] = useState('');
@@ -27,7 +29,7 @@ const DoctorAppointment = () => {
   const [date, setdate] = useState(
     moment(Date.now())
       .utc()
-      .format('YYYY/MM/DD'),
+      .format('YYYY-MM-DD'),
   );
   const [time, settime] = useState(
     moment(Date.now())
@@ -61,12 +63,56 @@ const DoctorAppointment = () => {
     hideTimePicker();
   };
 
+  const _addAppointment = () => {
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        let items = [];
+        firestore()
+          .collection('calendar')
+          .doc(user.uid)
+          .collection('appointment-list')
+          .get()
+          .then(querySnapshot => {
+            console.log('Total calendar items -----> : ', querySnapshot.size);
+            querySnapshot.forEach(documentSnapshot => {
+              Object.keys(documentSnapshot.data()).map(key => {
+                if (key === date) {
+                  documentSnapshot.data()[key].map(value => {
+                    items.push({
+                      name: value.name,
+                    });
+                  });
+                }
+              });
+            });
+            let merged = {
+              ...{
+                [date]: [
+                  {name: 'test1'},
+                  {name: 'test2'},
+                  {name: 'test3'},
+                  ...items,
+                ],
+              },
+            };
+            firestore()
+              .collection('calendar')
+              .doc(user.uid)
+              .collection('appointment-list')
+              .doc(date)
+              .set(merged);
+          })
+          .catch(error => Alert.alert(error));
+      }
+    });
+  };
+
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.headerView}>
           <Text style={styles.textTitle}>Appointment</Text>
-          <TouchableOpacity onPress={() => Alert.alert('button pressed')}>
+          <TouchableOpacity onPress={() => _addAppointment()}>
             <Entypo name={'check'} size={35} />
           </TouchableOpacity>
         </View>
