@@ -58,7 +58,7 @@ const Main = ({navigation}) => {
         <Text>List of events</Text>
       </View>
       <View style={styles.buttonView}>
-        <TouchableOpacity onPress={() => alert('button clicked.')}>
+        <TouchableOpacity onPress={() => navigation.navigate('EventsList')}>
           <Ionicons name={'ios-add-circle'} color={'#2529B7'} size={66} />
         </TouchableOpacity>
       </View>
