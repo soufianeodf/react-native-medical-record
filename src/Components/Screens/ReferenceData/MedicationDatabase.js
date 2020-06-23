@@ -141,7 +141,7 @@ const ReferenceData = ({route, navigation}) => {
           <View style={styles.notFoundView}>
             <Image
               style={{width: '100%', height: isKeyboardOn ? '100%' : '75%'}}
-              source={require('../../../images/notfound.png')}
+              source={require('../../../../images/notfound.png')}
             />
           </View>
         ) : (
@@ -194,7 +194,7 @@ const ReferenceData = ({route, navigation}) => {
           <View style={styles.modalFirstInnerView}>
             <Image
               style={styles.logoImage}
-              source={require('../../../images/medicine.png')}
+              source={require('../../../../images/medicine.png')}
             />
           </View>
           <View style={styles.modalSecondInnerView}>
