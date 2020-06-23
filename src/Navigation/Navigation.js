@@ -31,6 +31,7 @@ import Vaccination from '../Components/Screens/Profile/MedicalPrecedents/Vaccina
 import Surgery from '../Components/Screens/Profile/MedicalPrecedents/Surgery';
 import AlcoholSmoking from '../Components/Screens/Profile/MedicalPrecedents/AlcoholSmoking';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
+import EventsList from '../Components/Screens/EventsList';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
@@ -211,6 +212,7 @@ const Navigation = () => {
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
+      <Stack.Screen name="EventsList" component={EventsList} />
     </Stack.Navigator>
   );
 
