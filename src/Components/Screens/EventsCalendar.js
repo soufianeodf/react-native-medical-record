@@ -59,32 +59,34 @@ export default class AgendaScreen extends Component {
     const time = day.timestamp;
     const strTime = this.timeToString(time);
     auth().onAuthStateChanged(user => {
-      firestore()
-        .collection('calendar')
-        .doc(user.uid)
-        .collection('appointment-list')
-        .get()
-        .then(querySnapshot => {
-          console.log('Total calendar items -----> : ', querySnapshot.size);
-          querySnapshot.forEach(documentSnapshot => {
-            Object.keys(documentSnapshot.data()).map(key => {
-              if (!this.state.items[key]) {
-                this.state.items[key] = [];
-                documentSnapshot.data()[key].map(value => {
-                  this.state.items[key].push({
-                    time: value.time,
-                    appointmentType: value.appointmentType,
-                    appointmentState: value.appointmentState,
-                    treatmentProvider: value.treatmentProvider,
-                    doctor: value.doctor,
-                    specialization: value.specialization,
+      if (user) {
+        firestore()
+          .collection('calendar')
+          .doc(user.uid)
+          .collection('appointment-list')
+          .get()
+          .then(querySnapshot => {
+            console.log('Total calendar items -----> : ', querySnapshot.size);
+            querySnapshot.forEach(documentSnapshot => {
+              Object.keys(documentSnapshot.data()).map(key => {
+                if (!this.state.items[key]) {
+                  this.state.items[key] = [];
+                  documentSnapshot.data()[key].map(value => {
+                    this.state.items[key].push({
+                      time: value.time,
+                      appointmentType: value.appointmentType,
+                      appointmentState: value.appointmentState,
+                      treatmentProvider: value.treatmentProvider,
+                      doctor: value.doctor,
+                      specialization: value.specialization,
+                    });
                   });
-                });
-              }
+                }
+              });
             });
-          });
-        })
-        .catch(error => Alert.alert(error));
+          })
+          .catch(error => Alert.alert(error));
+      }
     });
 
     // create empty date for chosen date if does not exist, to return renderEmptyDate() view for the user.
