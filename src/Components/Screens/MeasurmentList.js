@@ -21,7 +21,16 @@ export default function MeasurmentList({navigation}) {
 
   return (
     <View style={styles.viewContainer}>
-      <Text style={styles.titleText}>Choose the categeory</Text>
+      <View style={styles.titleView}>
+        <View style={styles.iconView}>
+          <MaterialCommunityIcons
+            name={'tape-measure'}
+            color={'#ee6492'}
+            size={35}
+          />
+        </View>
+        <Text style={styles.titleText}>Choose the categeory</Text>
+      </View>
       <View style={styles.innerView}>
         <TouchableWithoutFeedback
           style={[styles.touchableWithoutFeedbackStyle, {marginRight: 20}]}
@@ -87,14 +96,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#0b42a7',
     paddingHorizontal: 10,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    paddingVertical: 30,
+  },
+  titleView: {
+    alignItems: 'center',
   },
   titleText: {
-    color: 'white',
     textAlign: 'center',
-    marginTop: '-15%',
-    marginBottom: 20,
     fontSize: 22,
+    color: 'white',
+    marginVertical: 10,
   },
   innerView: {
     flexWrap: 'wrap',
@@ -118,8 +130,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   buttonView: {
-    position: 'absolute',
-    bottom: '3%',
-    left: '47%',
+    alignItems: 'center',
+    paddingTop: '10%',
   },
 });
