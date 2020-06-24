@@ -13,8 +13,10 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 export default function index({navigation}) {
   useEffect(() => {
-    StatusBar.setHidden(false);
-  }, []);
+    navigation.addListener('focus', () => {
+      StatusBar.setHidden(false);
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.viewContainer}>
