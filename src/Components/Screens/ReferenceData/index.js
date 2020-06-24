@@ -45,7 +45,7 @@ export default function index({navigation}) {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#2f95ea'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('MedicationDatabase')}>
           <View style={styles.iconView}>
             <FontAwesome5 name={'book-medical'} color={'white'} size={35} />
           </View>
