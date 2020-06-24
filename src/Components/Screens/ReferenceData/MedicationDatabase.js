@@ -157,7 +157,7 @@ const ReferenceData = ({route, navigation}) => {
                   ) {
                     route.params._addDrugBought(item);
                     route.params = null;
-                    navigation.navigate('BoughtFromPharmacy');
+                    navigation.goBack();
                   }
                 }}
                 onLongPress={() =>
