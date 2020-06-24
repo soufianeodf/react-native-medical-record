@@ -34,7 +34,13 @@ import Surgery from '../Components/Screens/Profile/MedicalPrecedents/Surgery';
 import AlcoholSmoking from '../Components/Screens/Profile/MedicalPrecedents/AlcoholSmoking';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 import EventsList from '../Components/Screens/EventsList';
+
 import MeasurmentList from '../Components/Screens/MeasurmentList';
+import BloodPressure from '../Components/Screens/Measurment/BloodPressure';
+import Height from '../Components/Screens/Measurment/Height';
+import Pulse from '../Components/Screens/Measurment/Pulse';
+import SugarLevel from '../Components/Screens/Measurment/SugarLevel';
+import Weight from '../Components/Screens/Measurment/Weight';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
@@ -214,11 +220,17 @@ const Navigation = () => {
       <Stack.Screen name="Vaccination" component={Vaccination} />
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
+      <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
       <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
       <Stack.Screen name="MedicationDatabase" component={MedicationDatabase} />
       <Stack.Screen name="EventsList" component={EventsList} />
-      <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
+      {/* Measurment list pages */}
       <Stack.Screen name="MeasurmentList" component={MeasurmentList} />
+      <Stack.Screen name="BloodPressure" component={BloodPressure} />
+      <Stack.Screen name="Height" component={Height} />
+      <Stack.Screen name="Pulse" component={Pulse} />
+      <Stack.Screen name="SugarLevel" component={SugarLevel} />
+      <Stack.Screen name="Weight" component={Weight} />
     </Stack.Navigator>
   );
 
