@@ -34,6 +34,7 @@ import Surgery from '../Components/Screens/Profile/MedicalPrecedents/Surgery';
 import AlcoholSmoking from '../Components/Screens/Profile/MedicalPrecedents/AlcoholSmoking';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
 import EventsList from '../Components/Screens/EventsList';
+import MeasurmentList from '../Components/Screens/MeasurmentList';
 
 import {Logout, _handleLogout} from '../Components/Auth/Logout';
 import HeaderDrawer from './HeaderDrawer';
@@ -217,6 +218,7 @@ const Navigation = () => {
       <Stack.Screen name="MedicationDatabase" component={MedicationDatabase} />
       <Stack.Screen name="EventsList" component={EventsList} />
       <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
+      <Stack.Screen name="MeasurmentList" component={MeasurmentList} />
     </Stack.Navigator>
   );
 
