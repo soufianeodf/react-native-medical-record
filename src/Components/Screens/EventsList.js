@@ -44,7 +44,7 @@ export default function EventsList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('MeasurmentList')}>
           <View style={styles.iconView}>
             <MaterialCommunityIcons
               name={'tape-measure'}
