@@ -38,7 +38,7 @@ export default function index({navigation}) {
           <View style={styles.iconView}>
             <Fontisto name={'doctor'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
+          <View style={([styles.textView], {marginLeft: 19})}>
             <Text style={styles.textStyle}>DOCTORS</Text>
           </View>
         </TouchableOpacity>
@@ -49,7 +49,7 @@ export default function index({navigation}) {
           <View style={styles.iconView}>
             <FontAwesome5 name={'book-medical'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
+          <View style={([styles.textView], {marginLeft: 22.5})}>
             <Text style={styles.textStyle}>MEDICATIONS DATABASE</Text>
           </View>
         </TouchableOpacity>
@@ -60,7 +60,7 @@ export default function index({navigation}) {
           <View style={styles.iconView}>
             <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
+          <View style={([styles.textView], {marginLeft: 16})}>
             <Text style={styles.textStyle}>HOSPITALS</Text>
           </View>
         </TouchableOpacity>
@@ -69,10 +69,10 @@ export default function index({navigation}) {
           style={[styles.innerContainer, {backgroundColor: '#46a7f8'}]}
           onPress={() => alert('clicked')}>
           <View style={styles.iconView}>
-            <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
+            <FontAwesome5 name={'code-branch'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+          <View style={([styles.textView], {marginLeft: 31})}>
+            <Text style={styles.textStyle}>SPECIALIZATIONS</Text>
           </View>
         </TouchableOpacity>
 
@@ -80,10 +80,10 @@ export default function index({navigation}) {
           style={[styles.innerContainer, {backgroundColor: '#55b2ff'}]}
           onPress={() => alert('clicked')}>
           <View style={styles.iconView}>
-            <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
+            <FontAwesome5 name={'diagnoses'} color={'white'} size={35} />
           </View>
           <View style={styles.textView}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+            <Text style={styles.textStyle}>DIAGNOSES</Text>
           </View>
         </TouchableOpacity>
 
@@ -91,10 +91,10 @@ export default function index({navigation}) {
           style={[styles.innerContainer, {backgroundColor: '#6dbcff'}]}
           onPress={() => alert('clicked')}>
           <View style={styles.iconView}>
-            <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
+            <Fontisto name={'test-tube'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+          <View style={[styles.textView, {marginLeft: 28}]}>
+            <Text style={styles.textStyle}>TESTS</Text>
           </View>
         </TouchableOpacity>
 
@@ -102,10 +102,10 @@ export default function index({navigation}) {
           style={[styles.innerContainer, {backgroundColor: '#81c6ff'}]}
           onPress={() => alert('clicked')}>
           <View style={styles.iconView}>
-            <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
+            <FontAwesome5 name={'file-signature'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+          <View style={([styles.textView], {marginLeft: 22})}>
+            <Text style={styles.textStyle}>RECOMMENDATIONS</Text>
           </View>
         </TouchableOpacity>
 
@@ -113,10 +113,10 @@ export default function index({navigation}) {
           style={[styles.innerContainer, {backgroundColor: '#9ad0ff'}]}
           onPress={() => alert('clicked')}>
           <View style={styles.iconView}>
-            <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
+            <FontAwesome5 name={'clipboard-list'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+          <View style={([styles.textView], {marginLeft: 38})}>
+            <Text style={styles.textStyle}>SYMPTOMS</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     width: '100%',
-    paddingVertical: '4.8%',
+    paddingVertical: '4.82%',
   },
   iconView: {
     marginLeft: 25,
