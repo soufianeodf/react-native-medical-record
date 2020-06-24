@@ -25,7 +25,7 @@ export default function MeasurmentList({navigation}) {
       <View style={styles.innerView}>
         <TouchableWithoutFeedback
           style={[styles.touchableWithoutFeedbackStyle, {marginRight: 20}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('BloodPressure')}>
           <View style={styles.iconView}>
             <MaterialCommunityIcons
               name={'blood-bag'}
@@ -39,7 +39,7 @@ export default function MeasurmentList({navigation}) {
 
         <TouchableWithoutFeedback
           style={[styles.touchableWithoutFeedbackStyle, {marginRight: 20}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('Height')}>
           <View style={styles.iconView}>
             <Entypo name={'ruler'} color={'#0b42a7'} size={35} />
           </View>
@@ -48,7 +48,7 @@ export default function MeasurmentList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('Pulse')}>
           <View style={styles.iconView}>
             <Ionicons name={'ios-pulse'} color={'#0b42a7'} size={35} />
           </View>
@@ -57,7 +57,7 @@ export default function MeasurmentList({navigation}) {
 
         <TouchableWithoutFeedback
           style={[styles.touchableWithoutFeedbackStyle, {marginRight: 10}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('SugarLevel')}>
           <View style={styles.iconView}>
             <Fontisto name={'blood'} color={'#0b42a7'} size={35} />
           </View>
@@ -66,7 +66,7 @@ export default function MeasurmentList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('Weight')}>
           <View style={styles.iconView}>
             <FontAwesome5 name={'weight'} color={'#0b42a7'} size={35} />
           </View>
