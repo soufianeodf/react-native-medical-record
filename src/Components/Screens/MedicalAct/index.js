@@ -5,7 +5,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  Alert,
+  ScrollView,
 } from 'react-native';
 
 export default function MedicalAct({navigation}) {
@@ -20,23 +20,25 @@ export default function MedicalAct({navigation}) {
       <View style={styles.secondInnerView}>
         <Text style={styles.titleText}>Medical Act</Text>
         <View style={styles.contentView}>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('MedicalPrescription')}>
-            <Text style={styles.itemsStyle}>Medical prescription</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('Analysis')}>
-            <Text style={styles.itemsStyle}>
-              Analysis / Radiology Assessment
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => navigation.navigate('SurgeryAct')}>
-            <Text style={styles.itemsStyle}>Surgery</Text>
-          </TouchableOpacity>
+          <ScrollView>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() => navigation.navigate('MedicalPrescription')}>
+              <Text style={styles.itemsStyle}>Medical prescription</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() => navigation.navigate('Analysis')}>
+              <Text style={styles.itemsStyle}>
+                Analysis / Radiology Assessment
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.buttonStyle, {marginBottom: 50}]}
+              onPress={() => navigation.navigate('SurgeryAct')}>
+              <Text style={styles.itemsStyle}>Surgery</Text>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
       </View>
     </View>
