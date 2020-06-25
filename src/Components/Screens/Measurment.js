@@ -9,6 +9,7 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -16,6 +17,17 @@ const Measurment = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <View style={styles.headerView}>
+          <TouchableOpacity
+            style={styles.headerIconView}
+            onPress={() => navigation.toggleDrawer()}>
+            <FontAwesome name={'navicon'} color={'grey'} size={25} />
+          </TouchableOpacity>
+          <View style={[styles.headerTextView, {marginLeft: '22%'}]}>
+            <Text style={styles.headerTextStyle}>Measurments</Text>
+          </View>
+        </View>
+
         <TouchableOpacity
           style={styles.innerContainer}
           onPress={() => alert('Not implemented yet.')}>
@@ -60,7 +72,7 @@ const Measurment = ({navigation}) => {
             <Fontisto name={'blood'} color={'#0b42a7'} size={40} />
           </View>
           <View style={styles.textView}>
-            <Text style={styles.textStyle}>Sugar LEVEL</Text>
+            <Text style={styles.textStyle}>Sugar level</Text>
           </View>
         </TouchableOpacity>
 
@@ -84,7 +96,6 @@ export default Measurment;
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    marginTop: 20,
   },
   scrollViewContainer: {
     flexGrow: 1,
@@ -111,6 +122,25 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 20,
+    fontFamily: 'serif',
+  },
+  headerView: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    width: '100%',
+    paddingVertical: 10,
+    marginBottom: 20,
+  },
+  headerIconView: {
+    marginLeft: 25,
+  },
+  headerTextView: {
+    alignItems: 'center',
+    marginLeft: 15,
+    justifyContent: 'center',
+  },
+  headerTextStyle: {
+    fontSize: 16,
     fontFamily: 'serif',
   },
 });
