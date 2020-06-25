@@ -28,6 +28,9 @@ import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Profile from '../Components/Screens/Profile';
 import MedicalAct from '../Components/Screens/MedicalAct';
+import MedicalPrescription from '../Components/Screens/MedicalAct/MedicalPrescription';
+import SurgeryAct from '../Components/Screens/MedicalAct/Surgery';
+import Analysis from '../Components/Screens/MedicalAct/Analysis';
 import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
 import HeartCondition from '../Components/Screens/Profile/MedicalPrecedents/HeartCondition';
 import Diabetes from '../Components/Screens/Profile/MedicalPrecedents/Diabetes';
@@ -250,6 +253,13 @@ const Navigation = () => {
       <Stack.Screen name="Pulse" component={Pulse} />
       <Stack.Screen name="SugarLevel" component={SugarLevel} />
       <Stack.Screen name="Weight" component={Weight} />
+      {/* Medical act pages */}
+      <Stack.Screen
+        name="MedicalPrescription"
+        component={MedicalPrescription}
+      />
+      <Stack.Screen name="SurgeryAct" component={SurgeryAct} />
+      <Stack.Screen name="Analysis" component={Analysis} />
     </Stack.Navigator>
   );
 
