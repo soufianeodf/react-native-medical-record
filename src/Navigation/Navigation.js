@@ -8,6 +8,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import {View} from 'react-native';
 
 import Login from '../Components/Auth/Login';
 import Signup from '../Components/Auth/Signup';
@@ -26,6 +27,7 @@ import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Profile from '../Components/Screens/Profile';
+import MedicalAct from '../Components/Screens/MedicalAct';
 import MedicalPrecedents from '../Components/Screens/Profile/MedicalPrecedents';
 import HeartCondition from '../Components/Screens/Profile/MedicalPrecedents/HeartCondition';
 import Diabetes from '../Components/Screens/Profile/MedicalPrecedents/Diabetes';
@@ -156,6 +158,19 @@ const Navigation = () => {
           drawerLabel: 'Profile',
           title: 'Profile',
           drawerIcon: () => <SimpleLineIcons name="user" size={22} />,
+        }}
+      />
+      <Drawer.Screen
+        name="Medical act"
+        component={MedicalAct}
+        options={{
+          drawerLabel: 'Medical act',
+          title: 'Medical act',
+          drawerIcon: () => (
+            <View style={{marginLeft: 3.5}}>
+              <FontAwesome5 name="file-medical" size={23} />
+            </View>
+          ),
         }}
       />
       <Drawer.Screen
