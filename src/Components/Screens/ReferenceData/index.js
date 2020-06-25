@@ -27,8 +27,8 @@ export default function index({navigation}) {
             onPress={() => navigation.toggleDrawer()}>
             <FontAwesome name={'navicon'} color={'grey'} size={25} />
           </TouchableOpacity>
-          <View style={[styles.textView, {marginLeft: '25%'}]}>
-            <Text style={styles.textStyle}>User name</Text>
+          <View style={[styles.textView, {marginLeft: '21%'}]}>
+            <Text style={styles.textStyle}>Reference data</Text>
           </View>
         </View>
 
