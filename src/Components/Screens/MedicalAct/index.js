@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 
 export default function MedicalAct({navigation}) {
   return (
@@ -13,15 +20,21 @@ export default function MedicalAct({navigation}) {
       <View style={styles.secondInnerView}>
         <Text style={styles.titleText}>Medical Act</Text>
         <View style={styles.contentView}>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => Alert.alert('Not implemeted yet.')}>
             <Text style={styles.itemsStyle}>Medical prescription</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => Alert.alert('Not implemeted yet.')}>
             <Text style={styles.itemsStyle}>
               Analysis / Radiology Assessment
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => Alert.alert('Not implemeted yet.')}>
             <Text style={styles.itemsStyle}>Surgery</Text>
           </TouchableOpacity>
         </View>
