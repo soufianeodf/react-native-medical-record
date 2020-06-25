@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     top: '34.4%',
     width: '100%',
     height: '100%',
+    paddingHorizontal: 5,
   },
   titleText: {
     textAlign: 'center',
