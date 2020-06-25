@@ -22,19 +22,19 @@ export default function MedicalAct({navigation}) {
         <View style={styles.contentView}>
           <TouchableOpacity
             style={styles.buttonStyle}
-            onPress={() => Alert.alert('Not implemeted yet.')}>
+            onPress={() => navigation.navigate('MedicalPrescription')}>
             <Text style={styles.itemsStyle}>Medical prescription</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonStyle}
-            onPress={() => Alert.alert('Not implemeted yet.')}>
+            onPress={() => navigation.navigate('Analysis')}>
             <Text style={styles.itemsStyle}>
               Analysis / Radiology Assessment
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonStyle}
-            onPress={() => Alert.alert('Not implemeted yet.')}>
+            onPress={() => navigation.navigate('SurgeryAct')}>
             <Text style={styles.itemsStyle}>Surgery</Text>
           </TouchableOpacity>
         </View>
