@@ -11,6 +11,7 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
 
 export default function Index({navigation}) {
   const [uid, setUid] = useState('');
@@ -29,21 +30,34 @@ export default function Index({navigation}) {
         firestore()
           .collection('users')
           .onSnapshot(querySnapshot => {
-            let users = [];
-            console.log('Total users: ', querySnapshot.size);
-            querySnapshot.forEach(documentSnapshot => {
-              users.push({
-                ...documentSnapshot.data(),
-                key: documentSnapshot.id,
+            if (querySnapshot) {
+              var theusers = [];
+              console.log('Total users: ', querySnapshot.size);
+              querySnapshot.forEach(documentSnapshot => {
+                storage()
+                  .ref(`app-images/${documentSnapshot.id}/avatar.png`)
+                  .getDownloadURL()
+                  .then(theurl => {
+                    if (uid !== documentSnapshot.id) {
+                      theusers.push({
+                        ...documentSnapshot.data(),
+                        key: documentSnapshot.id,
+                        url: theurl,
+                      });
+                    }
+                  })
+                  .catch(error => console.log(error));
               });
-            });
-            setUsers(users);
+            }
+            setTimeout(() => {
+              setUsers(theusers);
+            }, 1000);
           });
       } else {
         navigation.navigate('Login');
       }
     });
-  }, [navigation]);
+  }, [navigation, uid]);
 
   return (
     <View style={styles.viewContainer}>
@@ -64,10 +78,7 @@ export default function Index({navigation}) {
               style={styles.touchableOpacityStyle}
               onPress={() => alert('clicked')}
               key={value.key}>
-              <Image
-                source={require('../../../../images/rostro.jpg')}
-                style={styles.userLogo}
-              />
+              <Image source={{uri: value.url}} style={styles.userLogo} />
               <View style={styles.textViewContainer}>
                 <View style={styles.firstInnerView}>
                   <Text style={styles.usernameText}>{value.username}</Text>
