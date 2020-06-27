@@ -42,7 +42,7 @@ export default function MedicalPrescription() {
           </View>
           <View style={styles.headerImageView}>
             <Image
-              source={require('../../../../images/medicalhealthlogo.png')}
+              source={require('../../../../images/medicalhealthlogo.jpg')}
               style={styles.headerImage}
             />
           </View>
