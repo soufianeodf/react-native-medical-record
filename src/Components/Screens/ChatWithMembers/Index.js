@@ -47,39 +47,43 @@ export default function Index({navigation}) {
 
   return (
     <View style={styles.viewContainer}>
-        <View style={styles.headerView}>
-          <TouchableOpacity
-            style={styles.iconView}
-            onPress={() => navigation.toggleDrawer()}>
-            <FontAwesome name={'navicon'} color={'grey'} size={25} />
-          </TouchableOpacity>
-          <View style={[styles.textView, {marginLeft: '21%'}]}>
-            <Text style={styles.textStyle}>Select contact</Text>
-          </View>
-        </View>
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-
-      {users.map((value) =>{ return(
-        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => alert('clicked')} key={value.key}>
-          <Image
-            source={require('../../../../images/rostro.jpg')}
-            style={{width: 60, height: 60, borderRadius: 60 / 2, margin: 10}}
-          />
-          <View style={{justifyContent: 'center', width: '100%'}}>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between', width: '73%'}}>
-              <Text style={{fontSize: 16, fontWeight: 'bold'}}>{value.username}</Text>
-              <Text style={{color: 'gray', marginLeft: 5,}}>2 min ago</Text>
-            </View>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '73%'}}>
-              <Text style={{color: 'gray'}}>Lorem ipsum dolor sit amet conse</Text>
-              <Text style={{color: 'gray', marginLeft: 5,}}>5</Text>
-            </View>
-          </View>
+      <View style={styles.headerView}>
+        <TouchableOpacity
+          style={styles.iconView}
+          onPress={() => navigation.toggleDrawer()}>
+          <FontAwesome name={'navicon'} color={'grey'} size={25} />
         </TouchableOpacity>
-      )})}
-
-  </ScrollView>
+        <View style={[styles.textView, {marginLeft: '21%'}]}>
+          <Text style={styles.textStyle}>Select contact</Text>
+        </View>
+      </View>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        {users.map(value => {
+          return (
+            <TouchableOpacity
+              style={styles.touchableOpacityStyle}
+              onPress={() => alert('clicked')}
+              key={value.key}>
+              <Image
+                source={require('../../../../images/rostro.jpg')}
+                style={styles.userLogo}
+              />
+              <View style={styles.textViewContainer}>
+                <View style={styles.firstInnerView}>
+                  <Text style={styles.usernameText}>{value.username}</Text>
+                  <Text style={styles.timeText}>2 min ago</Text>
+                </View>
+                <View style={styles.secondInnerView}>
+                  <Text style={styles.lastMessageText}>
+                    Lorem ipsum dolor sit amet conse
+                  </Text>
+                  <Text style={styles.messagesNumberText}>5</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 }
@@ -108,5 +112,43 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 16,
     fontFamily: 'serif',
+  },
+  touchableOpacityStyle: {
+    flexDirection: 'row',
+  },
+  userLogo: {
+    width: 60,
+    height: 60,
+    borderRadius: 60 / 2,
+    margin: 10,
+  },
+  textViewContainer: {
+    justifyContent: 'center',
+    width: '100%',
+  },
+  firstInnerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '73%',
+  },
+  usernameText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  timeText: {
+    color: 'gray',
+    marginLeft: 5,
+  },
+  secondInnerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '73%',
+  },
+  lastMessageText: {
+    color: 'gray',
+  },
+  messagesNumberText: {
+    color: 'gray',
+    marginLeft: 5,
   },
 });
