@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,11 +9,39 @@ import {
   Image,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 export default function Index({navigation}) {
+  const [uid, setUid] = useState('');
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     navigation.addListener('focus', () => {
       StatusBar.setHidden(false);
+    });
+  }, [navigation]);
+
+  useEffect(() => {
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        setUid(user.uid);
+        firestore()
+          .collection('users')
+          .onSnapshot(querySnapshot => {
+            let users = [];
+            console.log('Total users: ', querySnapshot.size);
+            querySnapshot.forEach(documentSnapshot => {
+              users.push({
+                ...documentSnapshot.data(),
+                key: documentSnapshot.id,
+              });
+            });
+            setUsers(users);
+          });
+      } else {
+        navigation.navigate('Login');
+      }
     });
   }, [navigation]);
 
@@ -31,7 +59,8 @@ export default function Index({navigation}) {
         </View>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
 
-        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => alert('clicked')}>
+      {users.map((value) =>{ return(
+        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => alert('clicked')} key={value.key}>
           <Image
             source={require('../../../../images/rostro.jpg')}
             style={{width: 60, height: 60, borderRadius: 60 / 2, margin: 10}}
@@ -39,7 +68,7 @@ export default function Index({navigation}) {
           <View style={{justifyContent: 'center', width: '100%'}}>
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between', width: '73%'}}>
-              <Text style={{fontSize: 16, fontWeight: 'bold'}}>Todd Peterson</Text>
+              <Text style={{fontSize: 16, fontWeight: 'bold'}}>{value.username}</Text>
               <Text style={{color: 'gray', marginLeft: 5,}}>2 min ago</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', width: '73%'}}>
@@ -48,6 +77,7 @@ export default function Index({navigation}) {
             </View>
           </View>
         </TouchableOpacity>
+      )})}
 
   </ScrollView>
     </View>
