@@ -30,8 +30,6 @@ const Chat = ({route}) => {
                 avatar: value.user.avatar,
               },
             });
-            console.log(value.createdAt);
-            console.log(value.createdAt.toDate());
           });
           callback(newMessage);
         }
@@ -56,7 +54,7 @@ const Chat = ({route}) => {
       user={{
         _id: route.params.currentUserId,
         name: 'soufiane',
-        avatar: 'empty',
+        avatar: route.params.avatar,
       }}
     />
   );
