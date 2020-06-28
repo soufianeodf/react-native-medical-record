@@ -1,37 +1,62 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {StyleSheet} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 
-const Chat = () => {
+const Chat = ({route}) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ]);
+    loadMessages(theMessage => setMessages(GiftedChat.append([], theMessage)));
   }, []);
 
-  const onSend = useCallback((theMessages = []) => {
-    setMessages(previousMessages =>
-      GiftedChat.append(previousMessages, theMessages),
-    );
-  }, []);
+  function loadMessages(callback) {
+    firestore()
+      .collection('Message')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot(querySnapshot => {
+        var newMessage = [];
+        if (querySnapshot) {
+          querySnapshot.forEach(chat => {
+            var id = chat.id;
+            let value = chat.data();
+            newMessage.push({
+              _id: id,
+              text: value.text,
+              createdAt: value.createdAt.toDate(),
+              user: {
+                _id: value.user._id,
+                name: value.user.name,
+                avatar: value.user.avatar,
+              },
+            });
+            console.log(value.createdAt);
+            console.log(value.createdAt.toDate());
+          });
+          callback(newMessage);
+        }
+      });
+  }
+
+  const onSend = theMessages => {
+    firestore()
+      .collection('Message')
+      .add({
+        _id: route.params.friendUserId,
+        text: theMessages[0].text,
+        user: theMessages[0].user,
+        createdAt: new Date(),
+      });
+  };
 
   return (
     <GiftedChat
       messages={messages}
       onSend={theMessages => onSend(theMessages)}
       user={{
-        _id: 3,
+        _id: route.params.currentUserId,
+        name: 'soufiane',
+        avatar: 'empty',
       }}
     />
   );
