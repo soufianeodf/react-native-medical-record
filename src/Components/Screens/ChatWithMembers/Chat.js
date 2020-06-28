@@ -12,7 +12,9 @@ const Chat = ({route}) => {
 
   function loadMessages(callback) {
     firestore()
-      .collection('Message')
+      .collection('Messages')
+      .doc(_generateChatDocId())
+      .collection('listOfIndividualMessages')
       .orderBy('createdAt', 'desc')
       .onSnapshot(querySnapshot => {
         var newMessage = [];
@@ -36,9 +38,21 @@ const Chat = ({route}) => {
       });
   }
 
+  const _generateChatDocId = () => {
+    const chatterID = route.params.currentUserId;
+    const chateeID = route.params.friendUserId;
+    const chatIDpre = [];
+    chatIDpre.push(chatterID);
+    chatIDpre.push(chateeID);
+    chatIDpre.sort();
+    return chatIDpre.join('_');
+  };
+
   const onSend = theMessages => {
     firestore()
-      .collection('Message')
+      .collection('Messages')
+      .doc(_generateChatDocId())
+      .collection('listOfIndividualMessages')
       .add({
         _id: route.params.friendUserId,
         text: theMessages[0].text,
