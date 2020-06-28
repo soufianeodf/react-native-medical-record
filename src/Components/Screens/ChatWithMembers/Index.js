@@ -16,6 +16,7 @@ import storage from '@react-native-firebase/storage';
 export default function Index({navigation}) {
   const [uid, setUid] = useState('');
   const [users, setUsers] = useState([]);
+  const [myAvatar, setMyAvatar] = useState('');
 
   useEffect(() => {
     navigation.addListener('focus', () => {
@@ -45,6 +46,8 @@ export default function Index({navigation}) {
                         key: documentSnapshot.id,
                         url: theurl,
                       });
+                    } else {
+                      setMyAvatar(theurl);
                     }
                   })
                   .catch(error => console.log(error));
@@ -82,6 +85,7 @@ export default function Index({navigation}) {
                 navigation.navigate('Chat', {
                   currentUserId: uid,
                   friendUserId: value.key,
+                  avatar: myAvatar,
                 })
               }
               key={value.key}>
