@@ -24,10 +24,11 @@ export default function Index({navigation}) {
   }, [navigation]);
 
   useEffect(() => {
+    var subscriber;
     auth().onAuthStateChanged(user => {
       if (user) {
         setUid(user.uid);
-        firestore()
+        subscriber = firestore()
           .collection('users')
           .onSnapshot(querySnapshot => {
             if (querySnapshot) {
@@ -57,6 +58,7 @@ export default function Index({navigation}) {
         navigation.navigate('Login');
       }
     });
+    return () => subscriber();
   }, [navigation, uid]);
 
   return (
@@ -76,7 +78,12 @@ export default function Index({navigation}) {
           return (
             <TouchableOpacity
               style={styles.touchableOpacityStyle}
-              onPress={() => alert('clicked')}
+              onPress={() =>
+                navigation.navigate('Chat', {
+                  currentUserId: uid,
+                  friendUserId: value.key,
+                })
+              }
               key={value.key}>
               <Image source={{uri: value.url}} style={styles.userLogo} />
               <View style={styles.textViewContainer}>
