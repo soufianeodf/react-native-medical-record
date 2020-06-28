@@ -26,6 +26,7 @@ import AddNewMedicine from '../Components/Screens/ReferenceData/AddNewMedicine';
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers/Index';
+import Chat from '../Components/Screens/ChatWithMembers/Chat';
 import Profile from '../Components/Screens/Profile';
 import MedicalAct from '../Components/Screens/MedicalAct';
 import MedicalPrescription from '../Components/Screens/MedicalAct/MedicalPrescription';
@@ -260,6 +261,8 @@ const Navigation = () => {
       />
       <Stack.Screen name="SurgeryAct" component={SurgeryAct} />
       <Stack.Screen name="Analysis" component={Analysis} />
+
+      <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
   );
 
