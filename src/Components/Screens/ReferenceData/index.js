@@ -56,12 +56,12 @@ export default function Index({navigation}) {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#3ba1f6'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('NearbyHospitals')}>
           <View style={styles.iconView}>
             <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
           </View>
           <View style={([styles.textView], {marginLeft: 16})}>
-            <Text style={styles.textStyle}>HOSPITALS</Text>
+            <Text style={styles.textStyle}>NEARBY HOSPITALS</Text>
           </View>
         </TouchableOpacity>
 
