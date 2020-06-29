@@ -47,7 +47,7 @@ export default function AddNewMedicine({route, navigation}) {
       <View style={styles.modalFirstInnerView}>
         <Image
           style={styles.logoImage}
-          source={require('../../../../images/medicine.png')}
+          source={require('../../../../../images/medicine.png')}
         />
       </View>
       <View style={styles.modalSecondInnerView}>
