@@ -20,8 +20,11 @@ import EventsCalendar from '../Components/Screens/EventsCalendar';
 import Measurment from '../Components/Screens/Measurment';
 import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
+
 import ReferenceData from '../Components/Screens/ReferenceData/Index';
 import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase';
+import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
+
 import AddNewMedicine from '../Components/Screens/ReferenceData/AddNewMedicine';
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
@@ -242,7 +245,8 @@ const Navigation = () => {
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
       <Stack.Screen name="BoughtFromPharmacy" component={BoughtFromPharmacy} />
-      {/* MedicationDatabase pages */}
+      {/* Reference data pages */}
+      <Stack.Screen name="NearbyHospitals" component={NearbyHospitals} />
       <Stack.Screen name="MedicationDatabase" component={MedicationDatabase} />
       <Stack.Screen name="AddNewMedicine" component={AddNewMedicine} />
 
