@@ -22,10 +22,10 @@ import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointmen
 import MedicationCourses from '../Components/Screens/MedicationCourses';
 
 import ReferenceData from '../Components/Screens/ReferenceData/Index';
-import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase';
+import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase/MedicationDatabase';
 import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
+import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDatabase/AddNewMedicine';
 
-import AddNewMedicine from '../Components/Screens/ReferenceData/AddNewMedicine';
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers/Index';
