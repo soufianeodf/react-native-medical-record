@@ -40,6 +40,7 @@ const NearbyHospitals = () => {
           };
           place.coordinate = coordinate;
           place.placeName = googlePlace.name;
+          place.vicinity = googlePlace.vicinity;
           places.push(place);
         }
         setMarkers(places);
@@ -77,7 +78,8 @@ const NearbyHospitals = () => {
         <Marker
           key={marker.coordinate.latitude}
           coordinate={marker.coordinate}
-          title={marker.placeName}>
+          title={marker.placeName}
+          description={marker.vicinity}>
           <MaterialCommunityIcons
             name={'hospital-marker'}
             color={'red'}
