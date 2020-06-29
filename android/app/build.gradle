@@ -199,6 +199,7 @@ dependencies {
     implementation project(':react-native-fbsdk')
     implementation project(':react-native-spinkit')
     implementation project(':react-native-maps')
+    implementation project(':react-native-community-geolocation')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
