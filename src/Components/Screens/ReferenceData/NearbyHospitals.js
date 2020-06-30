@@ -17,15 +17,21 @@ const NearbyHospitals = () => {
     locateCurrentPosition();
   }, []);
 
-  const nearbyHospitals = (latitude, longitude) => {
-    var places = [];
-    fetch(
+  const _nearbyHospitals = (
+    latitude,
+    longitude,
+    pagetoken = '',
+    places = [],
+  ) => {
+    let url =
       'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' +
-        latitude +
-        ',' +
-        longitude +
-        '&radius=10000&type=hospital&key=AIzaSyBKufJtc7JQhJV_esN9vdubqz3VqMTFnHs',
-    )
+      latitude +
+      ',' +
+      longitude +
+      '&radius=8000&type=hospital&key=AIzaSyBKufJtc7JQhJV_esN9vdubqz3VqMTFnHs&pagetoken=' +
+      pagetoken;
+
+    fetch(url)
       .then(res => {
         return res.json();
       })
@@ -43,7 +49,19 @@ const NearbyHospitals = () => {
           place.vicinity = googlePlace.vicinity;
           places.push(place);
         }
-        setMarkers(places);
+        if (res.next_page_token == null || res.next_page_token.length === 0) {
+          setMarkers(places);
+          console.log('final');
+        } else {
+          setTimeout(() => {
+            return _nearbyHospitals(
+              latitude,
+              longitude,
+              res.next_page_token,
+              places,
+            );
+          }, 3000);
+        }
       })
       .catch(error => {
         console.log(error);
@@ -59,7 +77,7 @@ const NearbyHospitals = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         };
-        nearbyHospitals(region.latitude, region.longitude);
+        _nearbyHospitals(region.latitude, region.longitude);
         setInitialPosition(region);
       },
       error => Alert.alert('Please activate your location.'),
@@ -74,9 +92,9 @@ const NearbyHospitals = () => {
       showsUserLocation
       followUserLocation
       initialRegion={initialPosition}>
-      {markers.map(marker => (
+      {markers.map((marker, index) => (
         <Marker
-          key={marker.coordinate.latitude}
+          key={index}
           coordinate={marker.coordinate}
           title={marker.placeName}
           description={marker.vicinity}>
