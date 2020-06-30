@@ -14,7 +14,7 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function BoughtFromPharmacy({navigation}) {
   const [uid, setUid] = useState('');
-  const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
+  const [medications, setMedications] = useState([]);
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
