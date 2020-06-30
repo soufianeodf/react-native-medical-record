@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#E6E6E6',
+    backgroundColor: '#fff',
   },
   imageStyle: {
     width: '100%',
