@@ -5,9 +5,18 @@ import firestore from '@react-native-firebase/firestore';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Timeline from 'react-native-timeline-flatlist';
 
 const Main = ({navigation}) => {
   const [username, setUsername] = useState('');
+
+  const data = [
+    {time: '09:00', title: 'Event 1', description: 'Event 1 Description'},
+    {time: '10:45', title: 'Event 2', description: 'Event 2 Description'},
+    {time: '12:00', title: 'Event 3', description: 'Event 3 Description'},
+    {time: '14:00', title: 'Event 4', description: 'Event 4 Description'},
+    {time: '16:30', title: 'Event 5', description: 'Event 5 Description'},
+  ];
 
   useEffect(() => {
     navigation.addListener('focus', () => {
@@ -54,9 +63,24 @@ const Main = ({navigation}) => {
           <MaterialIcons name={'filter-list'} color={'grey'} size={25} />
         </TouchableOpacity>
       </View>
-      <View style={styles.textContainer}>
-        <Text>List of events</Text>
-      </View>
+      <Timeline
+        data={data}
+        circleSize={20}
+        circleColor="rgb(45,156,219)"
+        lineColor="rgb(45,156,219)"
+        timeContainerStyle={{minWidth: 52}}
+        timeStyle={{
+          textAlign: 'center',
+          backgroundColor: '#ff9797',
+          color: 'white',
+          padding: 5,
+          borderRadius: 13,
+        }}
+        descriptionStyle={{color: 'gray'}}
+        options={{
+          style: {paddingTop: 5, paddingLeft: 20},
+        }}
+      />
       <View style={styles.buttonView}>
         <TouchableOpacity onPress={() => navigation.navigate('EventsList')}>
           <Ionicons name={'ios-add-circle'} color={'#2529B7'} size={66} />
@@ -81,11 +105,6 @@ const styles = StyleSheet.create({
   touchableOpacity: {
     alignSelf: 'flex-start',
     height: 50,
-  },
-  textContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   buttonView: {
     position: 'absolute',
