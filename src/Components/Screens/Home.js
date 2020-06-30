@@ -63,7 +63,7 @@ const Main = ({navigation}) => {
 
   const renderDetail = (rowData, sectionID, rowID) => {
     let eventType = (
-      <Text style={[styles.title]}>
+      <Text style={[styles.eventType]}>
         <Ionicons
           name={'md-checkmark-circle-outline'}
           color={'#3394ef'}
@@ -76,25 +76,14 @@ const Main = ({navigation}) => {
     if (rowData.description) {
       desc = (
         <View style={styles.descriptionContainer}>
-          <Text style={[styles.textDescription, {fontWeight: 'bold'}]}>
-            {rowData.title}
-          </Text>
-          <Text style={[styles.textDescription]}>{rowData.description}</Text>
+          <Text style={styles.title}>{rowData.title}</Text>
+          <Text style={styles.textDescription}>{rowData.description}</Text>
         </View>
       );
     }
 
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'white',
-          width: '95%',
-          borderRadius: 2,
-          elevation: 3,
-          paddingVertical: 7,
-          paddingLeft: 10,
-        }}>
+      <View style={styles.itemStyle}>
         {eventType}
         {desc}
       </View>
@@ -124,17 +113,11 @@ const Main = ({navigation}) => {
         circleSize={20}
         circleColor="rgb(45,156,219)"
         lineColor="rgb(45,156,219)"
-        timeContainerStyle={{minWidth: 52}}
-        timeStyle={{
-          textAlign: 'center',
-          backgroundColor: '#3394ef',
-          color: 'white',
-          padding: 5,
-          borderRadius: 13,
-        }}
-        descriptionStyle={{color: 'gray'}}
+        timeContainerStyle={styles.timeContainerStyle}
+        timeStyle={styles.timeStyle}
+        descriptionStyle={styles.descriptionStyle}
         options={{
-          style: {paddingTop: 5, paddingLeft: 20},
+          style: styles.optionsStyle,
         }}
         renderDetail={renderDetail}
       />
@@ -168,13 +151,42 @@ const styles = StyleSheet.create({
     bottom: '1.5%',
     right: '4%',
   },
-
-  title: {
+  eventType: {
     fontSize: 16,
     fontWeight: 'bold',
   },
   descriptionContainer: {},
+  title: {
+    fontWeight: 'bold',
+    color: 'gray',
+  },
   textDescription: {
     color: 'gray',
+  },
+  itemStyle: {
+    flex: 1,
+    backgroundColor: 'white',
+    width: '95%',
+    borderRadius: 2,
+    elevation: 3,
+    paddingVertical: 7,
+    paddingLeft: 10,
+  },
+  timeStyle: {
+    textAlign: 'center',
+    backgroundColor: '#3394ef',
+    color: 'white',
+    padding: 5,
+    borderRadius: 13,
+  },
+  timeContainerStyle: {
+    minWidth: 52,
+  },
+  descriptionStyle: {
+    color: 'gray',
+  },
+  optionsStyle: {
+    paddingTop: 5,
+    paddingLeft: 20,
   },
 });
