@@ -33,6 +33,10 @@ An iOS and Android Medical Records app created with React Native. If you would l
 # Resources Used
 [Finding Nearby Places with using Places API in React Native](https://dev.to/therealyusa/finding-nearby-places-with-using-places-api-in-react-native-4ckj)
 
+[React documentation](https://reactjs.org/)
+
+[React Native documentation](https://reactnative.dev/)
+
 # Before Run
 <!-- * Create a firebase project
 * In Authentication enable auth with email/password
