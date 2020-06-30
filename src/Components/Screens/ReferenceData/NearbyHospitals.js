@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Alert, View} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Spinner from 'react-native-spinkit';
 
 const NearbyHospitals = () => {
   const [initialPosition, setInitialPosition] = useState({
@@ -11,6 +12,7 @@ const NearbyHospitals = () => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+  const [loading, setLoading] = useState(true);
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
@@ -50,6 +52,7 @@ const NearbyHospitals = () => {
           places.push(place);
         }
         if (res.next_page_token == null || res.next_page_token.length === 0) {
+          setLoading(false);
           setMarkers(places);
           console.log('final');
         } else {
@@ -85,6 +88,14 @@ const NearbyHospitals = () => {
     );
   };
 
+  if (loading) {
+    return (
+      <View style={styles.activityIndicatorView}>
+        <Spinner isVisible={true} type={'Pulse'} color="orange" size={70} />
+      </View>
+    );
+  }
+
   return (
     <MapView
       style={styles.map}
@@ -112,6 +123,11 @@ const NearbyHospitals = () => {
 export default NearbyHospitals;
 
 const styles = StyleSheet.create({
+  activityIndicatorView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   map: {
     height: '100%',
     width: '100%',
