@@ -83,7 +83,7 @@ const NearbyHospitals = () => {
         _nearbyHospitals(region.latitude, region.longitude);
         setInitialPosition(region);
       },
-      error => Alert.alert('Please activate your location.'),
+      error => Alert.alert('Please activate your location and re-enter again.'),
       {enableHighAccuracy: true, timeout: 20000},
     );
   };
