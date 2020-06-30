@@ -62,19 +62,39 @@ const Main = ({navigation}) => {
   };
 
   const renderDetail = (rowData, sectionID, rowID) => {
-    let eventType = <Text style={[styles.title]}>{rowData.eventType}</Text>;
+    let eventType = (
+      <Text style={[styles.title]}>
+        <Ionicons
+          name={'md-checkmark-circle-outline'}
+          color={'#3394ef'}
+          size={18}
+        />{' '}
+        {rowData.eventType}
+      </Text>
+    );
     var desc = null;
     if (rowData.description) {
       desc = (
         <View style={styles.descriptionContainer}>
-          <Text style={[styles.textDescription]}>{rowData.title}</Text>
+          <Text style={[styles.textDescription, {fontWeight: 'bold'}]}>
+            {rowData.title}
+          </Text>
           <Text style={[styles.textDescription]}>{rowData.description}</Text>
         </View>
       );
     }
 
     return (
-      <View style={{flex: 1}}>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'white',
+          width: '95%',
+          borderRadius: 2,
+          elevation: 3,
+          paddingVertical: 7,
+          paddingLeft: 10,
+        }}>
         {eventType}
         {desc}
       </View>
@@ -107,7 +127,7 @@ const Main = ({navigation}) => {
         timeContainerStyle={{minWidth: 52}}
         timeStyle={{
           textAlign: 'center',
-          backgroundColor: '#ff9797',
+          backgroundColor: '#3394ef',
           color: 'white',
           padding: 5,
           borderRadius: 13,
@@ -120,7 +140,7 @@ const Main = ({navigation}) => {
       />
       <View style={styles.buttonView}>
         <TouchableOpacity onPress={() => navigation.navigate('EventsList')}>
-          <Ionicons name={'ios-add-circle'} color={'#2529B7'} size={66} />
+          <Ionicons name={'ios-add-circle'} color={'#3394ef'} size={66} />
         </TouchableOpacity>
       </View>
     </View>
@@ -155,7 +175,6 @@ const styles = StyleSheet.create({
   },
   descriptionContainer: {},
   textDescription: {
-    marginLeft: 10,
     color: 'gray',
   },
 });
