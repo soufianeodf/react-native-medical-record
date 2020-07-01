@@ -81,12 +81,50 @@ const Main = ({navigation}) => {
         </View>
       );
     }
-
     return (
       <View style={styles.itemStyle}>
         {eventType}
         {desc}
       </View>
+    );
+  };
+
+  const _renderTimeLine = () => {
+    return (
+      <Timeline
+        data={data}
+        circleSize={20}
+        circleColor="rgb(45,156,219)"
+        lineColor="rgb(45,156,219)"
+        timeContainerStyle={styles.timeContainerStyle}
+        timeStyle={styles.timeStyle}
+        descriptionStyle={styles.descriptionStyle}
+        options={{
+          style: styles.optionsStyle,
+        }}
+        onEventPress={item =>
+          navigation.navigate('DoctorAppointment', {item: item})
+        }
+        renderDetail={renderDetail}
+      />
+    );
+  };
+
+  const _renderWhenTimeLineEmpty = () => {
+    return (
+      <>
+        <Text>Your list is empty</Text>
+        <Text>There are no data to show!</Text>
+        <Text>
+          This window contains all kinds of events: visits to a doctor, tests,
+          diseases, pills taking. In order to create a new event just click on
+          the 'plus' button
+        </Text>
+        <Text>
+          If you have any difficulties with the application, we are happy to
+          help!
+        </Text>
+      </>
     );
   };
 
@@ -108,20 +146,7 @@ const Main = ({navigation}) => {
           <MaterialIcons name={'filter-list'} color={'grey'} size={25} />
         </TouchableOpacity>
       </View>
-      <Timeline
-        data={data}
-        circleSize={20}
-        circleColor="rgb(45,156,219)"
-        lineColor="rgb(45,156,219)"
-        timeContainerStyle={styles.timeContainerStyle}
-        timeStyle={styles.timeStyle}
-        descriptionStyle={styles.descriptionStyle}
-        options={{
-          style: styles.optionsStyle,
-        }}
-        onEventPress={item => navigation.navigate('DoctorAppointment', {item: item})}
-        renderDetail={renderDetail}
-      />
+      {data.length === 0 ? _renderWhenTimeLineEmpty() : _renderTimeLine()}
       <View style={styles.buttonView}>
         <TouchableOpacity onPress={() => navigation.navigate('EventsList')}>
           <Ionicons name={'ios-add-circle'} color={'#3394ef'} size={66} />
