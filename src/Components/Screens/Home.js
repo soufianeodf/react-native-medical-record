@@ -119,6 +119,7 @@ const Main = ({navigation}) => {
         options={{
           style: styles.optionsStyle,
         }}
+        onEventPress={item => navigation.navigate('DoctorAppointment', {item: item})}
         renderDetail={renderDetail}
       />
       <View style={styles.buttonView}>
