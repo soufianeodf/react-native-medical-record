@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  Image,
+} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -59,7 +66,7 @@ const Main = ({navigation}) => {
           });
         });
         setLoading(false);
-        setData(theData);
+        setData([]);
       })
       .catch(error => Alert.alert(error));
   };
@@ -115,19 +122,39 @@ const Main = ({navigation}) => {
 
   const _renderWhenTimeLineEmpty = () => {
     return (
-      <>
-        <Text>Your list is empty</Text>
-        <Text>There are no data to show!</Text>
-        <Text>
+      <View style={{flex: 1, alignItems: 'center', marginTop: '13%', paddingHorizontal: 15}}>
+        <Image
+          style={{width: '35%', height: '25%'}}
+          source={require('../../../images/emptyList.png')}
+        />
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 20,
+            color: '#444',
+            marginVertical: 15,
+          }}>
+          Your list is empty
+        </Text>
+        <Text style={{textAlign: 'center', color: 'gray', fontSize: 17}}>
+          There are no data to show!
+        </Text>
+        <Text style={{textAlign: 'center', color: 'gray', fontSize: 17}}>
           This window contains all kinds of events: visits to a doctor, tests,
           diseases, pills taking. In order to create a new event just click on
           the 'plus' button
         </Text>
-        <Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            color: 'gray',
+            fontSize: 17,
+            marginVertical: 10,
+          }}>
           If you have any difficulties with the application, we are happy to
           help!
         </Text>
-      </>
+      </View>
     );
   };
 
@@ -177,7 +204,6 @@ const styles = StyleSheet.create({
   },
   viewContainer: {
     flex: 1,
-    marginTop: 20,
   },
   drawerButtonView: {
     marginTop: 20,
