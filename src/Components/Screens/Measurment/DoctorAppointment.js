@@ -18,12 +18,13 @@ import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
-const DoctorAppointment = () => {
-  const [appointmentType, setAppointmentType] = useState('');
+const DoctorAppointment = ({route}) => {
+  const params = route.params != null ? route.params.item : null;
+  const [appointmentType, setAppointmentType] = useState(params ? params.eventType : '');
   const [appointmentState, setAppointmentState] = useState('');
   const [treatmentProvider, setTreatmentProvider] = useState('');
-  const [doctor, setDoctor] = useState('');
-  const [specialization, setSpecialization] = useState('');
+  const [doctor, setDoctor] = useState(params ? params.title : '');
+  const [specialization, setSpecialization] = useState(params ? params.description : '');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setDate] = useState(
