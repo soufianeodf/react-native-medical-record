@@ -37,6 +37,7 @@ const DoctorAppointment = ({route}) => {
       .utc()
       .format('HH:mm'),
   );
+  const [errorMessage, setErrorMessage] = useState('');
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -71,58 +72,62 @@ const DoctorAppointment = ({route}) => {
   };
 
   const _addAppointment = () => {
-    auth().onAuthStateChanged(user => {
-      if (user) {
-        let items = [];
-        firestore()
-          .collection('calendar')
-          .doc(user.uid)
-          .collection('appointment-list')
-          .get()
-          .then(querySnapshot => {
-            console.log('Total calendar items -----> : ', querySnapshot.size);
-            querySnapshot.forEach(documentSnapshot => {
-              Object.keys(documentSnapshot.data()).map(key => {
-                if (key === date) {
-                  documentSnapshot.data()[key].map(value => {
-                    items.push({
-                      time: value.time,
-                      appointmentType: value.appointmentType,
-                      appointmentState: value.appointmentState,
-                      treatmentProvider: value.treatmentProvider,
-                      doctor: value.doctor,
-                      specialization: value.specialization,
+    if (appointmentType === '' || doctor === '' || specialization === '') {
+      setErrorMessage('Please fill the necessary fields.');
+    } else {
+      auth().onAuthStateChanged(user => {
+        if (user) {
+          let items = [];
+          firestore()
+            .collection('calendar')
+            .doc(user.uid)
+            .collection('appointment-list')
+            .get()
+            .then(querySnapshot => {
+              console.log('Total calendar items -----> : ', querySnapshot.size);
+              querySnapshot.forEach(documentSnapshot => {
+                Object.keys(documentSnapshot.data()).map(key => {
+                  if (key === date) {
+                    documentSnapshot.data()[key].map(value => {
+                      items.push({
+                        time: value.time,
+                        appointmentType: value.appointmentType,
+                        appointmentState: value.appointmentState,
+                        treatmentProvider: value.treatmentProvider,
+                        doctor: value.doctor,
+                        specialization: value.specialization,
+                      });
                     });
-                  });
-                }
+                  }
+                });
               });
-            });
-            let merged = {
-              ...{
-                [date]: [
-                  {
-                    time,
-                    appointmentType,
-                    appointmentState,
-                    treatmentProvider,
-                    doctor,
-                    specialization,
-                  },
-                  ...items,
-                ],
-              },
-            };
-            firestore()
-              .collection('calendar')
-              .doc(user.uid)
-              .collection('appointment-list')
-              .doc(date)
-              .set(merged)
-              .then(() => Alert.alert('Appointment added with success.'));
-          })
-          .catch(error => Alert.alert(error));
-      }
-    });
+              let merged = {
+                ...{
+                  [date]: [
+                    {
+                      time,
+                      appointmentType,
+                      appointmentState,
+                      treatmentProvider,
+                      doctor,
+                      specialization,
+                    },
+                    ...items,
+                  ],
+                },
+              };
+              firestore()
+                .collection('calendar')
+                .doc(user.uid)
+                .collection('appointment-list')
+                .doc(date)
+                .set(merged)
+                .then(() => Alert.alert('Appointment added with success.'));
+            })
+            .catch(error => Alert.alert(error));
+        }
+      });
+    }
   };
 
   return (
@@ -134,6 +139,12 @@ const DoctorAppointment = ({route}) => {
             <Entypo name={'check'} size={35} />
           </TouchableOpacity>
         </View>
+
+        {errorMessage ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorLabel}>{errorMessage}</Text>
+          </View>
+        ) : null}
 
         <View style={styles.textSubTitlesView}>
           <Ionicons name="md-calendar" size={22} style={{marginRight: 10}} />
@@ -179,7 +190,7 @@ const DoctorAppointment = ({route}) => {
           <FloatingLabelInput
             value={appointmentType}
             onChangeText={text => setAppointmentType(text)}
-            label="Appointment type"
+            label="Appointment type*"
             theValue={appointmentType}
           />
           <FloatingLabelInput
@@ -197,13 +208,13 @@ const DoctorAppointment = ({route}) => {
           <FloatingLabelInput
             value={doctor}
             onChangeText={text => setDoctor(text)}
-            label="Doctor"
+            label="Doctor*"
             theValue={doctor}
           />
           <FloatingLabelInput
             value={specialization}
             onChangeText={text => setSpecialization(text)}
-            label="Specialization"
+            label="Specialization*"
             theValue={specialization}
           />
         </View>
@@ -245,5 +256,17 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
+  },
+
+  errorContainer: {
+    padding: 5,
+    marginTop: -15,
+    marginBottom: 10,
+  },
+  errorLabel: {
+    color: '#f44336',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 18,
   },
 });
