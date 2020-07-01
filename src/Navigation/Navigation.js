@@ -21,14 +21,14 @@ import Measurment from '../Components/Screens/Measurment';
 import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointment';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
 
-import ReferenceData from '../Components/Screens/ReferenceData/Index';
+import ReferenceData from '../Components/Screens/ReferenceData';
 import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase/MedicationDatabase';
 import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
 import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDatabase/AddNewMedicine';
 
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
-import ChatWithMembers from '../Components/Screens/ChatWithMembers/Index';
+import ChatWithMembers from '../Components/Screens/ChatWithMembers';
 import Chat from '../Components/Screens/ChatWithMembers/Chat';
 import Profile from '../Components/Screens/Profile';
 import MedicalAct from '../Components/Screens/MedicalAct';

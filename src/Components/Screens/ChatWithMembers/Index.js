@@ -13,7 +13,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 
-export default function Index({navigation}) {
+export default function ChatWithMembers({navigation}) {
   const [uid, setUid] = useState('');
   const [users, setUsers] = useState([]);
   const [myAvatar, setMyAvatar] = useState('');

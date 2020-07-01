@@ -11,7 +11,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-export default function Index({navigation}) {
+export default function ReferenceData({navigation}) {
   useEffect(() => {
     navigation.addListener('focus', () => {
       StatusBar.setHidden(false);
