@@ -66,7 +66,7 @@ const Main = ({navigation}) => {
           });
         });
         setLoading(false);
-        setData([]);
+        setData(theData);
       })
       .catch(error => Alert.alert(error));
   };
@@ -122,35 +122,22 @@ const Main = ({navigation}) => {
 
   const _renderWhenTimeLineEmpty = () => {
     return (
-      <View style={{flex: 1, alignItems: 'center', marginTop: '13%', paddingHorizontal: 15}}>
+      <View style={styles.timeLineEmptyContainer}>
         <Image
-          style={{width: '35%', height: '25%'}}
+          style={styles.timeLineEmptyImage}
           source={require('../../../images/emptyList.png')}
         />
-        <Text
-          style={{
-            textAlign: 'center',
-            fontSize: 20,
-            color: '#444',
-            marginVertical: 15,
-          }}>
-          Your list is empty
-        </Text>
-        <Text style={{textAlign: 'center', color: 'gray', fontSize: 17}}>
+        <Text style={styles.timeLineEmptyTitleText}>Your list is empty</Text>
+        <Text style={styles.timeLineEmptyDescriptionText}>
           There are no data to show!
         </Text>
-        <Text style={{textAlign: 'center', color: 'gray', fontSize: 17}}>
+        <Text style={styles.timeLineEmptyDescriptionText}>
           This window contains all kinds of events: visits to a doctor, tests,
           diseases, pills taking. In order to create a new event just click on
           the 'plus' button
         </Text>
         <Text
-          style={{
-            textAlign: 'center',
-            color: 'gray',
-            fontSize: 17,
-            marginVertical: 10,
-          }}>
+          style={[styles.timeLineEmptyDescriptionText, {marginVertical: 10}]}>
           If you have any difficulties with the application, we are happy to
           help!
         </Text>
@@ -256,5 +243,26 @@ const styles = StyleSheet.create({
   optionsStyle: {
     paddingTop: 5,
     paddingLeft: 20,
+  },
+  timeLineEmptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: '13%',
+    paddingHorizontal: 15,
+  },
+  timeLineEmptyImage: {
+    width: '35%',
+    height: '25%',
+  },
+  timeLineEmptyTitleText: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#444',
+    marginVertical: 15,
+  },
+  timeLineEmptyDescriptionText: {
+    textAlign: 'center',
+    color: 'gray',
+    fontSize: 17,
   },
 });
