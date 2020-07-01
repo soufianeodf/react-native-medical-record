@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Animated, TextInput, StyleSheet, View} from 'react-native';
 
-export default function FloatingLabelInput({label, value, onChangeText}) {
+export default function FloatingLabelInput({label, value, onChangeText, theValue}) {
   const animatedIsFocused = new Animated.Value(value === '' ? 0 : 1);
   const [isFocused, setIsFocused] = useState(false);
   const handleFocus = () => setIsFocused(true);
@@ -56,6 +56,7 @@ export default function FloatingLabelInput({label, value, onChangeText}) {
         onFocus={handleFocus}
         onBlur={handleBlur}
         selectionColor={'#0d7ee8'}
+        value={theValue}
       />
     </View>
   );

@@ -180,26 +180,31 @@ const DoctorAppointment = ({route}) => {
             value={appointmentType}
             onChangeText={text => setAppointmentType(text)}
             label="Appointment type"
+            theValue={appointmentType}
           />
           <FloatingLabelInput
             value={appointmentState}
             onChangeText={text => setAppointmentState(text)}
             label="Appointment state"
+            theValue={appointmentState}
           />
           <FloatingLabelInput
             value={treatmentProvider}
             onChangeText={text => setTreatmentProvider(text)}
             label="Treatment provider"
+            theValue={treatmentProvider}
           />
           <FloatingLabelInput
             value={doctor}
             onChangeText={text => setDoctor(text)}
             label="Doctor"
+            theValue={doctor}
           />
           <FloatingLabelInput
             value={specialization}
             onChangeText={text => setSpecialization(text)}
             label="Specialization"
+            theValue={specialization}
           />
         </View>
       </ScrollView>
