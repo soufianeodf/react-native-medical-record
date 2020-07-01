@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Timeline from 'react-native-timeline-flatlist';
 import Spinner from 'react-native-spinkit';
 
@@ -92,10 +93,35 @@ const Main = ({navigation}) => {
       );
     }
     return (
-      <View style={styles.itemStyle}>
-        {eventType}
-        {desc}
-      </View>
+      <>
+        <View style={styles.itemStyle}>
+          {eventType}
+          {desc}
+        </View>
+        <View
+          style={{
+            alignItems: 'flex-end',
+            paddingRight: '4.5%',
+            marginTop: 2,
+            marginBottom: -10,
+          }}>
+          <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 11,
+              width: 22,
+              height: 22,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <MaterialCommunityIcons
+              name={'bell-ring'}
+              color={'grey'}
+              size={13}
+            />
+          </View>
+        </View>
+      </>
     );
   };
 
