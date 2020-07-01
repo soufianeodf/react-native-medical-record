@@ -13,7 +13,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
 
-export default function ChatWithMembers({navigation}) {
+export default function Index({navigation}) {
   const [uid, setUid] = useState('');
   const [users, setUsers] = useState([]);
   const [myAvatar, setMyAvatar] = useState('');
@@ -77,34 +77,36 @@ export default function ChatWithMembers({navigation}) {
         </View>
       </View>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        {users.map(value => {
-          return (
-            <TouchableOpacity
-              style={styles.touchableOpacityStyle}
-              onPress={() =>
-                navigation.navigate('Chat', {
-                  currentUserId: uid,
-                  friendUserId: value.key,
-                  avatar: myAvatar,
-                })
-              }
-              key={value.key}>
-              <Image source={{uri: value.url}} style={styles.userLogo} />
-              <View style={styles.textViewContainer}>
-                <View style={styles.firstInnerView}>
-                  <Text style={styles.usernameText}>{value.username}</Text>
-                  <Text style={styles.timeText}>2 min ago</Text>
-                </View>
-                <View style={styles.secondInnerView}>
-                  <Text style={styles.lastMessageText}>
-                    Lorem ipsum dolor sit amet conse
-                  </Text>
-                  <Text style={styles.messagesNumberText}>5</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        {users != null
+          ? users.map(value => {
+              return (
+                <TouchableOpacity
+                  style={styles.touchableOpacityStyle}
+                  onPress={() =>
+                    navigation.navigate('Chat', {
+                      currentUserId: uid,
+                      friendUserId: value.key,
+                      avatar: myAvatar,
+                    })
+                  }
+                  key={value.key}>
+                  <Image source={{uri: value.url}} style={styles.userLogo} />
+                  <View style={styles.textViewContainer}>
+                    <View style={styles.firstInnerView}>
+                      <Text style={styles.usernameText}>{value.username}</Text>
+                      <Text style={styles.timeText}>2 min ago</Text>
+                    </View>
+                    <View style={styles.secondInnerView}>
+                      <Text style={styles.lastMessageText}>
+                        Lorem ipsum dolor sit amet conse
+                      </Text>
+                      <Text style={styles.messagesNumberText}>5</Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
+            })
+          : null}
       </ScrollView>
     </View>
   );
