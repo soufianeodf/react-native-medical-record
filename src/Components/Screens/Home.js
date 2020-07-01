@@ -49,7 +49,7 @@ const Main = ({navigation}) => {
             documentSnapshot.data()[key].map(value => {
               theData.push({
                 time: value.time,
-                eventType: value.appointmentType,
+                eventType: value.appointmentType.toUpperCase(),
                 title: value.doctor,
                 description: value.specialization,
               });
