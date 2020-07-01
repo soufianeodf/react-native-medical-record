@@ -6,10 +6,12 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Timeline from 'react-native-timeline-flatlist';
+import Spinner from 'react-native-spinkit';
 
 const Main = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     navigation.addListener('focus', () => {
@@ -56,6 +58,7 @@ const Main = ({navigation}) => {
             });
           });
         });
+        setLoading(false);
         setData(theData);
       })
       .catch(error => Alert.alert(error));
@@ -128,6 +131,14 @@ const Main = ({navigation}) => {
     );
   };
 
+  if (loading) {
+    return (
+      <View style={styles.activityIndicatorView}>
+        <Spinner isVisible={true} type={'Pulse'} color="#3394ef" size={70} />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.viewContainer}>
       <View style={styles.drawerButtonView}>
@@ -159,6 +170,11 @@ const Main = ({navigation}) => {
 export default Main;
 
 const styles = StyleSheet.create({
+  activityIndicatorView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   viewContainer: {
     flex: 1,
     marginTop: 20,
