@@ -33,6 +33,10 @@ An iOS and Android Medical Records app created with React Native. If you would l
 # Resources Used
 [Finding Nearby Places with using Places API in React Native](https://dev.to/therealyusa/finding-nearby-places-with-using-places-api-in-react-native-4ckj)
 
+[Using Places Autocomplete API in React Native](https://www.youtube.com/watch?time_continue=484&v=stz3IOCwLKs&feature=emb_logo)
+
+[Drawing PolyLine Directions on react-native-maps with Google Directions](https://www.youtube.com/watch?v=LKnz4gmesZk&feature=youtu.be)
+
 [React documentation](https://reactjs.org/)
 
 [React Native documentation](https://reactnative.dev/)
