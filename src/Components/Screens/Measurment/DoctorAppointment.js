@@ -181,7 +181,7 @@ const DoctorAppointment = ({route}) => {
           />
         </View>
 
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <View style={styles.notificationView}>
           <Text style={styles.text}>Notification</Text>
           <TouchableOpacity onPress={() => alert('clicked')}>
             <Text style={[styles.text, {opacity: 0.6}]}>
@@ -266,7 +266,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 17,
   },
-
+  notificationView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   errorContainer: {
     padding: 5,
     marginTop: -15,
