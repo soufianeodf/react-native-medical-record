@@ -181,6 +181,15 @@ const DoctorAppointment = ({route}) => {
           />
         </View>
 
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text style={styles.text}>Notification</Text>
+          <TouchableOpacity onPress={() => alert('clicked')}>
+            <Text style={[styles.text, {opacity: 0.6}]}>
+              Disabled  <Ionicons name={'ios-arrow-forward'} size={16} />
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.informationView}>
           <View style={[styles.textSubTitlesView, {marginVertical: 20}]}>
             <Feather name="file-text" size={22} style={{marginRight: 5}} />
