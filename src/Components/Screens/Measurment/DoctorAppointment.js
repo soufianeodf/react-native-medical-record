@@ -17,7 +17,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import Navigation from '../../../Navigation/Navigation';
 
 const DoctorAppointment = ({route, navigation}) => {
   const params = route.params != null ? route.params.item : null;
