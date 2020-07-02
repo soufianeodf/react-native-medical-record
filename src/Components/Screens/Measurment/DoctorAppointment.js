@@ -17,8 +17,9 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import FloatingLabelInput from '../../../utils/forms/FloatingLabelInput';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import Navigation from '../../../Navigation/Navigation';
 
-const DoctorAppointment = ({route}) => {
+const DoctorAppointment = ({route, navigation}) => {
   const params = route.params != null ? route.params.item : null;
   const [appointmentType, setAppointmentType] = useState(params ? params.eventType : '');
   const [appointmentState, setAppointmentState] = useState('');
@@ -183,7 +184,8 @@ const DoctorAppointment = ({route}) => {
 
         <View style={styles.notificationView}>
           <Text style={styles.text}>Notification</Text>
-          <TouchableOpacity onPress={() => alert('clicked')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AppointmentNotification')}>
             <Text style={[styles.text, {opacity: 0.6}]}>
               Disabled  <Ionicons name={'ios-arrow-forward'} size={16} />
             </Text>
