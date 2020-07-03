@@ -54,7 +54,10 @@ export default function Index({navigation}) {
               });
             }
             setTimeout(() => {
-              setUsers(theusers);
+              if (theusers) {
+                theusers.sort(compare);
+                setUsers(theusers);
+              }
             }, 1000);
           });
       } else {
@@ -63,6 +66,18 @@ export default function Index({navigation}) {
     });
     return () => subscriber();
   }, [navigation, uid]);
+
+  function compare(a, b) {
+    a.username = a.username.toLowerCase();
+    b.username = b.username.toLowerCase();
+    if (a.username < b.username) {
+      return -1;
+    }
+    if (a.username > b.username) {
+      return 1;
+    }
+    return 0;
+  }
 
   return (
     <View style={styles.viewContainer}>
