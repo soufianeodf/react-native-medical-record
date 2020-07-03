@@ -77,8 +77,15 @@ const Signup = ({navigation}) => {
   }
 
   function _handleSignup() {
-    if (email === '' || password === '' || fullName === '') {
+    if (
+      email === '' ||
+      password === '' ||
+      confirmPassword === '' ||
+      fullName === ''
+    ) {
       setErrorMessage('Please fill up the necessary fields.');
+    } else if (password !== confirmPassword) {
+      setErrorMessage('Password and Repeat password should match.');
     } else {
       auth()
         .createUserWithEmailAndPassword(email, password)
