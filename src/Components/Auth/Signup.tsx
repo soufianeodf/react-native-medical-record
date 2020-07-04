@@ -13,7 +13,7 @@ import DatePicker from '../../utils/forms/DatePickerInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 // import Avatar from '../../utils/Avatar';
-import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
+import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
 
 const Signup = ({navigation}) => {
   const [isMale, setIsMale] = useState(true);

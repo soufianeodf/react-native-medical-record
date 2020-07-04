@@ -10,7 +10,7 @@ import Input from '../../utils/forms/Input';
 import CustomButton from '../../utils/forms/CustomButton';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
-import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
+import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
 
 const ForgotPassword = ({navigation}) => {
   const [email, setEmail] = useState('');

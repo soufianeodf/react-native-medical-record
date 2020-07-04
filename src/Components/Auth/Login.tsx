@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
-import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages.js';
+import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import firestore from '@react-native-firebase/firestore';
 
