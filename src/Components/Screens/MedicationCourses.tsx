@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const MedicationCourses = ({navigation}) => {
   const [courseTilte, setCourseTilte] = useState('');
   const [medication, setMedication] = useState('');
+  const [manufacturingForm, setManufacturingForm] = useState('');
 
   return (
     <View style={{flex: 1, marginTop: 15}}>
@@ -46,9 +47,12 @@ const MedicationCourses = ({navigation}) => {
           />
           <TextInput
             style={styles.textInput}
-            editable={false}
+            onChangeText={theManufacturingForm =>
+              setManufacturingForm(theManufacturingForm)
+            }
             placeholder={'Dosage'}
-            // value={email}
+            value={manufacturingForm}
+            keyboardType={'numeric'}
           />
           <TextInput
             style={styles.textInput}
