@@ -129,9 +129,14 @@ const ReferenceData = ({route, navigation}) => {
                     typeof route.params !== 'undefined' &&
                     route.params !== null
                   ) {
-                    route.params._addDrugBought(item);
-                    route.params = null;
-                    navigation.goBack();
+                    if (route.params._addDrugBought) {
+                      route.params._addDrugBought(item);
+                      route.params = null;
+                      navigation.goBack();
+                    } else if (route.params.setMedication) {
+                      route.params.setMedication(item.NOM);
+                      navigation.goBack();
+                    }
                   }
                 }}
                 onLongPress={() =>
