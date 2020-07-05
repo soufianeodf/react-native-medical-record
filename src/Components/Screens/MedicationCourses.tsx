@@ -7,11 +7,31 @@ import {
   Keyboard,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import moment from 'moment';
 
 const MedicationCourses = ({navigation}) => {
   const [courseTilte, setCourseTilte] = useState('');
   const [medication, setMedication] = useState('');
   const [manufacturingForm, setManufacturingForm] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const _showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const _hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const _handleConfirm = (date: string) => {
+    date = moment(date)
+      .utc()
+      .format('YYYY-MM-DD');
+    _hideDatePicker();
+    setFromDate(date);
+  };
 
   return (
     <View style={{flex: 1, marginTop: 15}}>
@@ -67,13 +87,16 @@ const MedicationCourses = ({navigation}) => {
 
       <View style={styles.card}>
         <View style={styles.cardContent}>
-          <TextInput
-            style={[styles.textInput, {width: '100%'}]}
-            // onChangeText={theUsername => setUsername(theUsername)}
-            placeholder={'From date'}
-            // value={username}
-            // onSubmitEditing={_handleUpdate}
-          />
+          <TouchableOpacity
+            style={styles.touchableOpacityDatePicker}
+            onPress={_showDatePicker}>
+            <TextInput
+              style={[styles.textInput, {width: '99%', color: '#000'}]}
+              editable={false}
+              placeholder={'From date'}
+              value={fromDate}
+            />
+          </TouchableOpacity>
           <TextInput
             style={[styles.textInput, {width: '100%'}]}
             // onChangeText={fullName => setFullName_card_1(fullName)}
@@ -94,6 +117,13 @@ const MedicationCourses = ({navigation}) => {
           />
         </View>
       </View>
+
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={_handleConfirm}
+        onCancel={_hideDatePicker}
+      />
 
       <View style={styles.buttonView}>
         <TouchableOpacity
@@ -133,7 +163,7 @@ const styles = StyleSheet.create({
     padding: 3,
   },
   touchableOpacityDatePicker: {
-    width: '50%',
+    width: '100%',
   },
   buttonView: {
     position: 'absolute',
