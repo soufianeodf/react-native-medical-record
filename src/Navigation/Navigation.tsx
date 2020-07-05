@@ -117,7 +117,7 @@ const Navigation = () => {
     </DrawerContentScrollView>
   );
 
-  function Root() {
+  function MedicationCoursesStack() {
     return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
@@ -128,11 +128,6 @@ const Navigation = () => {
           }}
           name="MedicationCourses"
           component={MedicationCourses}
-        />
-        <Stack.Screen
-          options={{headerShown: true}}
-          name="MedicationCourse"
-          component={MedicationCourse}
         />
       </Stack.Navigator>
     );
@@ -174,7 +169,7 @@ const Navigation = () => {
       />
       <Drawer.Screen
         name="Medication courses"
-        component={Root}
+        component={MedicationCoursesStack}
         options={{
           drawerLabel: 'Medication courses',
           title: 'MedicationCourses',
@@ -267,6 +262,11 @@ const Navigation = () => {
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
+      <Stack.Screen
+        options={{headerShown: true}}
+        name="MedicationCourse"
+        component={MedicationCourse}
+      />
       <Stack.Screen
         name="AppointmentNotification"
         component={AppointmentNotification}
