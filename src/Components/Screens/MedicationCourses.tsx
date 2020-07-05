@@ -1,42 +1,42 @@
-import React from 'react';
-import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MedicationCourses = ({navigation}) => {
+  const [courseTilte, setCourseTilte] = useState('');
+  const [medication, setMedication] = useState('');
+
   return (
     <View style={{flex: 1, marginTop: 15}}>
       <View style={styles.card}>
         <View style={styles.cardContent}>
           <TextInput
-            style={styles.textInput}
-            // onChangeText={theUsername => setUsername(theUsername)}
-            placeholder={'Username'}
-            // value={username}
+            style={[styles.textInput, {width: '100%'}]}
+            onChangeText={theCourseTilte => setCourseTilte(theCourseTilte)}
+            placeholder={'Course title'}
+            value={courseTilte}
             // onSubmitEditing={_handleUpdate}
           />
           <TextInput
-            style={styles.textInput}
-            // onChangeText={fullName => setFullName_card_1(fullName)}
-            placeholder={'Full Name'}
-            // value={fullName_card_1}
+            style={[styles.textInput, {width: '100%'}]}
+            onTouchEnd={() => {
+              navigation.navigate('MedicationDatabase', {setMedication});
+              Keyboard.dismiss();
+            }}
+            placeholder={'Medication'}
+            value={medication}
             // onSubmitEditing={_handleUpdate}
           />
 
-          <TouchableOpacity
-            style={styles.touchableOpacityDatePicker}
-            // onPress={_showDatePicker}
-          >
-            <TextInput
-              style={[styles.textInput, {width: '96%'}]}
-              editable={false}
-              placeholder={'Date of birth'}
-              // value={birthDate}
-            />
-          </TouchableOpacity>
-
           <TextInput
-            style={styles.textInput}
-            placeholder={'Gender'}
+            style={[styles.textInput, {width: '100%'}]}
+            placeholder={'Manufacturing form'}
             // onTouchEnd={() => {
             //   setIsGenderVisible(true);
             //   Keyboard.dismiss();
@@ -47,16 +47,46 @@ const MedicationCourses = ({navigation}) => {
           <TextInput
             style={styles.textInput}
             editable={false}
-            placeholder={'Email'}
+            placeholder={'Dosage'}
             // value={email}
           />
           <TextInput
             style={styles.textInput}
             // onChangeText={thePhone => setPhone(thePhone)}
-            placeholder={'Phone'}
+            placeholder={'M. unit'}
             keyboardType={'phone-pad'}
             // value={phone}
             // onSubmitEditing={_handleUpdate}
+          />
+        </View>
+      </View>
+
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <TextInput
+            style={[styles.textInput, {width: '100%'}]}
+            // onChangeText={theUsername => setUsername(theUsername)}
+            placeholder={'From date'}
+            // value={username}
+            // onSubmitEditing={_handleUpdate}
+          />
+          <TextInput
+            style={[styles.textInput, {width: '100%'}]}
+            // onChangeText={fullName => setFullName_card_1(fullName)}
+            placeholder={'Course duration'}
+            // value={fullName_card_1}
+            // onSubmitEditing={_handleUpdate}
+          />
+
+          <TextInput
+            style={[styles.textInput, {width: '100%'}]}
+            placeholder={'Taking interval'}
+            // onTouchEnd={() => {
+            //   setIsGenderVisible(true);
+            //   Keyboard.dismiss();
+            // }}
+            // value={gender}
+            caretHidden={true}
           />
         </View>
       </View>
