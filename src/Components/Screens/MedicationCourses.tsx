@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TextInput, TouchableOpacity} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const MedicationCourses = () => {
+const MedicationCourses = ({navigation}) => {
   return (
     <View style={{flex: 1, marginTop: 15}}>
       <View style={styles.card}>
@@ -24,7 +25,7 @@ const MedicationCourses = () => {
           <TouchableOpacity
             style={styles.touchableOpacityDatePicker}
             // onPress={_showDatePicker}
-            >
+          >
             <TextInput
               style={[styles.textInput, {width: '96%'}]}
               editable={false}
@@ -59,6 +60,13 @@ const MedicationCourses = () => {
           />
         </View>
       </View>
+
+      <View style={styles.buttonView}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MedicationCourse')}>
+          <Ionicons name={'ios-add-circle'} color={'#3394ef'} size={66} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -92,5 +100,10 @@ const styles = StyleSheet.create({
   },
   touchableOpacityDatePicker: {
     width: '50%',
+  },
+  buttonView: {
+    position: 'absolute',
+    bottom: '1.5%',
+    right: '4%',
   },
 });
