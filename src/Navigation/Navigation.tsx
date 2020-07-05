@@ -21,6 +21,7 @@ import Measurment from '../Components/Screens/Measurment';
 import DoctorAppointment from '../Components/Screens/Measurment/DoctorAppointment';
 import AppointmentNotification from '../Components/Screens/Measurment/AppointmentNotification';
 import MedicationCourses from '../Components/Screens/MedicationCourses';
+import MedicationCourse from '../Components/Screens/MedicationCourse';
 
 import ReferenceData from '../Components/Screens/ReferenceData';
 import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase/MedicationDatabase';
@@ -116,6 +117,23 @@ const Navigation = () => {
     </DrawerContentScrollView>
   );
 
+  function Root() {
+    return (
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          options={{headerShown: true, headerTitle: 'Medication courses'}}
+          name="MedicationCourses"
+          component={MedicationCourses}
+        />
+        <Stack.Screen
+          options={{headerShown: true}}
+          name="MedicationCourse"
+          component={MedicationCourse}
+        />
+      </Stack.Navigator>
+    );
+  }
+
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
     <Drawer.Navigator
@@ -152,7 +170,7 @@ const Navigation = () => {
       />
       <Drawer.Screen
         name="Medication courses"
-        component={MedicationCourses}
+        component={Root}
         options={{
           drawerLabel: 'Medication courses',
           title: 'MedicationCourses',
