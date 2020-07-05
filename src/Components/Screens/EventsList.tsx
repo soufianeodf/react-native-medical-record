@@ -70,7 +70,7 @@ export default function EventsList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('MedicationCourse')}>
           <View style={styles.iconView}>
             <Fontisto name={'pills'} color={'#b388fe'} size={35} />
           </View>
