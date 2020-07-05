@@ -121,7 +121,11 @@ const Navigation = () => {
     return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
-          options={{headerShown: true, headerTitle: 'Medication courses'}}
+          options={{
+            headerShown: true,
+            headerTitle: 'Medication courses',
+            headerTitleStyle: {alignSelf: 'center'},
+          }}
           name="MedicationCourses"
           component={MedicationCourses}
         />
