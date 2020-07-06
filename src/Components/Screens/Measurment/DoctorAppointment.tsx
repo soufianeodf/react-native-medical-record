@@ -184,7 +184,9 @@ const DoctorAppointment = ({route, navigation}) => {
         <View style={styles.notificationView}>
           <Text style={styles.text}>Notification</Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate('AppointmentNotification')}>
+            onPress={() =>
+              navigation.navigate('AppointmentNotification', {date, time})
+            }>
             <Text style={[styles.text, {opacity: 0.6}]}>
               Disabled  <Ionicons name={'ios-arrow-forward'} size={16} />
             </Text>
