@@ -10,12 +10,13 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export default function AppointmentNotification({date, time}) {
+export default function AppointmentNotification({navigation, route}) {
+  const {date, time} = route.params;
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.headerViewContainer}>
-          <TouchableOpacity onPress={() => alert('close')}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="md-close" size={30} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -48,7 +49,7 @@ export default function AppointmentNotification({date, time}) {
               style={styles.secondBlockImage}
             />
             <Text style={styles.secondBlockText}>
-              Your event is scheduled on {date} {time} 04/02/20 18:50{' '}
+              Your event is scheduled on {date} {time}{' '}
             </Text>
           </View>
           <View
@@ -69,7 +70,7 @@ export default function AppointmentNotification({date, time}) {
               style={styles.fourthBockImage}
             />
             <Text style={styles.fourthBlockText}>
-              Notification will be fired on {date} {time} 04/02/20 18:50{' '}
+              Notification will be fired on {date} {time}{' '}
             </Text>
           </View>
         </View>
