@@ -129,7 +129,7 @@ export default function BoughtFromPharmacy({navigation}) {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('MedicationDatabase', {
-              _addDrugBought: _addDrugBought,
+              _addDrugBought,
             })
           }>
           <Ionicons name={'ios-add-circle'} color={'#2529B7'} size={66} />
