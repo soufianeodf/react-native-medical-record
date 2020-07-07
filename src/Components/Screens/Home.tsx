@@ -15,8 +15,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Timeline from 'react-native-timeline-flatlist';
 import Spinner from 'react-native-spinkit';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const Main = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Home'>;
+};
+
+const Main: React.FC<Props> = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
