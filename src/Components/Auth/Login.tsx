@@ -14,8 +14,14 @@ import auth from '@react-native-firebase/auth';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import firestore from '@react-native-firebase/firestore';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const Login = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Login'>;
+};
+
+const Login: React.FC<Props> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
