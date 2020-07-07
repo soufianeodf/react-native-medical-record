@@ -14,8 +14,16 @@ import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Spinner from 'react-native-spinkit';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../../../Navigation/Navigation';
+import {RouteProp} from '@react-navigation/native';
 
-const ReferenceData = ({route, navigation}) => {
+type Props = {
+  route: RouteProp<StackParamList, 'MedicationDatabase'>;
+  navigation: StackNavigationProp<StackParamList, 'MedicationDatabase'>;
+};
+
+const ReferenceData = ({route, navigation}: Props) => {
   const [loading, setLoading] = useState(true);
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
