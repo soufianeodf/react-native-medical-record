@@ -64,6 +64,11 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+export type StackParamList = {
+  Login: undefined;
+  Home: undefined;
+};
+
 const Navigation = () => {
   const Tab = createBottomTabNavigator();
   const ProfileTabs = () => (
@@ -243,7 +248,7 @@ const Navigation = () => {
     </Drawer.Navigator>
   );
 
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<StackParamList>();
   const App = () => (
     <Stack.Navigator
       initialRouteName="Loading"
