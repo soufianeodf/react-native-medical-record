@@ -128,21 +128,19 @@ const Navigation = () => {
     </DrawerContentScrollView>
   );
 
-  function MedicationCoursesStack() {
-    return (
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen
-          options={{
-            headerShown: true,
-            headerTitle: 'Medication courses',
-            headerTitleStyle: {alignSelf: 'center'},
-          }}
-          name="MedicationCourses"
-          component={MedicationCourses}
-        />
-      </Stack.Navigator>
-    );
-  }
+  const MedicationCoursesStack = () => (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: 'Medication courses',
+          headerTitleStyle: {alignSelf: 'center'},
+        }}
+        name="MedicationCourses"
+        component={MedicationCourses}
+      />
+    </Stack.Navigator>
+  );
 
   const Drawer = createDrawerNavigator();
   const DrawerScreen = () => (
