@@ -67,7 +67,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export type StackParamList = {
   Login: undefined;
   Home: undefined;
-  MedicationDatabase: {_addDrugBought(): void; setMedication(): void};
+  MedicationDatabase: {_addDrugBought: () => void; setMedication: () => void};
 };
 
 const Navigation = () => {
