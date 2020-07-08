@@ -68,6 +68,11 @@ export type StackParamList = {
   Login: undefined;
   Home: undefined;
   MedicationDatabase: {_addDrugBought: () => void; setMedication: () => void};
+  MedicationCourses: undefined;
+  MedicationCourse: undefined;
+  ReferenceData: undefined;
+  AddNewMedicine: {_setSelected: () => void};
+  BoughtFromPharmacy: undefined;
 };
 
 const Navigation = () => {
