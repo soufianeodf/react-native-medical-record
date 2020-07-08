@@ -9,8 +9,14 @@ import {
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const MedicationCourse = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'MedicationCourse'>;
+};
+
+const MedicationCourse: React.FC<Props> = ({navigation}) => {
   const [courseTilte, setCourseTilte] = useState('');
   const [medication, setMedication] = useState('');
   const [manufacturingForm, setManufacturingForm] = useState('');

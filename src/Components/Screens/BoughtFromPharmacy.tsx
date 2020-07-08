@@ -11,8 +11,14 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-export default function BoughtFromPharmacy({navigation}) {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'BoughtFromPharmacy'>;
+};
+
+const BoughtFromPharmacy: React.FC<Props> = ({navigation}) => {
   const [uid, setUid] = useState('');
   const [medications, setMedications] = useState([]);
   const [selected, setSelected] = useState(false);
@@ -137,7 +143,9 @@ export default function BoughtFromPharmacy({navigation}) {
       </View>
     </View>
   );
-}
+};
+
+export default BoughtFromPharmacy;
 
 const styles = StyleSheet.create({
   itemsStyle: {

@@ -10,8 +10,14 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../../Navigation/Navigation';
 
-export default function ReferenceData({navigation}) {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'ReferenceData'>;
+};
+
+const ReferenceData: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       StatusBar.setHidden(false);
@@ -122,7 +128,9 @@ export default function ReferenceData({navigation}) {
       </ScrollView>
     </View>
   );
-}
+};
+
+export default ReferenceData;
 
 const styles = StyleSheet.create({
   viewContainer: {

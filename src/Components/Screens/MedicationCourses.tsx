@@ -1,8 +1,14 @@
 import React from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const MedicationCourses = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'MedicationCourses'>;
+};
+
+const MedicationCourses: React.FC<Props> = ({navigation}) => {
   return (
     <View style={{flex: 1, marginTop: 15}}>
       <View style={styles.buttonView}>

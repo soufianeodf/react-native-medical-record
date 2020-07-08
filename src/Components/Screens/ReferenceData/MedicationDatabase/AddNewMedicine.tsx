@@ -10,8 +10,16 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {RouteProp} from '@react-navigation/native';
+import {StackParamList} from '../../../../Navigation/Navigation';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-export default function AddNewMedicine({route, navigation}) {
+type Props = {
+  route: RouteProp<StackParamList, 'AddNewMedicine'>;
+  navigation: StackNavigationProp<StackParamList, 'AddNewMedicine'>;
+};
+
+const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
   const [medicationName, setMedicationName] = useState('');
 
   const _addMedicine = () => {
@@ -73,7 +81,9 @@ export default function AddNewMedicine({route, navigation}) {
       </View>
     </View>
   );
-}
+};
+
+export default AddNewMedicine;
 
 const styles = StyleSheet.create({
   modalContainerView: {
