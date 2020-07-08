@@ -23,7 +23,7 @@ type Props = {
   navigation: StackNavigationProp<StackParamList, 'MedicationDatabase'>;
 };
 
-const ReferenceData = ({route, navigation}: Props) => {
+const MedicationDatabase: React.FC<Props> = ({route, navigation}) => {
   const [loading, setLoading] = useState(true);
   const [medications, setMedications] = useState([{code: 1, nom: 'test'}]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
@@ -182,7 +182,7 @@ const ReferenceData = ({route, navigation}: Props) => {
   );
 };
 
-export default ReferenceData;
+export default MedicationDatabase;
 
 const styles = StyleSheet.create({
   activityIndicatorView: {
