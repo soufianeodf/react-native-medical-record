@@ -14,8 +14,14 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 // import Avatar from '../../utils/Avatar';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const Signup = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Signup'>;
+};
+
+const Signup: React.FC<Props> = ({navigation}) => {
   const [isMale, setIsMale] = useState(true);
   const [birthDate, setBirthDate] = useState('');
   const [username, setUsername] = useState('');
