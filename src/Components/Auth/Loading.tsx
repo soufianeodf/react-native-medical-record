@@ -2,8 +2,14 @@ import React, {useEffect} from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import Spinner from 'react-native-spinkit';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {StackParamList} from '../../Navigation/Navigation';
 
-const Loading = ({navigation}) => {
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Loading'>;
+};
+
+const Loading: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       auth().onAuthStateChanged(user => {
