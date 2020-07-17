@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function AddFamilialPrecedents() {
   const [country, setcountry] = useState('');
@@ -10,32 +10,32 @@ export default function AddFamilialPrecedents() {
     {
       label: 'Mother',
       value: 'Mother',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name={'person'} size={18} color={'gray'} />,
     },
     {
       label: 'Father',
       value: 'Father',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name={'person'} size={18} color={'gray'} />,
     },
     {
       label: 'Siblings',
       value: 'Siblings',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name="person" size={18} color="gray" />,
     },
     {
       label: 'Grand Parents',
       value: 'Grand_Parents',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name="person" size={18} color="gray" />,
     },
     {
       label: 'Children',
       value: 'Children',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name="person" size={18} color="gray" />,
     },
     {
       label: 'Others',
       value: 'Others',
-      icon: () => <Icon name="flag" size={18} color="#900" />,
+      icon: () => <MaterialIcons name="person" size={18} color="gray" />,
     },
   ];
 
