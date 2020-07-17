@@ -4,7 +4,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function AddFamilialPrecedents() {
-  const [country, setcountry] = useState('');
+  const [country, setCountry] = useState('');
+  const [medicalHistory, setMedicalHistory] = useState('');
 
   const items = [
     {
@@ -43,7 +44,7 @@ export default function AddFamilialPrecedents() {
     <View style={{flex: 1, paddingHorizontal: 5, marginTop: 20}}>
       <DropDownPicker
         items={items}
-        placeholder="Choose Family Member"
+        placeholder="Choose A Family Member"
         defaultValue={country}
         containerStyle={{height: 40}}
         style={{backgroundColor: '#fafafa', width: '60%'}}
@@ -51,15 +52,16 @@ export default function AddFamilialPrecedents() {
           justifyContent: 'flex-start',
         }}
         dropDownStyle={{backgroundColor: '#fafafa', width: '60%'}}
-        onChangeItem={(item) => console.log(item.value)}
+        onChangeItem={(item) => setCountry(item.value)}
       />
       <View style={{marginTop: 20, paddingLeft: 5}}>
         <Text style={{fontSize: 17, marginBottom: -10}}>Medical History</Text>
         <TextInput
           style={styles.textInput}
-          onChange={(text) => console.log(text)}
-          value={''}
-          placeholder="Enter the medical history"
+          multiline
+          onChange={(text) => setMedicalHistory(text)}
+          value={medicalHistory}
+          placeholder="Enter the medical history here"
         />
       </View>
     </View>
