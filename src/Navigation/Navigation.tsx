@@ -45,6 +45,7 @@ import Vaccination from '../Components/Screens/Profile/MedicalPrecedents/Vaccina
 import Surgery from '../Components/Screens/Profile/MedicalPrecedents/Surgery';
 import AlcoholSmoking from '../Components/Screens/Profile/MedicalPrecedents/AlcoholSmoking';
 import FamilialPrecedents from '../Components/Screens/Profile/FamilialPrecedents';
+import AddFamilialPrecedents from '../Components/Screens/Profile/AddFamilialPrecedents';
 import EventsList from '../Components/Screens/EventsList';
 
 import MeasurmentList from '../Components/Screens/MeasurmentList';
@@ -119,7 +120,7 @@ const Navigation = () => {
     </Tab.Navigator>
   );
 
-  const CustomDrawerContent = props => (
+  const CustomDrawerContent = (props) => (
     <DrawerContentScrollView {...props}>
       <HeaderDrawer />
       <DrawerItemList {...props} />
@@ -148,7 +149,7 @@ const Navigation = () => {
   const DrawerScreen = () => (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={props => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
       drawerStyle={{marginTop: -30}}
       drawerContentOptions={{activeBackgroundColor: 'transparent'}}>
       <Drawer.Screen
@@ -272,9 +273,16 @@ const Navigation = () => {
       <Stack.Screen name="Vaccination" component={Vaccination} />
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
+      {/* Familial Precedents pages */}
+      <Stack.Screen
+        options={{headerShown: true, title: 'Add Family Medical History'}}
+        name="AddFamilialPrecedents"
+        component={AddFamilialPrecedents}
+      />
+
       <Stack.Screen name="DoctorAppointment" component={DoctorAppointment} />
       <Stack.Screen
-        options={{headerShown: true}}
+        options={{headerShown: true, title: 'Medication Course'}}
         name="MedicationCourse"
         component={MedicationCourse}
       />
