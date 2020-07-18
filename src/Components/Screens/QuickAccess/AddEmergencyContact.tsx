@@ -21,7 +21,6 @@ export default function AddEmergencyContact({navigation}) {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('useEffect');
         setUid(user.uid);
       }
     });
@@ -83,6 +82,7 @@ export default function AddEmergencyContact({navigation}) {
           }
         }}
         value={phone}
+        keyboardType={'phone-pad'}
         placeholder="Enter the phone number here"
       />
       <Text style={styles.textStyle}>City</Text>
