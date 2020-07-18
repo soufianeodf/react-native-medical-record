@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  Linking,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
@@ -75,7 +76,7 @@ const EmergencyContacts = ({navigation}) => {
           ? contacts.map((value) => {
               return (
                 <TouchableOpacity
-                  onPress={() => alert('clicked')}
+                  onPress={() => Linking.openURL(`tel:${value.phone}`)}
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
