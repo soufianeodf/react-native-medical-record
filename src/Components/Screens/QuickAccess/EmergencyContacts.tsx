@@ -10,10 +10,12 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import Spinner from 'react-native-spinkit';
 
 const EmergencyContacts = ({navigation}) => {
   const [isPortrait, setIsPortrait] = useState(false);
   const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
@@ -37,19 +39,9 @@ const EmergencyContacts = ({navigation}) => {
           theContacts.push(documentSnapshot.data());
         });
         setContacts(theContacts);
+        setLoading(false);
       })
       .catch((error) => Alert.alert(error));
-  };
-
-  const _renderButtonView = () => {
-    return (
-      <View style={styles.buttonView}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('AddEmergencyContact')}>
-          <Ionicons name={'ios-add-circle'} color={'#661D54'} size={66} />
-        </TouchableOpacity>
-      </View>
-    );
   };
 
   const _renderWhenEmpty = () => {
@@ -93,7 +85,10 @@ const EmergencyContacts = ({navigation}) => {
                     borderRadius: 3,
                     elevation: 3,
                   }}>
-                  <Text style={{textAlignVertical: 'center'}}> {value.contactName} </Text>
+                  <Text style={{textAlignVertical: 'center'}}>
+                    {' '}
+                    {value.contactName}{' '}
+                  </Text>
                   <Ionicons name={'ios-call'} size={30} />
                   <Text style={{textAlignVertical: 'center'}}>
                     {value.phone}
@@ -102,10 +97,23 @@ const EmergencyContacts = ({navigation}) => {
               );
             })
           : _renderWhenEmpty()}
-        {_renderButtonView()}
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('AddEmergencyContact')}>
+            <Ionicons name={'ios-add-circle'} color={'#661D54'} size={66} />
+          </TouchableOpacity>
+        </View>
       </View>
     );
   };
+
+  if (loading) {
+    return (
+      <View style={styles.activityIndicatorView}>
+        <Spinner isVisible={true} type={'Pulse'} color="#661D54" size={70} />
+      </View>
+    );
+  }
 
   return <>{_renderView()}</>;
 };
@@ -113,6 +121,11 @@ const EmergencyContacts = ({navigation}) => {
 export default EmergencyContacts;
 
 const styles = StyleSheet.create({
+  activityIndicatorView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   viewContainer: {
     flex: 1,
     alignItems: 'center',
