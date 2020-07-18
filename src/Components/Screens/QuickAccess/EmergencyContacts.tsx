@@ -72,7 +72,6 @@ const EmergencyContacts = ({navigation}) => {
           source={require('../../../../images/emergencycall.png')}
         />
         <Text style={styles.textStyle}>Emergency Contacts not Added</Text>
-        {_renderButtonView()}
       </View>
     );
   };
@@ -94,10 +93,10 @@ const EmergencyContacts = ({navigation}) => {
                     borderRadius: 3,
                     elevation: 3,
                   }}>
-                  <Text style={{textAlignVertical: 'center'}}>name</Text>
+                  <Text style={{textAlignVertical: 'center'}}> {value.contactName} </Text>
                   <Ionicons name={'ios-call'} size={30} />
                   <Text style={{textAlignVertical: 'center'}}>
-                    phone number
+                    {value.phone}
                   </Text>
                 </TouchableOpacity>
               );
