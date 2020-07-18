@@ -17,6 +17,7 @@ import moment from 'moment';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import CustomModal from '../../../utils/CustomModal';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Profile = ({navigation}) => {
   const [uid, setUid] = useState('');
@@ -147,23 +148,25 @@ const Profile = ({navigation}) => {
     <ScrollView
       keyboardShouldPersistTaps="always"
       style={styles.scrollViewContainer}>
-      <View style={styles.headerContainer}>
-        <View style={styles.iconCheck}>
-          <TouchableOpacity onPress={_handleUpdate}>
-            <MaterialIcons name={'check'} size={35} />
-          </TouchableOpacity>
+      <LinearGradient colors={['#56CCF2', '#2F80ED']} style={{flex: 1, zIndex: 1, borderBottomLeftRadius: 40,}}>
+        <View style={styles.headerContainer}>
+          <View style={styles.iconCheck}>
+            <TouchableOpacity onPress={_handleUpdate}>
+              <MaterialIcons name={'check'} size={35} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.iconRefresh}>
+            <TouchableOpacity onPress={() => setRefresh(value => ++value)}>
+              <MaterialIcons name={'refresh'} size={30} />
+            </TouchableOpacity>
+          </View>
+          <Avatar />
+          <View style={styles.icon}>
+            <MaterialIcons name={'edit'} size={25} />
+          </View>
+          <Text style={styles.headerText}>Profile information</Text>
         </View>
-        <View style={styles.iconRefresh}>
-          <TouchableOpacity onPress={() => setRefresh(value => ++value)}>
-            <MaterialIcons name={'refresh'} size={30} />
-          </TouchableOpacity>
-        </View>
-        <Avatar />
-        <View style={styles.icon}>
-          <MaterialIcons name={'edit'} size={25} />
-        </View>
-        <Text style={styles.headerText}>Profile information</Text>
-      </View>
+      </LinearGradient>
 
       <View style={styles.helperDesignView} />
 
@@ -379,14 +382,14 @@ export default Profile;
 const styles = StyleSheet.create({
   scrollViewContainer: {
     flex: 1,
-    backgroundColor: '#54a0ff',
+    backgroundColor: '#2F80ED',
   },
   headerContainer: {
     borderBottomLeftRadius: 40,
     zIndex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#54a0ff',
+    // backgroundColor: '#54a0ff',
     paddingBottom: 20,
   },
   helperDesignView: {
