@@ -28,6 +28,7 @@ import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDa
 import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
 import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDatabase/AddNewMedicine';
 
+import QuickAccess from '../Components/Screens/QuickAccess';
 import EmergencyContacts from '../Components/Screens/QuickAccess/EmergencyContacts';
 
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
@@ -201,8 +202,8 @@ const Navigation = () => {
         }}
       />
       <Drawer.Screen
-        name="EmergencyContacts"
-        component={EmergencyContacts}
+        name="QuickAccess"
+        component={QuickAccess}
         options={{
           drawerLabel: 'Quick access',
           title: 'Quick access',
