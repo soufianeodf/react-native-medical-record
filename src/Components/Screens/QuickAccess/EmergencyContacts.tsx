@@ -12,7 +12,7 @@ export default function EmergencyContacts({navigation}) {
       <Text style={{fontSize: 18, marginTop: 15}}>Emergency Contacts not Added</Text>
       <View style={styles.buttonView}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('AddFamilialPrecedents')}>
+          onPress={() => navigation.navigate('AddEmergencyContact')}>
           <Ionicons name={'ios-add-circle'} color={'#661D54'} size={66} />
         </TouchableOpacity>
       </View>
