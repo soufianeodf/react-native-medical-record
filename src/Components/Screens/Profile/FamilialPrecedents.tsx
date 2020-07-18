@@ -6,13 +6,21 @@ const FamilialPrecedents = ({navigation}) => {
   const [isPortrait, setIsPortrait] = useState(false);
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{flex: 1, alignItems: 'center', marginTop: isPortrait ? '20%' : 0}} onLayout={(event)=> setIsPortrait(event.nativeEvent.layout.height >= event.nativeEvent.layout.width)}>
+    <View style={styles.viewContainer}>
+      <View
+        style={[styles.innerView, {marginTop: isPortrait ? '20%' : 0}]}
+        onLayout={(event) =>
+          setIsPortrait(
+            event.nativeEvent.layout.height >= event.nativeEvent.layout.width,
+          )
+        }>
         <Image
           style={styles.imageStyle}
           source={require('../../../../images/addfamily.png')}
         />
-        <Text style={{fontSize: 17, color: 'gray'}}>Update the patient's family medical history.</Text>
+        <Text style={styles.textStyle}>
+          Update the patient's family medical history.
+        </Text>
       </View>
       <View style={styles.buttonView}>
         <TouchableOpacity
@@ -27,6 +35,17 @@ const FamilialPrecedents = ({navigation}) => {
 export default FamilialPrecedents;
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1,
+  },
+  innerView: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  textStyle: {
+    fontSize: 17,
+    color: 'gray',
+  },
   buttonView: {
     position: 'absolute',
     bottom: '1.5%',
