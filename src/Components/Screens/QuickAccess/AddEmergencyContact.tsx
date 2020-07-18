@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 
 export default function AddEmergencyContact() {
   const [contactName, setContactName] = useState('');
