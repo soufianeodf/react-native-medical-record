@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -42,7 +48,11 @@ const index = ({navigation}) => {
     },
   ];
 
-  function _renderIconType(iconType, iconName, iconSize) {
+  function _renderIconType(
+    iconType: string,
+    iconName: string,
+    iconSize: number,
+  ) {
     switch (iconType) {
       case 'FontAwesome':
         return <FontAwesome name={iconName} size={iconSize} />;
@@ -62,21 +72,25 @@ const index = ({navigation}) => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      {itemInformations.map(value => {
-        return (
-          <TouchableOpacity
-            style={styles.innerContainer}
-            onPress={() => navigation.navigate(value.goToPage)}
-            key={value.key}>
-            <View style={styles.iconView}>
-              {_renderIconType(value.iconType, value.iconName, value.iconSize)}
-            </View>
-            <View style={styles.textView}>
-              <Text style={styles.textStyle}>{value.title}</Text>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+        {itemInformations.map((value) => {
+          return (
+            <TouchableOpacity
+              style={styles.innerContainer}
+              onPress={() => navigation.navigate(value.goToPage)}
+              key={value.key}>
+              <View style={styles.iconView}>
+                {_renderIconType(
+                  value.iconType,
+                  value.iconName,
+                  value.iconSize,
+                )}
+              </View>
+              <View style={styles.textView}>
+                <Text style={styles.textStyle}>{value.title}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
   );
