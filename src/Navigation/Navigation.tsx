@@ -28,6 +28,8 @@ import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDa
 import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
 import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDatabase/AddNewMedicine';
 
+import EmergencyContacts from '../Components/Screens/QuickAccess/EmergencyContacts';
+
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
 import ChatWithMembers from '../Components/Screens/ChatWithMembers';
@@ -64,6 +66,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Foundation from 'react-native-vector-icons/Foundation';
 
 export type StackParamList = {
   Login: undefined;
@@ -195,6 +198,15 @@ const Navigation = () => {
           drawerLabel: 'Profile',
           title: 'Profile',
           drawerIcon: () => <SimpleLineIcons name="user" size={22} />,
+        }}
+      />
+      <Drawer.Screen
+        name="EmergencyContacts"
+        component={EmergencyContacts}
+        options={{
+          drawerLabel: 'Quick access',
+          title: 'Quick access',
+          drawerIcon: () => <Foundation name="star" color="#ffc100" size={26} />,
         }}
       />
       <Drawer.Screen
