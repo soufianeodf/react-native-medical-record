@@ -41,7 +41,7 @@ export default function AddFamilialPrecedents() {
   ];
 
   return (
-    <View style={{flex: 1, paddingHorizontal: 5, marginTop: 20}}>
+    <View style={styles.viewContainer}>
       <DropDownPicker
         items={items}
         placeholder="Choose A Family Member"
@@ -54,8 +54,8 @@ export default function AddFamilialPrecedents() {
         dropDownStyle={{backgroundColor: '#fafafa', width: '60%'}}
         onChangeItem={(item) => setCountry(item.value)}
       />
-      <View style={{marginTop: 20, paddingLeft: 5}}>
-        <Text style={{fontSize: 17, marginBottom: -10}}>Medical History</Text>
+      <View style={styles.textInputView}>
+        <Text style={styles.textStyle}>Medical History</Text>
         <TextInput
           style={styles.textInput}
           multiline
@@ -69,6 +69,19 @@ export default function AddFamilialPrecedents() {
 }
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1,
+    paddingHorizontal: 5,
+    marginTop: 20,
+  },
+  textInputView: {
+    marginTop: 20,
+    paddingLeft: 5,
+  },
+  textStyle: {
+    fontSize: 17,
+    marginBottom: -10,
+  },
   textInput: {
     borderBottomWidth: 1,
     borderBottomColor: '#000',
