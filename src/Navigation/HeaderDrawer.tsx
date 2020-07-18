@@ -4,6 +4,7 @@ import Avatar from '../utils/Avatar';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const HeaderDrawer = () => {
   const navigation = useNavigation();
@@ -14,19 +15,19 @@ const HeaderDrawer = () => {
   useEffect(() => {
     navigation.addListener('focus', () => {
       let isMounted = true;
-      auth().onAuthStateChanged(user => {
+      auth().onAuthStateChanged((user) => {
         if (user && isMounted) {
           firestore()
             .collection('users')
             .doc(user.uid)
             .get()
-            .then(doc => {
+            .then((doc) => {
               setUsername(
                 doc.data().username ? doc.data().username : 'Primary',
               );
               setEmail(user.email);
             })
-            .catch(error => {
+            .catch((error) => {
               console.log(error.message);
             });
         } else {
@@ -40,13 +41,13 @@ const HeaderDrawer = () => {
   }, [navigation]);
 
   return (
-    <View style={styles.viewContainer}>
+    <LinearGradient colors={['#56CCF2', '#2F80ED']} style={{flex: 1}}>
       <Avatar />
       <View style={styles.textView}>
         <Text>{username}</Text>
         <Text>{email}</Text>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -55,7 +56,6 @@ export default HeaderDrawer;
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    backgroundColor: '#2db7ff',
   },
   textView: {
     margin: 16,
