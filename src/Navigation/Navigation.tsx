@@ -208,7 +208,9 @@ const Navigation = () => {
         options={{
           drawerLabel: 'Quick access',
           title: 'Quick access',
-          drawerIcon: () => <Foundation name="star" color="#ffc100" size={26} />,
+          drawerIcon: () => (
+            <Foundation name="star" color="#ffc100" size={26} />
+          ),
         }}
       />
       <Drawer.Screen
@@ -336,8 +338,16 @@ const Navigation = () => {
       <Stack.Screen name="SurgeryAct" component={SurgeryAct} />
       <Stack.Screen name="Analysis" component={Analysis} />
       {/* Quick access pages */}
-      <Stack.Screen name="EmergencyContacts" options={{headerShown: true, title: 'Emergency Contacts'}} component={EmergencyContacts} />
-      <Stack.Screen name="AddEmergencyContact" component={AddEmergencyContact} />
+      <Stack.Screen
+        name="EmergencyContacts"
+        options={{headerShown: true, title: 'Emergency Contacts'}}
+        component={EmergencyContacts}
+      />
+      <Stack.Screen
+        name="AddEmergencyContact"
+        options={{headerShown: true, title: 'Add Emergency Contacts'}}
+        component={AddEmergencyContact}
+      />
 
       <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
