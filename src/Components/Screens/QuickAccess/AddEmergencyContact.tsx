@@ -5,15 +5,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  View,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default function AddEmergencyContact({navigation}) {
   const [uid, setUid] = useState('');
   const [contactName, setContactName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
@@ -26,42 +29,71 @@ export default function AddEmergencyContact({navigation}) {
   }, []);
 
   const addContact = () => {
-    firestore()
-      .collection('emergencyContacts')
-      .doc(uid)
-      .collection('listContacts')
-      .add({
-        contactName,
-        phone,
-        city,
-      })
-      .then(() => {
-        console.log('Your changes have been saved.');
-      })
-      .catch(() => console.error('There was a problem saving your changes.'));
-    navigation.goBack();
+    if (contactName === '' || phone === '' || city === '') {
+      setErrorMessage('You should fill all the fields.');
+    } else {
+      firestore()
+        .collection('emergencyContacts')
+        .doc(uid)
+        .collection('listContacts')
+        .add({
+          contactName,
+          phone,
+          city,
+        })
+        .then(() => {
+          navigation.goBack();
+        })
+        .catch(() =>
+          setErrorMessage('There was a problem saving your contact.'),
+        );
+    }
   };
 
   return (
     <ScrollView style={styles.viewContainer}>
+      {errorMessage ? (
+        <View style={styles.successMessage}>
+          <View style={styles.errorMessageIcon}>
+            <FontAwesome name={'exclamation-circle'} size={20} />
+          </View>
+          <Text style={styles.errorTextMessage}>{errorMessage}</Text>
+        </View>
+      ) : null}
+
       <Text style={styles.textStyle}>Contact Name</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChangeText={(text) => setContactName(text)}
+        onChangeText={(text) => {
+          setContactName(text);
+          if (errorMessage !== '') {
+            setErrorMessage('');
+          }
+        }}
         value={contactName}
         placeholder="Enter the contact name here"
       />
       <Text style={styles.textStyle}>Phone</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChangeText={(text) => setPhone(text)}
+        onChangeText={(text) => {
+          setPhone(text);
+          if (errorMessage !== '') {
+            setErrorMessage('');
+          }
+        }}
         value={phone}
         placeholder="Enter the phone number here"
       />
       <Text style={styles.textStyle}>City</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChangeText={(text) => setCity(text)}
+        onChangeText={(text) => {
+          setCity(text);
+          if (errorMessage !== '') {
+            setErrorMessage('');
+          }
+        }}
         value={city}
         placeholder="Enter the city name here"
       />
@@ -98,5 +130,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 17,
     color: '#ddd',
+  },
+  successMessage: {
+    alignItems: 'center',
+  },
+  errorMessageIcon: {
+    position: 'absolute',
+    top: '36%',
+    left: '7%',
+    zIndex: 5,
+  },
+  errorTextMessage: {
+    textAlign: 'center',
+    backgroundColor: '#D94F4F',
+    alignItems: 'center',
+    padding: 8,
+    width: '89%',
+    borderRadius: 2,
+    marginTop: 8,
   },
 });
