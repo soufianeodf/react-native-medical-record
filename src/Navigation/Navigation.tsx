@@ -8,7 +8,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 
 import Login from '../Components/Auth/Login';
 import Signup from '../Components/Auth/Signup';
@@ -275,7 +275,17 @@ const Navigation = () => {
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
       {/* Familial Precedents pages */}
       <Stack.Screen
-        options={{headerShown: true, title: 'Add Family Medical History'}}
+        options={{
+          headerShown: true,
+          title: 'Add Family Medical History',
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => alert('check')}
+              style={{marginRight: 20}}>
+              <Ionicons name="md-checkmark" size={35} />
+            </TouchableOpacity>
+          ),
+        }}
         name="AddFamilialPrecedents"
         component={AddFamilialPrecedents}
       />
