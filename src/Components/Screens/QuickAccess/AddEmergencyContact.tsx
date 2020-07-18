@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   TextInput,
@@ -6,38 +6,66 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
-export default function AddEmergencyContact() {
+export default function AddEmergencyContact({navigation}) {
+  const [uid, setUid] = useState('');
   const [contactName, setContactName] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log('useEffect');
+        setUid(user.uid);
+      }
+    });
+    return subscriber;
+  }, []);
+
+  const addContact = () => {
+    firestore()
+      .collection('emergencyContacts')
+      .doc(uid)
+      .collection('listContacts')
+      .add({
+        contactName,
+        phone,
+        city,
+      })
+      .then(() => {
+        console.log('Your changes have been saved.');
+      })
+      .catch(() => console.error('There was a problem saving your changes.'));
+    navigation.goBack();
+  };
 
   return (
     <ScrollView style={styles.viewContainer}>
       <Text style={styles.textStyle}>Contact Name</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChange={(text) => setContactName(text)}
+        onChangeText={(text) => setContactName(text)}
         value={contactName}
         placeholder="Enter the contact name here"
       />
       <Text style={styles.textStyle}>Phone</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChange={(text) => setPhone(text)}
+        onChangeText={(text) => setPhone(text)}
         value={phone}
         placeholder="Enter the phone number here"
       />
       <Text style={styles.textStyle}>City</Text>
       <TextInput
         style={styles.textInputStyle}
-        onChange={(text) => setCity(text)}
+        onChangeText={(text) => setCity(text)}
         value={city}
         placeholder="Enter the city name here"
       />
-      <TouchableOpacity
-        onPress={() => alert('button pressed')}
-        style={styles.buttonStyle}>
+      <TouchableOpacity onPress={addContact} style={styles.buttonStyle}>
         <Text style={styles.textButton}>Add contact</Text>
       </TouchableOpacity>
     </ScrollView>
