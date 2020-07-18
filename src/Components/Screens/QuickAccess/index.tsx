@@ -44,7 +44,7 @@ const index = ({navigation}) => {
       iconName: 'phone-call',
       iconSize: 28,
       title: 'Emergency contacts',
-      goToPage: '',
+      goToPage: 'EmergencyContacts',
     },
   ];
 
