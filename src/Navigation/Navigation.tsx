@@ -334,6 +334,8 @@ const Navigation = () => {
       />
       <Stack.Screen name="SurgeryAct" component={SurgeryAct} />
       <Stack.Screen name="Analysis" component={Analysis} />
+      {/* Quick access pages */}
+      <Stack.Screen name="EmergencyContacts" component={EmergencyContacts} />
 
       <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
