@@ -12,8 +12,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Spinner from 'react-native-spinkit';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const EmergencyContacts = ({navigation}) => {
+  const [uid, setUid] = useState('');
   const [isPortrait, setIsPortrait] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,28 +24,42 @@ const EmergencyContacts = ({navigation}) => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
       if (user) {
+        setUid(user.uid);
         getContacts(user.uid);
       }
     });
     return subscriber;
   }, [selected]);
 
-  const getContacts = (uid) => {
+  const getContacts = (theUid) => {
     let theContacts = [];
     firestore()
       .collection('emergencyContacts')
-      .doc(uid)
+      .doc(theUid)
       .collection('listContacts')
       .get()
       .then((querySnapshot) => {
         console.log('Total contacts -----> : ', querySnapshot.size);
         querySnapshot.forEach((documentSnapshot) => {
-          theContacts.push(documentSnapshot.data());
+          theContacts.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
         });
         setContacts(theContacts);
         setLoading(false);
       })
       .catch((error) => Alert.alert(error));
+  };
+
+  const _deleteSelectedContact = (key) => {
+    firestore()
+      .collection('emergencyContacts')
+      .doc(uid)
+      .collection('listContacts')
+      .doc(key)
+      .delete()
+      .then(() => setSelected(!selected));
   };
 
   const _setSelected = () => {
@@ -76,33 +92,55 @@ const EmergencyContacts = ({navigation}) => {
 
   const _renderView = () => {
     return (
-      <View style={{flex: 1, paddingHorizontal: 10}}>
-        {contacts.length !== 0
-          ? contacts.map((value) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(`tel:${value.phone}`)}
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    backgroundColor: 'white',
-                    marginTop: 10,
-                    padding: 8,
-                    borderRadius: 3,
-                    elevation: 3,
-                  }}>
-                  <Text style={{textAlignVertical: 'center'}}>
-                    {' '}
-                    {value.contactName}{' '}
-                  </Text>
-                  <Ionicons name={'ios-call'} size={30} />
-                  <Text style={{textAlignVertical: 'center'}}>
-                    {value.phone}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })
-          : _renderWhenEmpty()}
+      <View style={{flex: 1}}>
+        <ScrollView
+          style={{flex: 1, paddingHorizontal: 10, marginTop: 10}}
+          contentContainerStyle={{flexGrow: 1}}>
+          {contacts.length !== 0
+            ? contacts.map((value) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL(`tel:${value.phone}`)}
+                    onLongPress={() =>
+                      Alert.alert(
+                        'Delete chosen contact',
+                        'Are you sure to delete.',
+                        [
+                          {
+                            text: 'Cancel',
+                            style: 'cancel',
+                          },
+                          {
+                            text: 'OK',
+                            onPress: () => _deleteSelectedContact(value.key),
+                          },
+                        ],
+                        {cancelable: false},
+                      )
+                    }
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      backgroundColor: 'white',
+                      marginVertical: 5,
+                      marginHorizontal: 1,
+                      padding: 8,
+                      borderRadius: 3,
+                      elevation: 3,
+                    }}>
+                    <Text style={{textAlignVertical: 'center'}}>
+                      {' '}
+                      {value.contactName}{' '}
+                    </Text>
+                    <Ionicons name={'ios-call'} size={30} />
+                    <Text style={{textAlignVertical: 'center'}}>
+                      {value.phone}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })
+            : _renderWhenEmpty()}
+        </ScrollView>
         <View style={styles.buttonView}>
           <TouchableOpacity
             onPress={() =>
