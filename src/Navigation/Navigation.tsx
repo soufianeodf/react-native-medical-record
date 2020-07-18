@@ -30,6 +30,7 @@ import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDataba
 
 import QuickAccess from '../Components/Screens/QuickAccess';
 import EmergencyContacts from '../Components/Screens/QuickAccess/EmergencyContacts';
+import AddEmergencyContact from '../Components/Screens/QuickAccess/AddEmergencyContact';
 
 import BoughtFromPharmacy from '../Components/Screens/BoughtFromPharmacy';
 import JoinAnotherAccount from '../Components/Screens/JoinAnotherAccount';
@@ -336,6 +337,7 @@ const Navigation = () => {
       <Stack.Screen name="Analysis" component={Analysis} />
       {/* Quick access pages */}
       <Stack.Screen name="EmergencyContacts" component={EmergencyContacts} />
+      <Stack.Screen name="AddEmergencyContact" component={AddEmergencyContact} />
 
       <Stack.Screen name="Chat" component={Chat} />
     </Stack.Navigator>
