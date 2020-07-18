@@ -41,6 +41,8 @@ An iOS and Android Medical Records app created with React Native. If you would l
 
 [React Native documentation](https://reactnative.dev/)
 
+[React Navigation documentation](https://reactnavigation.org/)
+
 # Before Run
 <!-- * Create a firebase project
 * In Authentication enable auth with email/password
