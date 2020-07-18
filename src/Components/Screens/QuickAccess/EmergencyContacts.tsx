@@ -17,6 +17,7 @@ const EmergencyContacts = ({navigation}) => {
   const [isPortrait, setIsPortrait] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
@@ -25,7 +26,7 @@ const EmergencyContacts = ({navigation}) => {
       }
     });
     return subscriber;
-  }, []);
+  }, [selected]);
 
   const getContacts = (uid) => {
     let theContacts = [];
@@ -43,6 +44,10 @@ const EmergencyContacts = ({navigation}) => {
         setLoading(false);
       })
       .catch((error) => Alert.alert(error));
+  };
+
+  const _setSelected = () => {
+    setSelected(!selected);
   };
 
   const _renderWhenEmpty = () => {
@@ -100,7 +105,9 @@ const EmergencyContacts = ({navigation}) => {
           : _renderWhenEmpty()}
         <View style={styles.buttonView}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('AddEmergencyContact')}>
+            onPress={() =>
+              navigation.navigate('AddEmergencyContact', {_setSelected})
+            }>
             <Ionicons name={'ios-add-circle'} color={'#661D54'} size={66} />
           </TouchableOpacity>
         </View>

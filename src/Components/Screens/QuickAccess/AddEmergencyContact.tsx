@@ -11,7 +11,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-export default function AddEmergencyContact({navigation}) {
+export default function AddEmergencyContact({route, navigation}) {
   const [uid, setUid] = useState('');
   const [contactName, setContactName] = useState('');
   const [phone, setPhone] = useState('');
@@ -41,6 +41,7 @@ export default function AddEmergencyContact({navigation}) {
           city,
         })
         .then(() => {
+          route.params._setSelected();
           navigation.goBack();
         })
         .catch(() =>
