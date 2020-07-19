@@ -15,8 +15,8 @@ import {StackParamList} from '../../../../Navigation/Navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type Props = {
-  route: RouteProp<StackParamList, 'AddNewMedicine'>;
-  navigation: StackNavigationProp<StackParamList, 'AddNewMedicine'>;
+  route: RouteProp<StackParamList, 'AddNewDoctor'>;
+  navigation: StackNavigationProp<StackParamList, 'AddNewDoctor'>;
 };
 
 const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {

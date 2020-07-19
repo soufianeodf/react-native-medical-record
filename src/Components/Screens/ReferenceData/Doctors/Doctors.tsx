@@ -20,8 +20,7 @@ import {RouteProp} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
 type Props = {
-  route: RouteProp<StackParamList, 'MedicationDatabase'>;
-  navigation: StackNavigationProp<StackParamList, 'MedicationDatabase'>;
+  navigation: StackNavigationProp<StackParamList, 'Doctors'>;
 };
 
 const Doctors: React.FC<Props> = ({navigation}) => {

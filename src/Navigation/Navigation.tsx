@@ -83,6 +83,8 @@ export type StackParamList = {
   ReferenceData: undefined;
   AddNewMedicine: {_setSelected: () => void};
   BoughtFromPharmacy: undefined;
+  Doctors: undefined;
+  AddNewDoctor: {_setSelected: () => void; uid: string};
 };
 
 const Navigation = () => {
