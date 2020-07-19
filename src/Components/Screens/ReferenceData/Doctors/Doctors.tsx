@@ -16,7 +16,6 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Spinner from 'react-native-spinkit';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackParamList} from '../../../../Navigation/Navigation';
-import {RouteProp} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 
 type Props = {
