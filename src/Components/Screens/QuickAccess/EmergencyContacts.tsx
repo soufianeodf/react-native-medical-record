@@ -70,7 +70,7 @@ const EmergencyContacts = ({navigation}) => {
     return (
       <View
         style={[
-          styles.viewContainer,
+          styles.viewWhenEmpty,
           {
             marginTop: isPortrait ? '40%' : 0,
             justifyContent: isPortrait ? 'flex-start' : 'center',
@@ -92,10 +92,10 @@ const EmergencyContacts = ({navigation}) => {
 
   const _renderView = () => {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.viewContainer}>
         <ScrollView
-          style={{flex: 1, paddingHorizontal: 10, marginTop: 10}}
-          contentContainerStyle={{flexGrow: 1}}>
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContentContainer}>
           {contacts.length !== 0
             ? contacts.map((value) => {
                 return (
@@ -119,24 +119,13 @@ const EmergencyContacts = ({navigation}) => {
                         {cancelable: false},
                       )
                     }
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      backgroundColor: 'white',
-                      marginVertical: 5,
-                      marginHorizontal: 1,
-                      padding: 8,
-                      borderRadius: 3,
-                      elevation: 3,
-                    }}>
-                    <Text style={{textAlignVertical: 'center'}}>
+                    style={styles.contactButtonStyle}>
+                    <Text style={styles.contactNameText}>
                       {' '}
                       {value.contactName}{' '}
                     </Text>
                     <Ionicons name={'ios-call'} size={30} />
-                    <Text style={{textAlignVertical: 'center'}}>
-                      {value.phone}
-                    </Text>
+                    <Text style={styles.contactNumberText}>{value.phone}</Text>
                   </TouchableOpacity>
                 );
               })
@@ -168,12 +157,39 @@ const EmergencyContacts = ({navigation}) => {
 export default EmergencyContacts;
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+    paddingHorizontal: 10,
+    marginTop: 10,
+  },
+  scrollViewContentContainer: {
+    flexGrow: 1,
+  },
+  contactButtonStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    marginVertical: 5,
+    marginHorizontal: 1,
+    padding: 8,
+    borderRadius: 3,
+    elevation: 3,
+  },
+  contactNameText: {
+    textAlignVertical: 'center',
+  },
+  contactNumberText: {
+    textAlignVertical: 'center',
+  },
   activityIndicatorView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  viewContainer: {
+  viewWhenEmpty: {
     flex: 1,
     alignItems: 'center',
   },
