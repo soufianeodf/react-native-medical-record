@@ -35,7 +35,7 @@ export default function EventsList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={styles.iconView}>
             <Fontisto name={'test-tube'} color={'#ef7650'} size={35} />
           </View>
@@ -57,7 +57,7 @@ export default function EventsList({navigation}) {
 
         <TouchableWithoutFeedback
           style={styles.touchableWithoutFeedbackStyle}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={styles.iconView}>
             <FontAwesome
               name={'thermometer-full'}
