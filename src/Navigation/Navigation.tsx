@@ -27,6 +27,8 @@ import ReferenceData from '../Components/Screens/ReferenceData';
 import MedicationDatabase from '../Components/Screens/ReferenceData/MedicationDatabase/MedicationDatabase';
 import NearbyHospitals from '../Components/Screens/ReferenceData/NearbyHospitals';
 import AddNewMedicine from '../Components/Screens/ReferenceData/MedicationDatabase/AddNewMedicine';
+import Doctors from '../Components/Screens/ReferenceData/Doctors/Doctors';
+import AddNewDoctor from '../Components/Screens/ReferenceData/Doctors/AddNewDoctor';
 
 import QuickAccess from '../Components/Screens/QuickAccess';
 import EmergencyContacts from '../Components/Screens/QuickAccess/EmergencyContacts';
@@ -321,6 +323,8 @@ const Navigation = () => {
       <Stack.Screen name="NearbyHospitals" component={NearbyHospitals} />
       <Stack.Screen name="MedicationDatabase" component={MedicationDatabase} />
       <Stack.Screen name="AddNewMedicine" component={AddNewMedicine} />
+      <Stack.Screen name="Doctors" component={Doctors} />
+      <Stack.Screen name="AddNewDoctor" component={AddNewDoctor} />
 
       <Stack.Screen name="EventsList" component={EventsList} />
       {/* Measurment list pages */}
