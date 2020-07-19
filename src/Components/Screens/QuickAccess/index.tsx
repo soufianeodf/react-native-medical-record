@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,14 +6,27 @@ import {
   TouchableOpacity,
   ScrollView,
   Linking,
+  Alert,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Feather from 'react-native-vector-icons/Feather';
+import Geolocation from '@react-native-community/geolocation';
 
 const index = ({navigation}) => {
+  const [initialPosition, setInitialPosition] = useState({
+    latitude: 31.5889,
+    longitude: -7.3626,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
+
+  useEffect(() => {
+    locateCurrentPosition();
+  }, []);
+
   const itemInformations = [
     {
       key: 1,
@@ -29,7 +42,10 @@ const index = ({navigation}) => {
       iconName: 'laboratory',
       iconSize: 28,
       title: 'Nearby laboratories',
-      goToPage: () => Linking.openURL('geo:0,0?q=laboratory'),
+      goToPage: () =>
+        Linking.openURL(
+          `geo:${initialPosition.latitude},${initialPosition.longitude}?q=laboratory`,
+        ),
     },
     {
       key: 3,
@@ -37,7 +53,10 @@ const index = ({navigation}) => {
       iconName: 'pharmacy',
       iconSize: 28,
       title: 'Nearby pharmacies',
-      goToPage: () => Linking.openURL('geo:0,0?q=pharmacy'),
+      goToPage: () =>
+        Linking.openURL(
+          `geo:${initialPosition.latitude},${initialPosition.longitude}?q=pharmacy`,
+        ),
     },
     {
       key: 4,
@@ -69,6 +88,23 @@ const index = ({navigation}) => {
         return null;
     }
   }
+
+  const locateCurrentPosition = () => {
+    Geolocation.getCurrentPosition(
+      (position) => {
+        let region = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        };
+        setInitialPosition(region);
+      },
+      (error) =>
+        Alert.alert('Please activate your location and re-enter again.'),
+      {enableHighAccuracy: true, timeout: 20000},
+    );
+  };
 
   return (
     <View style={styles.viewContainer}>
