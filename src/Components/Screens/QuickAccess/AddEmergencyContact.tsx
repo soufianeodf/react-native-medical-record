@@ -28,10 +28,17 @@ export default function AddEmergencyContact({route, navigation}) {
   }, []);
 
   const _isFormValidated = () => {
-    if (contactName === '' || phone === '' || city === '') {
-      return false;
+    if (
+      contactName !== '' &&
+      contactName.trim().length > 0 &&
+      phone !== '' &&
+      phone.trim().length > 0 &&
+      city !== '' &&
+      city.trim().length > 0
+    ) {
+      return true;
     }
-    return true;
+    return false;
   };
 
   const addContact = () => {
@@ -106,7 +113,7 @@ export default function AddEmergencyContact({route, navigation}) {
       <TouchableOpacity
         disabled={!_isFormValidated()}
         onPress={addContact}
-        style={[styles.buttonStyle, {opacity: _isFormValidated() ? 1 : 0.6 }]}>
+        style={[styles.buttonStyle, {opacity: _isFormValidated() ? 1 : 0.6}]}>
         <Text style={styles.textButton}>Add contact</Text>
       </TouchableOpacity>
     </ScrollView>
