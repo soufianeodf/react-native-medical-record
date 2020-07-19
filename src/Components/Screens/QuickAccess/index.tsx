@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Linking,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,7 +21,7 @@ const index = ({navigation}) => {
       iconName: 'doctor',
       iconSize: 28,
       title: 'Doctors',
-      goToPage: '',
+      goToPage: () => navigation.navigate(''),
     },
     {
       key: 2,
@@ -28,7 +29,7 @@ const index = ({navigation}) => {
       iconName: 'laboratory',
       iconSize: 28,
       title: 'Nearby laboratories',
-      goToPage: '',
+      goToPage: () => Linking.openURL('geo:0,0?q=laboratory'),
     },
     {
       key: 3,
@@ -36,7 +37,7 @@ const index = ({navigation}) => {
       iconName: 'pharmacy',
       iconSize: 28,
       title: 'Nearby pharmacies',
-      goToPage: '',
+      goToPage: () => Linking.openURL('geo:0,0?q=pharmacy'),
     },
     {
       key: 4,
@@ -44,7 +45,7 @@ const index = ({navigation}) => {
       iconName: 'phone-call',
       iconSize: 28,
       title: 'Emergency contacts',
-      goToPage: 'EmergencyContacts',
+      goToPage: () => navigation.navigate('EmergencyContacts'),
     },
   ];
 
@@ -76,7 +77,7 @@ const index = ({navigation}) => {
           return (
             <TouchableOpacity
               style={styles.innerContainer}
-              onPress={() => navigation.navigate(value.goToPage)}
+              onPress={() => value.goToPage()}
               key={value.key}>
               <View style={styles.iconView}>
                 {_renderIconType(
