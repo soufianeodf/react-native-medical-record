@@ -27,10 +27,15 @@ export default function AddEmergencyContact({route, navigation}) {
     return subscriber;
   }, []);
 
-  const addContact = () => {
+  const _isFormValidated = () => {
     if (contactName === '' || phone === '' || city === '') {
-      setErrorMessage('You should fill all the fields.');
-    } else {
+      return false;
+    }
+    return true;
+  };
+
+  const addContact = () => {
+    if (_isFormValidated()) {
       firestore()
         .collection('emergencyContacts')
         .doc(uid)
@@ -98,7 +103,10 @@ export default function AddEmergencyContact({route, navigation}) {
         value={city}
         placeholder="Enter the city name here"
       />
-      <TouchableOpacity onPress={addContact} style={styles.buttonStyle}>
+      <TouchableOpacity
+        disabled={!_isFormValidated()}
+        onPress={addContact}
+        style={[styles.buttonStyle, {opacity: _isFormValidated() ? 1 : 0.6 }]}>
         <Text style={styles.textButton}>Add contact</Text>
       </TouchableOpacity>
     </ScrollView>
