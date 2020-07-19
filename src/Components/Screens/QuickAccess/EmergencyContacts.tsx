@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 18,
     marginTop: 15,
+    color: '#777',
   },
   buttonView: {
     position: 'absolute',
