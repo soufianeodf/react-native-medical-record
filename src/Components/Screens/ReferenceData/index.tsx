@@ -40,7 +40,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#2c8bdb'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('Doctors')}>
           <View style={styles.iconView}>
             <Fontisto name={'doctor'} color={'white'} size={35} />
           </View>
