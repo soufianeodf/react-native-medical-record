@@ -79,7 +79,7 @@ const Doctors: React.FC<Props> = ({navigation}) => {
       .collection('doctors')
       .doc(uid)
       .collection('doctorlist')
-      .where('fullName', '>=', '')
+      .where('fullName', '>=', search)
       .get()
       .then((querySnapshot) => {
         let theDoctors = [];
