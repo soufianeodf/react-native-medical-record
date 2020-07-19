@@ -167,7 +167,10 @@ const Doctors: React.FC<Props> = ({navigation}) => {
                     {cancelable: false},
                   )
                 }>
-                <Text style={styles.itemsStyle}> {item.fullName} </Text>
+                <View style={styles.itemsStyle}>
+                  <Text>{item.fullName}</Text>
+                  <Text style={{color: 'gray'}}> {'  '} {item.specialization}</Text>
+                </View>
               </TouchableOpacity>
             )}
           />
@@ -245,7 +248,7 @@ const styles = StyleSheet.create({
   itemsStyle: {
     borderWidth: 1,
     borderColor: 'white',
-    paddingVertical: 15,
+    paddingVertical: 5,
     margin: 8,
     borderRadius: 3,
     elevation: 1,
