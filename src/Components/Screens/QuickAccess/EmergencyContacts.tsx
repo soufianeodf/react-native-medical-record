@@ -101,6 +101,7 @@ const EmergencyContacts = ({navigation}) => {
                 return (
                   <TouchableOpacity
                     onPress={() => Linking.openURL(`tel:${value.phone}`)}
+                    key={value.key}
                     onLongPress={() =>
                       Alert.alert(
                         'Delete chosen contact',
