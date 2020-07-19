@@ -34,7 +34,7 @@ const index = ({navigation}) => {
       iconName: 'doctor',
       iconSize: 28,
       title: 'Doctors',
-      goToPage: () => navigation.navigate(''),
+      goToPage: () => navigation.navigate('Doctors'),
     },
     {
       key: 2,
