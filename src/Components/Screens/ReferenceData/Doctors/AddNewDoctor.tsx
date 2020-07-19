@@ -24,8 +24,20 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
   const [specialization, setSpecialization] = useState('');
   const [comment, setComment] = useState('');
 
+  const _isFormValidated = () => {
+    if (
+      fullName !== '' &&
+      fullName.trim().length > 0 &&
+      specialization !== '' &&
+      specialization.trim().length > 0
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const _addMedicine = (theUid) => {
-    if (fullName !== '') {
+    if (_isFormValidated()) {
       firestore()
         .collection('doctors')
         .doc(theUid)
@@ -40,8 +52,6 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
           route.params._setSelected();
           navigation.goBack();
         });
-    } else {
-      Alert.alert("You canno't enter an empty name.");
     }
   };
 
@@ -61,13 +71,13 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
               <Ionicons name={'ios-close'} color={'grey'} size={35} />
             </TouchableOpacity>
           </View>
-          <Text style={styles.modalInputTextTitle}>Doctor's name</Text>
+          <Text style={styles.modalInputTextTitle}>Doctor's name*</Text>
           <TextInput
             style={styles.modalInputText}
             value={fullName}
             onChangeText={(text) => setFullName(text)}
           />
-          <Text style={styles.modalInputTextTitle}>Specialization</Text>
+          <Text style={styles.modalInputTextTitle}>Specialization*</Text>
           <TextInput
             style={styles.modalInputText}
             value={specialization}
@@ -81,7 +91,11 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
           />
           <TouchableOpacity
             onPress={() => _addMedicine(route.params.uid)}
-            style={styles.modalButtonContainer}>
+            disabled={_isFormValidated()}
+            style={[
+              styles.modalButtonContainer,
+              {opacity: _isFormValidated() ? 1 : 0.6},
+            ]}>
             <Text style={styles.modalButtonText}>Add Doctor</Text>
           </TouchableOpacity>
         </View>
