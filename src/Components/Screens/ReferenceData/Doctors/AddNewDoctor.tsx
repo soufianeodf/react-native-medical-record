@@ -49,6 +49,8 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
         })
         .then(() => {
           setFullName('');
+          setSpecialization('');
+          setComment('');
           route.params._setSelected();
           navigation.goBack();
         });
@@ -91,7 +93,7 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
           />
           <TouchableOpacity
             onPress={() => _addMedicine(route.params.uid)}
-            disabled={_isFormValidated()}
+            disabled={!_isFormValidated()}
             style={[
               styles.modalButtonContainer,
               {opacity: _isFormValidated() ? 1 : 0.6},
