@@ -44,7 +44,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
           <View style={styles.iconView}>
             <Fontisto name={'doctor'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 19})}>
+          <View style={[styles.textView, {marginLeft: 19}]}>
             <Text style={styles.textStyle}>DOCTORS</Text>
           </View>
         </TouchableOpacity>
@@ -55,7 +55,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
           <View style={styles.iconView}>
             <FontAwesome5 name={'book-medical'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 22.5})}>
+          <View style={[styles.textView, {marginLeft: 22.5}]}>
             <Text style={styles.textStyle}>MEDICATIONS DATABASE</Text>
           </View>
         </TouchableOpacity>
@@ -66,7 +66,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
           <View style={styles.iconView}>
             <FontAwesome5 name={'hospital-alt'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 16})}>
+          <View style={[styles.textView, {marginLeft: 16}]}>
             <Text style={styles.textStyle}>NEARBY HOSPITALS</Text>
           </View>
         </TouchableOpacity>
@@ -74,10 +74,10 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#46a7f8'}]}
           onPress={() => navigation.navigate('Specializations')}>
-          <View style={styles.iconView}>
+          <View style={{marginLeft: 32}}>
             <FontAwesome5 name={'code-branch'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 31})}>
+          <View style={[styles.textView, {marginLeft: 24}]}>
             <Text style={styles.textStyle}>SPECIALIZATIONS</Text>
           </View>
         </TouchableOpacity>
@@ -85,10 +85,10 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#55b2ff'}]}
           onPress={() => alert('clicked')}>
-          <View style={styles.iconView}>
+          <View style={{marginLeft: 22}}>
             <FontAwesome5 name={'diagnoses'} color={'white'} size={35} />
           </View>
-          <View style={styles.textView}>
+          <View style={[styles.textView, {marginLeft: 19}]}>
             <Text style={styles.textStyle}>DIAGNOSES</Text>
           </View>
         </TouchableOpacity>
@@ -110,7 +110,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
           <View style={styles.iconView}>
             <FontAwesome5 name={'file-signature'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 22})}>
+          <View style={[styles.textView, {marginLeft: 22}]}>
             <Text style={styles.textStyle}>RECOMMENDATIONS</Text>
           </View>
         </TouchableOpacity>
@@ -118,10 +118,10 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#9ad0ff'}]}
           onPress={() => alert('clicked')}>
-          <View style={styles.iconView}>
+          <View style={{marginLeft: 27}}>
             <FontAwesome5 name={'clipboard-list'} color={'white'} size={35} />
           </View>
-          <View style={([styles.textView], {marginLeft: 38})}>
+          <View style={[styles.textView, {marginLeft: 35}]}>
             <Text style={styles.textStyle}>SYMPTOMS</Text>
           </View>
         </TouchableOpacity>
