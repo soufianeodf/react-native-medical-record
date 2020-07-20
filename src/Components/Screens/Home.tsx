@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  StatusBar,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -27,10 +26,6 @@ const Main: React.FC<Props> = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    StatusBar.setHidden(true);
-  }, []);
 
   useEffect(() => {
     navigation.addListener('focus', () => {
