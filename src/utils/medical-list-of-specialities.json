@@ -1,66 +1,257 @@
 [
-{ "specialization": "Paediatric emergency medicine" },
-{ "specialization": "Paediatric intensive care medicine" },
-{ "specialization": "Gynaecological oncology" },
-{ "specialization": "Maternal–fetal medicine" },
-{ "specialization": "Obstetrics and gynaecological ultrasound" },
-{ "specialization": "Reproductive endocrinology and infertility" },
-{ "specialization": "Urogynaecology" },
-{ "specialization": "Clinical genetics" },
-{ "specialization": "Community child health" },
-{ "specialization": "General paediatrics" },
-{ "specialization": "Neonatal and perinatal medicine" },
-{ "specialization": "Paediatric cardiology" },
-{ "specialization": "Paediatric clinical pharmacology" },
-{ "specialization": "Paediatric emergency medicine" },
-{ "specialization": "Paediatric endocrinology" },
-{ "specialization": "Paediatric gastroenterology and hepatology" },
-{ "specialization": "Paediatric haematology" },
-{ "specialization": "Paediatric immunology and allergy" },
-{ "specialization": "Paediatric infectious diseases" },
-{ "specialization": "Paediatric intensive care medicine" },
-{ "specialization": "Paediatric medical oncology" },
-{ "specialization": "Paediatric nephrology" },
-{ "specialization": "Paediatric neurology" },
-{ "specialization": "Paediatric nuclear medicine" },
-{ "specialization": "Paediatric palliative medicine" },
-{ "specialization": "Paediatric rehabilitation medicine" },
-{ "specialization": "Paediatric respiratory and sleep medicine" },
-{ "specialization": "Paediatric rheumatology" },
-{ "specialization": "General pathology" },
-{ "specialization": "Anatomical pathology (including cytopathology)" },
-{ "specialization": "Chemical pathology" },
-{ "specialization": "Haematology" },
-{ "specialization": "Immunology" },
-{ "specialization": "Microbiology" },
-{ "specialization": "Forensic pathology" },
-{ "specialization": "Cardiology" },
-{ "specialization": "Clinical genetics" },
-{ "specialization": "Clinical pharmacology" },
-{ "specialization": "Endocrinology" },
-{ "specialization": "Gastroenterology and hepatology" },
-{ "specialization": "General medicine" },
-{ "specialization": "Geriatric medicine" },
-{ "specialization": "Haematology" },
-{ "specialization": "Immunology and allergy" },
-{ "specialization": "Infectious diseases" },
-{ "specialization": "Medical oncology" },
-{ "specialization": "Nephrology" },
-{ "specialization": "Neurology" },
-{ "specialization": "Nuclear medicine" },
-{ "specialization": "Respiratory and sleep medicine" },
-{ "specialization": "Rheumatology" },
-{ "specialization": "Diagnostic radiology" },
-{ "specialization": "Diagnostic ultrasound" },
-{ "specialization": "Nuclear medicine" },
-{ "specialization": "Cardio-thoracic surgery" },
-{ "specialization": "General surgery" },
-{ "specialization": "Neurosurgery" },
-{ "specialization": "Orthopaedic surgery" },
-{ "specialization": "Otolaryngology – head and neck surgery" },
-{ "specialization": "Oral and maxillofacial surgery" },
-{ "specialization": "Paediatric surgery" },
-{ "specialization": "Plastic surgery" },
-{ "specialization": "Urology" },
-{ "specialization": "Vascular surgery" }
+  { 
+    "key": "1",
+    "specialization": "Paediatric emergency medicine" 
+  },
+  { 
+    "key": "2",
+    "specialization": "Paediatric intensive care medicine" 
+  },
+  { 
+    "key": "3",
+    "specialization": "Gynaecological oncology" 
+  },
+  { 
+    "key": "4",
+    "specialization": "Maternal–fetal medicine" 
+  },
+  { 
+    "key": "5",
+    "specialization": "Obstetrics and gynaecological ultrasound" 
+  },
+  { 
+    "key": "6",
+    "specialization": "Reproductive endocrinology and infertility" 
+  },
+  { 
+    "key": "7",
+    "specialization": "Urogynaecology" 
+  },
+  { 
+    "key": "8",
+    "specialization": "Clinical genetics" 
+  },
+  { 
+    "key": "9",
+    "specialization": "Community child health" 
+  },
+  { 
+    "key": "10",
+    "specialization": "General paediatrics" 
+  },
+  { 
+    "key": "11",
+    "specialization": "Neonatal and perinatal medicine" 
+  },
+  { 
+    "key": "12",
+    "specialization": "Paediatric cardiology" 
+  },
+  { 
+    "key": "13",
+    "specialization": "Paediatric clinical pharmacology" 
+  },
+  { 
+    "key": "14",
+    "specialization": "Paediatric emergency medicine" 
+  },
+  { 
+    "key": "15",
+    "specialization": "Paediatric endocrinology" 
+  },
+  { 
+    "key": "16",
+    "specialization": "Paediatric gastroenterology and hepatology" 
+  },
+  { 
+    "key": "17",
+    "specialization": "Paediatric haematology" 
+  },
+  { 
+    "key": "18",
+    "specialization": "Paediatric immunology and allergy" 
+  },
+  { 
+    "key": "19",
+    "specialization": "Paediatric infectious diseases" 
+  },
+  { 
+    "key": "20",
+    "specialization": "Paediatric intensive care medicine" 
+  },
+  { 
+    "key": "21",
+    "specialization": "Paediatric medical oncology" 
+  },
+  { 
+    "key": "22",
+    "specialization": "Paediatric nephrology" 
+  },
+  { 
+    "key": "23",
+    "specialization": "Paediatric neurology" 
+  },
+  { 
+    "key": "24",
+    "specialization": "Paediatric nuclear medicine" 
+  },
+  { 
+    "key": "25",
+    "specialization": "Paediatric palliative medicine" 
+  },
+  { 
+    "key": "26",
+    "specialization": "Paediatric rehabilitation medicine" 
+  },
+  { 
+    "key": "27",
+    "specialization": "Paediatric respiratory and sleep medicine" 
+  },
+  { 
+    "key": "28",
+    "specialization": "Paediatric rheumatology" 
+  },
+  { 
+    "key": "29",
+    "specialization": "General pathology" 
+  },
+  { 
+    "key": "30",
+    "specialization": "Anatomical pathology (including cytopathology)" 
+  },
+  { 
+    "key": "31",
+    "specialization": "Chemical pathology" 
+  },
+  { 
+    "key": "32",
+    "specialization": "Haematology" 
+  },
+  { 
+    "key": "33",
+    "specialization": "Immunology" 
+  },
+  { 
+    "key": "34",
+    "specialization": "Microbiology" 
+  },
+  { 
+    "key": "35",
+    "specialization": "Forensic pathology" 
+  },
+  { 
+    "key": "36",
+    "specialization": "Cardiology" 
+  },
+  { 
+    "key": "37",
+    "specialization": "Clinical genetics" 
+  },
+  { 
+    "key": "38",
+    "specialization": "Clinical pharmacology" 
+  },
+  { 
+    "key": "39",
+    "specialization": "Endocrinology" 
+  },
+  { 
+    "key": "40",
+    "specialization": "Gastroenterology and hepatology" 
+  },
+  { 
+    "key": "41",
+    "specialization": "General medicine" 
+  },
+  { 
+    "key": "42",
+    "specialization": "Geriatric medicine" 
+  },
+  { 
+    "key": "43",
+    "specialization": "Haematology" 
+  },
+  { 
+    "key": "44",
+    "specialization": "Immunology and allergy" 
+  },
+  { 
+    "key": "45",
+    "specialization": "Infectious diseases" 
+  },
+  { 
+    "key": "46",
+    "specialization": "Medical oncology" 
+  },
+  { 
+    "key": "47",
+    "specialization": "Nephrology" 
+  },
+  { 
+    "key": "48",
+    "specialization": "Neurology" 
+  },
+  { 
+    "key": "49",
+    "specialization": "Nuclear medicine" 
+  },
+  { 
+    "key": "50",
+    "specialization": "Respiratory and sleep medicine" 
+  },
+  { 
+    "key": "51",
+    "specialization": "Rheumatology" 
+  },
+  { 
+    "key": "52",
+    "specialization": "Diagnostic radiology" 
+  },
+  { 
+    "key": "53",
+    "specialization": "Diagnostic ultrasound" 
+  },
+  { 
+    "key": "54",
+    "specialization": "Nuclear medicine" 
+  },
+  { 
+    "key": "55",
+    "specialization": "Cardio-thoracic surgery" 
+  },
+  { 
+    "key": "56",
+    "specialization": "General surgery" 
+  },
+  { 
+    "key": "57",
+    "specialization": "Neurosurgery" 
+  },
+  { 
+    "key": "58",
+    "specialization": "Orthopaedic surgery" 
+  },
+  { 
+    "key": "59",
+    "specialization": "Otolaryngology – head and neck surgery" 
+  },
+  { 
+    "key": "60",
+    "specialization": "Oral and maxillofacial surgery" 
+  },
+  { 
+    "key": "61",
+    "specialization": "Paediatric surgery" 
+  },
+  { 
+    "key": "62",
+    "specialization": "Plastic surgery" 
+  },
+  { 
+    "key": "63",
+    "specialization": "Urology" 
+  },
+    { "key": "64",
+    "specialization": "Vascular surgery"
+  }
 ]
