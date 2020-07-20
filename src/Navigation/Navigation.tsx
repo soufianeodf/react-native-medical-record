@@ -88,7 +88,7 @@ export type StackParamList = {
   Doctors: undefined;
   AddNewDoctor: {_setSelected: () => void; uid: string};
   Specializations: undefined;
-  AddNewSpecialization: {_setSelected: () => void; uid: string};
+  AddNewSpecialization: {_setSelected: () => void; uid: string, key: string};
 };
 
 const Navigation = () => {
