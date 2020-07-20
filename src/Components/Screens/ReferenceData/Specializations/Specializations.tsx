@@ -17,57 +17,48 @@ import Spinner from 'react-native-spinkit';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackParamList} from '../../../../Navigation/Navigation';
 import auth from '@react-native-firebase/auth';
-import specializations from "../../../../utils/medical-list-of-specialities.json";
 
 // type Props = {
 //   navigation: StackNavigationProp<StackParamList, 'Doctors'>;
 // };
 
 const Specializations: React.FC<Props> = ({navigation}) => {
-  const [loading, setLoading] = useState(false);
-  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [specializations, setSpecializations] = useState([]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState(false);
   const [uid, setUid] = useState('');
 
-  // useEffect(() => {
-  //   Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
-  //   Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
-  //   const subscriber = auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       setUid(user.uid);
-  //       firestore()
-  //         .collection('doctors')
-  //         .doc(user.uid)
-  //         .collection('doctorlist')
-  //         .where('fullName', '>=', '')
-  //         .get()
-  //         .then((querySnapshot) => {
-  //           let theDoctors = [];
-  //           console.log('Total Doctors: ', querySnapshot.size);
-  //           querySnapshot.forEach((documentSnapshot) => {
-  //             theDoctors.push({
-  //               ...documentSnapshot.data(),
-  //               key: documentSnapshot.id,
-  //             });
-  //           });
-  //           setDoctors(theDoctors);
-  //           setLoading(false);
-  //         })
-  //         .catch((error) => Alert.alert(error));
-  //     }
-  //   });
-  //   return subscriber;
-  // }, [selected]);
-
   useEffect(() => {
-    var specialities = [...specializations];
-    setDoctors(specializations)
-    return () => {
-      
-    }
-  }, [])
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    const subscriber = auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        firestore()
+          .collection('specializations')
+          .doc(user.uid)
+          .collection('specializationlist')
+          .where('specialization', '>=', '')
+          .get()
+          .then((querySnapshot) => {
+            let theSpecializations = [];
+            console.log('Total Doctors: ', querySnapshot.size);
+            querySnapshot.forEach((documentSnapshot) => {
+              theSpecializations.push({
+                ...documentSnapshot.data(),
+                key: documentSnapshot.id,
+              });
+            });
+            setSpecializations(theSpecializations);
+            setLoading(false);
+          })
+          .catch((error) => Alert.alert(error));
+      }
+    });
+    return subscriber;
+  }, [selected]);
 
   const _keyboardDidShow = () => {
     setIsKeyboardOn(true);
@@ -83,30 +74,30 @@ const Specializations: React.FC<Props> = ({navigation}) => {
 
   const _search = () => {
     firestore()
-      .collection('doctors')
+      .collection('specializations')
       .doc(uid)
-      .collection('doctorlist')
-      .where('fullName', '>=', search)
+      .collection('specializationlist')
+      .where('specialization', '>=', search)
       .get()
       .then((querySnapshot) => {
-        let theDoctors = [];
+        let theSpecializations = [];
         console.log('Total Doctors ----------->: ', querySnapshot.size);
         querySnapshot.forEach((documentSnapshot) => {
-          theDoctors.push({
+          theSpecializations.push({
             ...documentSnapshot.data(),
             key: documentSnapshot.id,
           });
         });
-        setDoctors(theDoctors);
+        setSpecializations(theSpecializations);
       })
       .catch((error) => Alert.alert(error));
   };
 
   const _deleteSelectedMedicine = (item) => {
     firestore()
-      .collection('doctors')
+      .collection('specializations')
       .doc(uid)
-      .collection('doctorlist')
+      .collection('specializationlist')
       .doc(item.key)
       .delete()
       .then(() => setSelected(!selected));
@@ -140,7 +131,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
         </View>
       </View>
       <View style={styles.secondInnerView}>
-        {doctors.length === 0 ? (
+        {specializations.length === 0 ? (
           <View style={styles.notFoundView}>
             <Image
               style={{
@@ -153,7 +144,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
           </View>
         ) : (
           <FlatList
-            data={doctors}
+            data={specializations}
             extraData={selected}
             renderItem={({item}) => (
               <TouchableOpacity
