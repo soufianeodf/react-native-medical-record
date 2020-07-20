@@ -73,7 +73,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#46a7f8'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => navigation.navigate('Specializations')}>
           <View style={styles.iconView}>
             <FontAwesome5 name={'code-branch'} color={'white'} size={35} />
           </View>
