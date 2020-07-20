@@ -18,9 +18,9 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {StackParamList} from '../../../../Navigation/Navigation';
 import auth from '@react-native-firebase/auth';
 
-// type Props = {
-//   navigation: StackNavigationProp<StackParamList, 'Doctors'>;
-// };
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Specializations'>;
+};
 
 const Specializations: React.FC<Props> = ({navigation}) => {
   const [loading, setLoading] = useState(true);
