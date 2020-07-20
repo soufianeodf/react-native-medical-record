@@ -36,6 +36,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
   }, []);
 
   useEffect(() => {
+    console.log('--->', specializations.length);
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
     const subscriber = auth().onAuthStateChanged((user) => {
@@ -111,7 +112,11 @@ const Specializations: React.FC<Props> = ({navigation}) => {
   };
 
   const _getLastId = () => {
-    return (+specializations[specializations.length - 1].key + 1).toString();
+    if(specializations.length !== 0) {
+      const sortedArrayByKey = specializations.sort((a, b) => parseFloat(a.key) - parseFloat(b.key));
+      return (+sortedArrayByKey[sortedArrayByKey.length - 1].key + 1).toString();
+    } 
+    return '1';
   };
 
   if (loading) {
