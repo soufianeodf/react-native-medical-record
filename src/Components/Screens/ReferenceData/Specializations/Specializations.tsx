@@ -24,7 +24,7 @@ import auth from '@react-native-firebase/auth';
 
 const Specializations: React.FC<Props> = ({navigation}) => {
   const [loading, setLoading] = useState(true);
-  const [specializations, setSpecializations] = useState([]);
+  const [specializations, setSpecializations] = useState<{key: string, specialization: string}[]>([]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState(false);
@@ -43,12 +43,12 @@ const Specializations: React.FC<Props> = ({navigation}) => {
           .where('specialization', '>=', '')
           .get()
           .then((querySnapshot) => {
-            let theSpecializations = [];
+            let theSpecializations: {key: string, specialization: string}[] = [];
             console.log('Total Doctors: ', querySnapshot.size);
             querySnapshot.forEach((documentSnapshot) => {
               theSpecializations.push({
-                ...documentSnapshot.data(),
                 key: documentSnapshot.id,
+                specialization: documentSnapshot.data().specialization,
               });
             });
             setSpecializations(theSpecializations);
@@ -80,12 +80,12 @@ const Specializations: React.FC<Props> = ({navigation}) => {
       .where('specialization', '>=', search)
       .get()
       .then((querySnapshot) => {
-        let theSpecializations = [];
+        let theSpecializations: {key: string, specialization: string}[] = [];
         console.log('Total Doctors ----------->: ', querySnapshot.size);
         querySnapshot.forEach((documentSnapshot) => {
           theSpecializations.push({
-            ...documentSnapshot.data(),
             key: documentSnapshot.id,
+            specialization: documentSnapshot.data().specialization,
           });
         });
         setSpecializations(theSpecializations);
@@ -93,7 +93,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
       .catch((error) => Alert.alert(error));
   };
 
-  const _deleteSelectedMedicine = (item) => {
+  const _deleteSelectedMedicine = (item: { key: string; specialization?: string; }) => {
     firestore()
       .collection('specializations')
       .doc(uid)
