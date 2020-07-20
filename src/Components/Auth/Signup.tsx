@@ -84,10 +84,10 @@ const Signup: React.FC<Props> = ({navigation}) => {
 
   function _handleSignup() {
     if (
-      email === '' ||
-      password === '' ||
-      confirmPassword === '' ||
-      fullName === ''
+      !(email !== '' && email.trim().length > 0 &&
+      password !== '' && password.trim().length > 0 &&
+      confirmPassword !== '' && confirmPassword.trim().length > 0 &&
+      fullName !== '' && fullName.trim().length > 0) 
     ) {
       setErrorMessage('Please fill up the necessary fields.');
     } else if (password !== confirmPassword) {
