@@ -23,7 +23,7 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
   const [medicationName, setMedicationName] = useState('');
 
   const _addMedicine = () => {
-    if (medicationName !== '') {
+    if (medicationName !== '' && medicationName.trim().length > 0) {
       firestore()
         .collection('medications')
         .add({
