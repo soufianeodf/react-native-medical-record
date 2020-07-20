@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  StatusBar,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -22,6 +23,11 @@ const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
   const [fullName, setFullName] = useState('');
   const [specialization, setSpecialization] = useState('');
   const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    StatusBar.setHidden(true);
+    return () => StatusBar.setHidden(false);
+  }, []);
 
   const _isFormValidated = () => {
     if (

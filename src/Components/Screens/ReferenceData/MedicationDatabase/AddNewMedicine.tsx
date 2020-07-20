@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  StatusBar,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -21,6 +22,11 @@ type Props = {
 
 const AddNewMedicine: React.FC<Props> = ({route, navigation}) => {
   const [medicationName, setMedicationName] = useState('');
+
+  useEffect(() => {
+    StatusBar.setHidden(true);
+    return () => StatusBar.setHidden(false);
+  }, []);
 
   const _addMedicine = () => {
     if (medicationName !== '' && medicationName.trim().length > 0) {
