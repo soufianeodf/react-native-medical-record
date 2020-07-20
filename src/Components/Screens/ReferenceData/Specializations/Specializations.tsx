@@ -9,6 +9,7 @@ import {
   TextInput,
   Keyboard,
   Image,
+  StatusBar,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -24,11 +25,15 @@ type Props = {
 
 const Specializations: React.FC<Props> = ({navigation}) => {
   const [loading, setLoading] = useState(true);
-  const [specializations, setSpecializations] = useState<{key: string, specialization: string}[]>([]);
+  const [specializations, setSpecializations] = useState<{id: string, key: string, specialization: string}[]>([]);
   const [isKeyboardOn, setIsKeyboardOn] = useState(false);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState(false);
   const [uid, setUid] = useState('');
+
+  useEffect(() => {
+    StatusBar.setHidden(true);
+  }, []);
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -43,11 +48,12 @@ const Specializations: React.FC<Props> = ({navigation}) => {
           .where('specialization', '>=', '')
           .get()
           .then((querySnapshot) => {
-            let theSpecializations: {key: string, specialization: string}[] = [];
+            let theSpecializations: {id: string, key: string, specialization: string}[] = [];
             console.log('Total Doctors: ', querySnapshot.size);
             querySnapshot.forEach((documentSnapshot) => {
               theSpecializations.push({
-                key: documentSnapshot.id,
+                id: documentSnapshot.id,
+                key: documentSnapshot.data().key,
                 specialization: documentSnapshot.data().specialization,
               });
             });
@@ -80,11 +86,12 @@ const Specializations: React.FC<Props> = ({navigation}) => {
       .where('specialization', '>=', search)
       .get()
       .then((querySnapshot) => {
-        let theSpecializations: {key: string, specialization: string}[] = [];
+        let theSpecializations: {id: string, key: string, specialization: string}[] = [];
         console.log('Total Doctors ----------->: ', querySnapshot.size);
         querySnapshot.forEach((documentSnapshot) => {
           theSpecializations.push({
-            key: documentSnapshot.id,
+            id: documentSnapshot.id,
+            key: documentSnapshot.data().key,
             specialization: documentSnapshot.data().specialization,
           });
         });
@@ -93,20 +100,24 @@ const Specializations: React.FC<Props> = ({navigation}) => {
       .catch((error) => Alert.alert(error));
   };
 
-  const _deleteSelectedMedicine = (item: { key: string; specialization?: string; }) => {
+  const _deleteSelectedMedicine = (id: string) => {
     firestore()
       .collection('specializations')
       .doc(uid)
       .collection('specializationlist')
-      .doc(item.key)
+      .doc(id)
       .delete()
       .then(() => setSelected(!selected));
+  };
+
+  const _getLastId = () => {
+    return (+specializations[specializations.length - 1].key + 1).toString();
   };
 
   if (loading) {
     return (
       <View style={styles.activityIndicatorView}>
-        <Spinner isVisible={true} type={'Pulse'} color="#4B8DC9" size={70} />
+        <Spinner isVisible={true} type={'Pulse'} color="#46a7f8" size={70} />
       </View>
     );
   }
@@ -159,7 +170,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
                       },
                       {
                         text: 'OK',
-                        onPress: () => _deleteSelectedMedicine(item),
+                        onPress: () => _deleteSelectedMedicine(item.id),
                       },
                     ],
                     {cancelable: false},
@@ -176,9 +187,9 @@ const Specializations: React.FC<Props> = ({navigation}) => {
       <View style={styles.buttonView}>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('AddNewSpecialization', {_setSelected, uid})
+            navigation.navigate('AddNewSpecialization', {_setSelected, uid, key: _getLastId()})
           }>
-          <Ionicons name={'ios-add-circle'} color={'#4B8DC9'} size={66} />
+          <Ionicons name={'ios-add-circle'} color={'#46a7f8'} size={66} />
         </TouchableOpacity>
       </View>
     </View>
@@ -198,7 +209,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   firstInnerView: {
-    backgroundColor: '#4B8DC9',
+    backgroundColor: '#46a7f8',
     borderBottomRightRadius: 25,
     borderBottomLeftRadius: 25,
     justifyContent: 'center',
