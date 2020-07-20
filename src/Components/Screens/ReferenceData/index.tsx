@@ -18,11 +18,6 @@ type Props = {
 };
 
 const ReferenceData: React.FC<Props> = ({navigation}) => {
-  useEffect(() => {
-    navigation.addListener('focus', () => {
-      StatusBar.setHidden(false);
-    });
-  }, [navigation]);
 
   return (
     <View style={styles.viewContainer}>
@@ -84,7 +79,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#55b2ff'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={{marginLeft: 22}}>
             <FontAwesome5 name={'diagnoses'} color={'white'} size={35} />
           </View>
@@ -95,7 +90,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#6dbcff'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={styles.iconView}>
             <Fontisto name={'test-tube'} color={'white'} size={35} />
           </View>
@@ -106,7 +101,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#81c6ff'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={styles.iconView}>
             <FontAwesome5 name={'file-signature'} color={'white'} size={35} />
           </View>
@@ -117,7 +112,7 @@ const ReferenceData: React.FC<Props> = ({navigation}) => {
 
         <TouchableOpacity
           style={[styles.innerContainer, {backgroundColor: '#9ad0ff'}]}
-          onPress={() => alert('clicked')}>
+          onPress={() => alert('Not implemented yet.')}>
           <View style={{marginLeft: 27}}>
             <FontAwesome5 name={'clipboard-list'} color={'white'} size={35} />
           </View>
