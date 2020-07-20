@@ -9,7 +9,7 @@ import {
   TextInput,
   Keyboard,
   Image,
-  StatusBar,
+  // StatusBar,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -31,9 +31,9 @@ const Specializations: React.FC<Props> = ({navigation}) => {
   const [selected, setSelected] = useState(false);
   const [uid, setUid] = useState('');
 
-  useEffect(() => {
-    StatusBar.setHidden(true);
-  }, []);
+  // useEffect(() => {
+  //   StatusBar.setHidden(true);
+  // }, []);
 
   useEffect(() => {
     console.log('--->', specializations.length);
