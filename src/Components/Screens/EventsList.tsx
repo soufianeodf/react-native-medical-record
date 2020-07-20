@@ -15,6 +15,7 @@ import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 export default function EventsList({navigation}) {
   useEffect(() => {
     StatusBar.setHidden(true);
+    return () => StatusBar.setHidden(false);
   }, []);
 
   return (

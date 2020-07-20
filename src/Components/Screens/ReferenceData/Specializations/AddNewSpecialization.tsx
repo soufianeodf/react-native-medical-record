@@ -25,6 +25,7 @@ const AddNewSpecialization: React.FC<Props> = ({route, navigation}) => {
 
   useEffect(() => {
     StatusBar.setHidden(true);
+    return () => StatusBar.setHidden(false);
   }, []);
 
   const _addSpecialization = () => {
