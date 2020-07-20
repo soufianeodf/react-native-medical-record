@@ -28,7 +28,7 @@ const AddNewSpecialization: React.FC<Props> = ({route, navigation}) => {
   }, []);
 
   const _addSpecialization = () => {
-    if (specializationName !== '') {
+    if (specializationName !== '' && specializationName.trim().length > 0) {
       firestore()
         .collection('specializations')
         .doc(route.params.uid)
