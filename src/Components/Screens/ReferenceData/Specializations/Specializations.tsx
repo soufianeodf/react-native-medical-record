@@ -150,7 +150,7 @@ const Specializations: React.FC<Props> = ({navigation}) => {
               <TouchableOpacity
                 onLongPress={() =>
                   Alert.alert(
-                    'Delete chosen medication',
+                    'Delete chosen specialization',
                     'Are you sure to delete.',
                     [
                       {
