@@ -31,17 +31,19 @@ An iOS and Android Medical Records app created with React Native. If you would l
 [Firebase (email auth and real-time database)](https://firebase.google.com/) -->
 
 # Resources Used
+[React documentation](https://reactjs.org/)
+
+[React Native documentation](https://reactnative.dev/)
+
+[React Navigation documentation](https://reactnavigation.org/)
+
 [Finding Nearby Places with using Places API in React Native](https://dev.to/therealyusa/finding-nearby-places-with-using-places-api-in-react-native-4ckj)
 
 [Using Places Autocomplete API in React Native](https://www.youtube.com/watch?time_continue=484&v=stz3IOCwLKs&feature=emb_logo)
 
 [Drawing PolyLine Directions on react-native-maps with Google Directions](https://www.youtube.com/watch?v=LKnz4gmesZk&feature=youtu.be)
 
-[React documentation](https://reactjs.org/)
-
-[React Native documentation](https://reactnative.dev/)
-
-[React Navigation documentation](https://reactnavigation.org/)
+[Obtain a URI for an image asset in React Native](https://medium.com/swlh/how-to-obtain-a-uri-for-an-image-asset-in-react-native-with-expo-88dfbe1023b8)
 
 # Before Run
 <!-- * Create a firebase project
