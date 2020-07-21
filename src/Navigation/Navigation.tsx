@@ -292,11 +292,11 @@ const Navigation = () => {
       <Stack.Screen name="Home" component={DrawerScreen} />
       {/* Medical Precedents pages */}
       <Stack.Screen name="HeartCondition" component={HeartCondition} />
-      <Stack.Screen name="Diabetes" component={Diabetes} />
+      <Stack.Screen options={{headerShown: true, title: 'Diabetes',}} name="Diabetes" component={Diabetes} />
       <Stack.Screen options={{headerShown: true, title: 'Allergies',}} name="Allergy" component={Allergy} />
-      <Stack.Screen name="Vaccination" component={Vaccination} />
-      <Stack.Screen name="Surgery" component={Surgery} />
-      <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
+      <Stack.Screen options={{headerShown: true, title: 'Vaccinations',}} name="Vaccination" component={Vaccination} />
+      <Stack.Screen options={{headerShown: true, title: 'Surgeries',}} name="Surgery" component={Surgery} />
+      <Stack.Screen options={{headerShown: true, title: 'Alcohol/Smoking',}} name="AlcoholSmoking" component={AlcoholSmoking} />
       {/* Familial Precedents pages */}
       <Stack.Screen
         options={{
