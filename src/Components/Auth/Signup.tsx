@@ -12,7 +12,6 @@ import CustomButton from '../../utils/forms/CustomButton';
 import DatePicker from '../../utils/forms/DatePickerInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-// import Avatar from '../../utils/Avatar';
 import _firebaseAuthErrorMessages from '../../utils/firebaseAuthErrorMessages';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StackParamList} from '../../Navigation/Navigation';
@@ -161,8 +160,7 @@ const Signup: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={styles.viewContainer}>
-      <ScrollView contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
-        {/* <Avatar /> */}
+      <ScrollView contentContainerStyle={styles.scrollViewContentContainerStyle}>
 
         {errorMessage ? (
           <View style={styles.errorContainer}>
@@ -285,6 +283,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  scrollViewContentContainerStyle: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   firstBlockContainer: {
     width: '100%',
