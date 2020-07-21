@@ -1,25 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, ScrollView, Alert, Image} from 'react-native';
 import Modal from 'react-native-modal';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import Spinner from 'react-native-spinkit';
 
 const Diabetes = () => {
   const [uid, setUid] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
+  const [allergies, setAllergies] = useState([]);
   const [allergy, setAllergy] = useState('');
+  const [isPortrait, setIsPortrait] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
       if (user) {
         setUid(user.uid);
+        _getAllergies(user.uid);
       }
     });
     return subscriber;
-  }, []);
+  }, [selected]);
 
   const items = [
     {
@@ -84,7 +90,33 @@ const Diabetes = () => {
     },
   ];
 
-  const addContact = () => {
+  const _toggleModal = () => {
+    console.log(isModalVisible);
+    setModalVisible(!isModalVisible);
+  };
+
+  const _getAllergies = (theUid) => {
+    let theAllergies = [];
+    firestore()
+      .collection('allergies')
+      .doc(theUid)
+      .collection('listAllergies')
+      .get()
+      .then((querySnapshot) => {
+        console.log('Total allergies -----> : ', querySnapshot.size);
+        querySnapshot.forEach((documentSnapshot) => {
+          theAllergies.push({
+            key: documentSnapshot.id,
+            allergy: documentSnapshot.data().allergy,
+          });
+        });
+        setAllergies(theAllergies);
+        setLoading(false);
+      })
+      .catch((error) => Alert.alert(error));
+  };
+
+  const _addContact = () => {
     if (allergy !== '') {
       firestore()
         .collection('allergies')
@@ -94,17 +126,23 @@ const Diabetes = () => {
           allergy,
         })
         .then(() => {
-          toggleModal();
+          setSelected(!selected);
+          _toggleModal();
         })
         .catch(() =>
           console.error('There was a problem saving your contact.'),
         );
     }
   };
-  
-  const toggleModal = () => {
-    console.log(isModalVisible);
-    setModalVisible(!isModalVisible);
+
+  const _deleteSelectedContact = (key) => {
+    firestore()
+      .collection('allergies')
+      .doc(uid)
+      .collection('listAllergies')
+      .doc(key)
+      .delete()
+      .then(() => setSelected(!selected));
   };
 
   const _returnModalView = () => {
@@ -125,10 +163,10 @@ const Diabetes = () => {
           onChangeItem={(item) => setAllergy(item.value)}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-          <TouchableOpacity onPress={toggleModal}>
+          <TouchableOpacity onPress={_toggleModal}>
             <Text style={{color: '#4994ff', fontSize: 16}}>CANCEL</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={addContact}>
+          <TouchableOpacity onPress={_addContact}>
             <Text style={{color: '#4994ff', fontSize: 16}}>DONE</Text>
           </TouchableOpacity>
         </View>
@@ -137,11 +175,79 @@ const Diabetes = () => {
     );
   };
 
+  const _renderWhenEmpty = () => {
+    return (
+      <View
+        style={[
+          styles.viewWhenEmpty,
+          {
+            marginTop: isPortrait ? '40%' : 0,
+            justifyContent: isPortrait ? 'flex-start' : 'center',
+          },
+        ]}
+        onLayout={(event) =>
+          setIsPortrait(
+            event.nativeEvent.layout.height >= event.nativeEvent.layout.width,
+          )
+        }>
+        <Image
+          style={styles.imageStyle}
+          source={require('../../../../../images/emergencycall.png')}
+        />
+        <Text style={styles.textStyle}>Emergency Contacts not Added</Text>
+      </View>
+    );
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.activityIndicatorView}>
+        <Spinner isVisible={true} type={'Pulse'} color="#661D54" size={70} />
+      </View>
+    );
+  }
+
     return (
       <View style={{flex: 1}}>
+
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContentContainer}>
+          {allergies.length !== 0
+            ? allergies.map((value) => {
+                return (
+                  <TouchableOpacity
+                    key={value.key}
+                    onLongPress={() =>
+                      Alert.alert(
+                        'Delete chosen allergy',
+                        'Are you sure to delete.',
+                        [
+                          {
+                            text: 'Cancel',
+                            style: 'cancel',
+                          },
+                          {
+                            text: 'OK',
+                            onPress: () => _deleteSelectedContact(value.key),
+                          },
+                        ],
+                        {cancelable: false},
+                      )
+                    }
+                    style={styles.contactButtonStyle}>
+                    <Text style={styles.contactNumberText}>{value.allergy}</Text>
+                  </TouchableOpacity>
+                );
+              })
+            : _renderWhenEmpty()}
+        </ScrollView>
+
+
+
       <View style={styles.buttonView}>
         <TouchableOpacity
-          onPress={toggleModal}>
+          onPress={_toggleModal}>
           <Ionicons name={'ios-add-circle'} color={'#3394ef'} size={66} />
         </TouchableOpacity>
       </View>
@@ -154,9 +260,48 @@ const Diabetes = () => {
 export default Diabetes;
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    paddingHorizontal: 10,
+    marginTop: 10,
+  },
+  scrollViewContentContainer: {
+    flexGrow: 1,
+  },
+  viewWhenEmpty: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  imageStyle: {
+    width: 150,
+    height: 150,
+  },
+  textStyle: {
+    fontSize: 18,
+    marginTop: 15,
+    color: '#777',
+  },
   buttonView: {
     position: 'absolute',
     bottom: '1.5%',
     right: '4%',
+  },
+  contactNumberText: {
+    textAlignVertical: 'center',
+  },
+  contactButtonStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+    marginVertical: 5,
+    marginHorizontal: 1,
+    padding: 8,
+    borderRadius: 3,
+    elevation: 3,
+  },
+  activityIndicatorView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
