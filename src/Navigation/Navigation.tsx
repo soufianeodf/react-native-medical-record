@@ -293,7 +293,7 @@ const Navigation = () => {
       {/* Medical Precedents pages */}
       <Stack.Screen name="HeartCondition" component={HeartCondition} />
       <Stack.Screen name="Diabetes" component={Diabetes} />
-      <Stack.Screen name="Allergy" component={Allergy} />
+      <Stack.Screen options={{headerShown: true, title: 'Allergies',}} name="Allergy" component={Allergy} />
       <Stack.Screen name="Vaccination" component={Vaccination} />
       <Stack.Screen name="Surgery" component={Surgery} />
       <Stack.Screen name="AlcoholSmoking" component={AlcoholSmoking} />
