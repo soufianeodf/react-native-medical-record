@@ -37,7 +37,7 @@ const Main: React.FC<Props> = ({navigation}) => {
             .get()
             .then(doc => {
               setUsername(
-                doc.data().username ? doc.data().username : 'Primary',
+                doc.data() != null ? doc.data().username : 'Primary',
               );
               _getDataFromFirestore(user.uid);
             })
