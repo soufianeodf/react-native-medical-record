@@ -1,12 +1,25 @@
-import React, {useState} from 'react';
-import {Button, Text, View, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import DropDownPicker from 'react-native-dropdown-picker';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const Diabetes = () => {
+  const [uid, setUid] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
   const [allergy, setAllergy] = useState('');
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+      }
+    });
+    return subscriber;
+  }, []);
 
   const items = [
     {
@@ -70,6 +83,24 @@ const Diabetes = () => {
       icon: () => <MaterialIcons name={'person'} size={18} color={'gray'} />,
     },
   ];
+
+  const addContact = () => {
+    if (allergy !== '') {
+      firestore()
+        .collection('allergies')
+        .doc(uid)
+        .collection('listAllergies')
+        .add({
+          allergy,
+        })
+        .then(() => {
+          toggleModal();
+        })
+        .catch(() =>
+          console.error('There was a problem saving your contact.'),
+        );
+    }
+  };
   
   const toggleModal = () => {
     console.log(isModalVisible);
@@ -95,10 +126,10 @@ const Diabetes = () => {
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
           <TouchableOpacity onPress={toggleModal}>
-            <Text style={{color: 'blue'}}>CANCEL</Text>
+            <Text style={{color: '#4994ff', fontSize: 16}}>CANCEL</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleModal}>
-            <Text style={{color: 'blue'}}>DONE</Text>
+          <TouchableOpacity onPress={addContact}>
+            <Text style={{color: '#4994ff', fontSize: 16}}>DONE</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -108,8 +139,12 @@ const Diabetes = () => {
 
     return (
       <View style={{flex: 1}}>
-        <Button title="Show modal" onPress={toggleModal} />
-
+      <View style={styles.buttonView}>
+        <TouchableOpacity
+          onPress={toggleModal}>
+          <Ionicons name={'ios-add-circle'} color={'#3394ef'} size={66} />
+        </TouchableOpacity>
+      </View>
         {_returnModalView()}
       </View>
     );
@@ -117,3 +152,11 @@ const Diabetes = () => {
 }
 
 export default Diabetes;
+
+const styles = StyleSheet.create({
+  buttonView: {
+    position: 'absolute',
+    bottom: '1.5%',
+    right: '4%',
+  },
+});
