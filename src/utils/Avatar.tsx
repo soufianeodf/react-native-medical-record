@@ -4,6 +4,7 @@ import storage from '@react-native-firebase/storage';
 import auth from '@react-native-firebase/auth';
 import ImagePicker from 'react-native-image-picker';
 import ProgressBar from 'react-native-progress/Bar';
+import exampleImage from '../../images/avatar.png';
 
 const Avatar = () => {
   const [url, setUrl] = useState(
@@ -50,7 +51,10 @@ const Avatar = () => {
         console.log('i am getting the image');
         setUrl(theurl);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        setUrl(Image.resolveAssetSource(exampleImage).uri);
+      });
   }
 
   function _uploadImage(uri) {
