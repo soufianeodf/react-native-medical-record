@@ -115,42 +115,44 @@ const Signup: React.FC<Props> = ({navigation}) => {
               address: '',
               amoutOfFees: '',
               attachmentNumber: '',
-            })
-            .catch(error => setErrorMessage(error.message));
+            }).then(() => {
 
-            firestore()
-            .collection('medicalPrecedents')
-            .doc(credentials.user.uid)
-            .set({
-              checkBox_1: false,
-              checkBox_2: false,
-              checkBox_3: false,
-              checkBox_4: false,
-              checkBox_5: false,
-              checkBox_6: false,
-              checkBox_7: false,
-              checkBox_8: false,
-              checkBox_9: false,
-              checkBox_10: false,
-            })
-            .catch(error => setErrorMessage(error.message));
-
-            specializations.map(value => {
               firestore()
-                .collection('specializations')
-                .doc(credentials.user.uid)
-                .collection('specializationlist')
-                .add({
-                  key: value.key,
-                  specialization: value.specialization,
-                })
-                .then((response) => {
-                  console.log('doc written with ID :' + response.id + '\n');
-                })
-                .catch((error) => console.error(error));
-            });
-            
-            navigation.navigate('Home');
+              .collection('medicalPrecedents')
+              .doc(credentials.user.uid)
+              .set({
+                checkBox_1: false,
+                checkBox_2: false,
+                checkBox_3: false,
+                checkBox_4: false,
+                checkBox_5: false,
+                checkBox_6: false,
+                checkBox_7: false,
+                checkBox_8: false,
+                checkBox_9: false,
+                checkBox_10: false,
+              })
+              .catch(error => setErrorMessage(error.message));
+
+              specializations.map(value => {
+                firestore()
+                  .collection('specializations')
+                  .doc(credentials.user.uid)
+                  .collection('specializationlist')
+                  .add({
+                    key: value.key,
+                    specialization: value.specialization,
+                  })
+                  .then((response) => {
+                    console.log('doc written with ID :' + response.id + '\n');
+                  })
+                  .catch((error) => console.error(error));
+              });
+
+              navigation.navigate('Home');
+              
+            })
+            .catch(error => setErrorMessage(error.message));
         })
         .catch(error =>
           setErrorMessage(_firebaseAuthErrorMessages(error.code)),
