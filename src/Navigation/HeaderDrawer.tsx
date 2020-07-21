@@ -8,13 +8,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const HeaderDrawer = () => {
   const navigation = useNavigation();
-
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  let isMounted = false;
 
   useEffect(() => {
     navigation.addListener('focus', () => {
-      let isMounted = true;
+      isMounted = true;
       auth().onAuthStateChanged((user) => {
         if (user && isMounted) {
           firestore()
@@ -23,7 +23,7 @@ const HeaderDrawer = () => {
             .get()
             .then((doc) => {
               setUsername(
-                doc.data().username ? doc.data().username : 'Primary',
+                doc.data() != null ? doc.data().username : 'Primary',
               );
               setEmail(user.email);
             })
