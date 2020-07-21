@@ -11,7 +11,7 @@ import Spinner from 'react-native-spinkit';
 const Allergy = () => {
   const [uid, setUid] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
-  const [allergies, setAllergies] = useState([]);
+  const [allergies, setAllergies] = useState<{key: string, allergy: string}[]>([]);
   const [allergy, setAllergy] = useState('');
   const [isPortrait, setIsPortrait] = useState(false);
   const [selected, setSelected] = useState(false);
@@ -95,8 +95,8 @@ const Allergy = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const _getAllergies = (theUid) => {
-    let theAllergies = [];
+  const _getAllergies = (theUid: string) => {
+    let theAllergies: {key: string, allergy: string}[] = [];
     firestore()
       .collection('allergies')
       .doc(theUid)
@@ -135,7 +135,7 @@ const Allergy = () => {
     }
   };
 
-  const _deleteSelectedContact = (key) => {
+  const _deleteSelectedContact = (key: string) => {
     firestore()
       .collection('allergies')
       .doc(uid)
