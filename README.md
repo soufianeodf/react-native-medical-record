@@ -5,30 +5,69 @@
 # Swish 
 An iOS and Android Medical Records app created with React Native. If you would like to request a feature, find a bug, have a question, or would like to leave feedback, open an issue! ⭐️ this repo to show support!
 
+# Demonstration
+
+
+# Download
+
+* iOS - Coming soon!
+* Android - Download [here](http://www.mediafire.com/file/m0nulmtdwvlg0id/carnet_med_4.apk/file)!
+
+# Features
+
+
 # Libraries Used
-<!-- [React Native](https://github.com/facebook/react-native)
+[React Native](https://github.com/facebook/react-native)
 
 [React Navigation](https://reactnavigation.org/)
 
-[Redux](https://redux.js.org/)
+<!-- [Redux](https://redux.js.org/) -->
 
-[React Redux](https://github.com/reduxjs/react-redux)
+<!-- [React Redux](https://github.com/reduxjs/react-redux) -->
 
-[Redux Promise](https://github.com/capaj/react-promise)
+<!-- [Redux Promise](https://github.com/capaj/react-promise) -->
 
-[Axios](https://github.com/qiangmao/axios)
+<!-- [Axios](https://github.com/qiangmao/axios) -->
+
+[Lodash](https://github.com/lodash/lodash)
 
 [Moment](https://momentjs.com/)
 
-[React-Native-webview](https://github.com/react-native-community/react-native-webview)
+[React-native-checkbox](https://github.com/react-native-community/react-native-checkbox)
+
+[React-native-image-picker](https://github.com/react-native-community/react-native-image-picker)
+
+[Datetimepicker](https://github.com/react-native-community/datetimepicker)
+
+[react-native-modal-datetime-picker](https://github.com/mmazzarolo/react-native-modal-datetime-picker)
+
+[React-native-dropdown-picker](https://github.com/hossein-zare/react-native-dropdown-picker)
+
+[React-native-maps](https://github.com/react-native-community/react-native-maps)
+
+[React-native-geolocation](https://github.com/react-native-community/react-native-geolocation)
+
+[React-native-calendars](https://github.com/wix/react-native-calendars)
+
+[React-native-fbsdk](https://github.com/facebook/react-native-fbsdk)
+
+[React-native-gifted-chat](https://github.com/FaridSafi/react-native-gifted-chat)
+
+[React-native-linear-gradient](https://github.com/react-native-community/react-native-linear-gradient)
+
+[react-native-modal](https://github.com/react-native-community/react-native-modal)
+
+[react-native-progress](https://github.com/oblador/react-native-progress)
+
+[react-native-spinkit](https://github.com/maxs15/react-native-spinkit)
+
+[react-native-timeline-flatlist](https://github.com/Eugnis/react-native-timeline-flatlist)
+
+[react-native-view-shot](https://github.com/gre/react-native-view-shot)
 
 [React-Native-vector-icons](https://github.com/oblador/react-native-vector-icons)
 
-[React-Native-video](https://github.com/react-native-community/react-native-video)
-
-[React-Native-render-html](https://github.com/archriss/react-native-render-html)
-
-[Firebase (email auth and real-time database)](https://firebase.google.com/) -->
+[Firebase (Authentication, Storage, and firestore database)](https://firebase.google.com/) -->
 
 # Resources Used
 [React documentation](https://reactjs.org/)
@@ -74,3 +113,9 @@ react-native run-android
 
 react-native run-ios
 ``` -->
+
+# To Be Continue
+	1. Fix UI in IOS
+  2. Increase app performance
+	3. Unit test
+
