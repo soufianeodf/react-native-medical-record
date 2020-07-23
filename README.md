@@ -115,9 +115,9 @@ react-native run-ios
 ``` -->
 
 # To Be Continue
-	1. Fix UI in IOS
+  1. Fix UI in IOS
   2. Increase app performance
-	3. Unit test
+  3. Unit test
 
 # License
 
