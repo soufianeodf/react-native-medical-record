@@ -119,3 +119,6 @@ react-native run-ios
   2. Increase app performance
 	3. Unit test
 
+# License
+
+Licensed under the [MIT License](LICENSE).
