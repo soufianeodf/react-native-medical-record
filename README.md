@@ -4,8 +4,7 @@ An iOS and Android Medical Records app created with React Native. If you would l
 
 # Demonstration
 
-<img src="./screenshots/1.jpg" alt="" width="250px">
-<img src="./screenshots/2.jpg" alt="" width="250px">
+<img src="./screenshots/1.jpg" alt="" width="250px"> <img src="./screenshots/2.jpg" alt="" width="250px">
 <img src="./screenshots/3.jpg" alt="" width="250px">
 <img src="./screenshots/4.jpg" alt="" width="250px">
 <img src="./screenshots/5.jpg" alt="" width="250px">
