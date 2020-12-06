@@ -129,22 +129,27 @@ export const APIKEY = YOUR_API_KEY;
 
 # Getting Started
 
-<!-- 1. Fork (optional) and clone repo
+1. Fork (optional) and clone repo
+
 ```
  git clone https://github.com/soufianeodf/react-native-NBA.git
 
  cd react-native-NBA
 ```
+
 2. Install dependencies
+
 ```
 npm install
 ```
+
 3. Run
+
 ```
 react-native run-android
 
 react-native run-ios
-``` -->
+```
 
 # To Be Continue
 
